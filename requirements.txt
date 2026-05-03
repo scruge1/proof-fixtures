@@ -1,23 +1,25 @@
-# Document Ops extraction pipeline — Python deps (v0.1)
+# Document Ops extraction pipeline — Python deps (v0.2)
+# See mcp-servers/_dep_notes/{pytesseract,rapidocr,pdf2image,mistralai}.md
+# for live API references and gotchas.
 
-# OCR layer (Tesseract is the floor — install if nothing else works)
-pytesseract>=0.3.10
+# OCR layer
+pytesseract>=0.3.10        # see _dep_notes/pytesseract.md — needs Tesseract binary
+rapidocr==3.8.1            # see _dep_notes/rapidocr.md — ONNX models bundled, AMD-CPU-friendly
 pillow>=10.0.0
-pdf2image>=1.16.0
-# (Tesseract binary required separately:
-#   Windows: https://github.com/UB-Mannheim/tesseract/wiki
-#   macOS:   brew install tesseract
-#   Linux:   apt install tesseract-ocr)
-
-# OCR layer — PaddleOCR-VL ensemble (Apache-2.0 weights, much higher accuracy)
-# Install GPU build if CUDA available:
-#   pip install paddlepaddle-gpu paddleocr
-# CPU fallback:
-#   pip install paddlepaddle paddleocr
-paddleocr>=2.7.0
-
-# OpenCV for PP-StructureV3 image handling
+pdf2image>=1.16.0          # needs Poppler binary (see _dep_notes/pdf2image.md)
 opencv-python>=4.8.0
+
+# Tesseract binary (system install, separate from pip):
+#   Windows: winget install --id UB-Mannheim.TesseractOCR -e
+#   macOS:   brew install tesseract
+#   Linux:   apt install tesseract-ocr
+# Default Windows path: C:/Program Files/Tesseract-OCR/tesseract.exe
+
+# Poppler binary (system install, required for pdf2image):
+#   Windows: winget install --id oschwartz10612.Poppler -e
+#            OR download https://github.com/oschwartz10612/poppler-windows/releases
+#   macOS:   brew install poppler
+#   Linux:   apt install poppler-utils
 
 # Verifier layer
 requests>=2.31.0

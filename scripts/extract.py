@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 """
-Document Ops extraction pipeline (v0.1)
+Document Ops extraction pipeline (v0.2)
 
-Runs the OSS OCR ensemble + verifier chain on a directory of documents:
-  Tesseract 5 + PaddleOCR-VL + PP-StructureV3 (OCR layer)
-  -> Local Qwen2.5-VL via Ollama (primary verifier)
-  -> Mistral Small 3.1 via API (paid fallback)
-  -> Gemini 2.5 Flash via API (optional Auto Plus cross-check)
+Runs the OSS OCR ensemble + verifier chain on a directory of documents.
+
+OCR layer (per system dep-notes mcp-servers/_dep_notes/{pytesseract,rapidocr}.md):
+  Tesseract 5.5.0 (UB-Mannheim Windows build at C:/Program Files/Tesseract-OCR)
+  + RapidOCR 3.8.1 (ONNX runtime, models bundled, AMD-CPU-friendly, ~5s warm).
+  PaddleOCR-VL DROPPED — heavy install, not in current toolchain. Future
+  upgrade: GEX44 RTX-4000-Ada Hetzner box (deferred per §11 D20).
+
+Verifier chain (cheapest tier first, falls through on unavailability):
+  -> Local Qwen2.5-VL via Ollama (primary, free, ZBook 8GB RTX)
+  -> Mistral Small 3.1 via paid API (fallback, ~€0.001/doc, FR/EU sovereignty)
+  -> Gemini 2.5 Flash @ europe-west4 (optional Auto Plus cross-check)
 
 Outputs per-document JSON with extracted fields, per-field confidence scores,
 verifier verdicts, and a final pass/bounce decision against the 0.98 gate.
@@ -100,12 +107,20 @@ class OCREngine:
 
 
 class TesseractEngine(OCREngine):
+    """Tesseract 5.5 via pytesseract. Per `_dep_notes/pytesseract.md`:
+    binary at C:/Program Files/Tesseract-OCR/tesseract.exe (UB-Mannheim build).
+    Filter conf < 0 (non-text blocks). Use --oem 1 (LSTM) for accuracy."""
+
     name = "tesseract-5"
 
     def __init__(self):
         self._loaded = False
         try:
-            import pytesseract  # noqa: F401
+            import pytesseract
+            # Per pytesseract.md: always set exe path explicitly on Windows
+            tesseract_path = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+            if os.path.exists(tesseract_path):
+                pytesseract.pytesseract.tesseract_cmd = tesseract_path
             self._loaded = True
         except ImportError:
             log.debug("pytesseract not installed; Tesseract engine disabled")
@@ -117,22 +132,23 @@ class TesseractEngine(OCREngine):
         import pytesseract
         from PIL import Image
 
-        # Convert PDF page-1 to image if needed (real impl: pdf2image for all pages)
+        # PDF support requires Poppler binary (pdf2image dep). Falls back to
+        # JPG/PNG if PDF + Poppler missing.
         if doc_path.suffix.lower() == ".pdf":
             try:
                 from pdf2image import convert_from_path
                 images = convert_from_path(str(doc_path), dpi=300, first_page=1, last_page=1)
                 img = images[0]
-            except ImportError:
-                raise RuntimeError("pdf2image required for PDF — pip install pdf2image")
+            except Exception as e:
+                raise RuntimeError(f"PDF requires Poppler: {e}. See _dep_notes/pdf2image.md")
         else:
             img = Image.open(doc_path)
 
-        # Get word-level confidence via image_to_data
+        # image_to_data per pytesseract.md API ref
         data = pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT)
         words = []
         for i, word in enumerate(data["text"]):
-            if word.strip() and int(data["conf"][i]) > 0:
+            if word.strip() and int(data["conf"][i]) > 0:  # filter -1 non-text
                 words.append({
                     "text": word,
                     "confidence": int(data["conf"][i]) / 100.0,
@@ -149,102 +165,85 @@ class TesseractEngine(OCREngine):
         }
 
 
-class PaddleOCRVLEngine(OCREngine):
-    """PaddleOCR-VL 1.5 (Apache 2.0, 0.9B vision model). Higher accuracy than
-    Tesseract on rotated / multi-column / faded scans."""
+class RapidOCREngine(OCREngine):
+    """RapidOCR 3.8.1 via ONNX runtime. Per `_dep_notes/rapidocr.md`:
+    PP-OCRv4 mobile model bundled in site-packages, ~600ms cold / ~5s warm
+    on AMD Vega 8. CPU-only; do NOT install onnxruntime-directml on AMD.
+    Returns RapidOCROutput with .boxes (numpy array — never use `or []`),
+    .txts, .scores."""
 
-    name = "paddleocr-vl-1.5"
-
-    def __init__(self):
-        self._ocr = None
-        try:
-            from paddleocr import PaddleOCR
-            self._ocr = PaddleOCR(use_angle_cls=True, lang="en", show_log=False)
-        except ImportError:
-            log.debug("paddleocr not installed; PaddleOCR-VL engine disabled")
-        except Exception as e:
-            log.warning("PaddleOCR-VL init failed: %s", e)
-
-    def available(self) -> bool:
-        return self._ocr is not None
-
-    def extract(self, doc_path: Path) -> dict[str, Any]:
-        result = self._ocr.ocr(str(doc_path), cls=True)
-        words = []
-        full_text = []
-        for page_result in (result or []):
-            for line in (page_result or []):
-                bbox, (text, conf) = line
-                words.append({
-                    "text": text,
-                    "confidence": float(conf),
-                    "bbox": [float(c) for pt in bbox for c in pt][:4],
-                })
-                full_text.append(text)
-        return {
-            "engine": self.name,
-            "raw_text": "\n".join(full_text),
-            "words": words,
-        }
-
-
-class PPStructureV3Engine(OCREngine):
-    """PaddleOCR PP-StructureV3 — table + form extraction."""
-
-    name = "pp-structure-v3"
+    name = "rapidocr-3.8.1"
 
     def __init__(self):
         self._engine = None
         try:
-            from paddleocr import PPStructure
-            self._engine = PPStructure(show_log=False)
+            from rapidocr import RapidOCR
+            self._engine = RapidOCR()
         except ImportError:
-            log.debug("PPStructure not installed; PP-StructureV3 engine disabled")
+            log.debug("rapidocr not installed; RapidOCR engine disabled")
         except Exception as e:
-            log.warning("PP-StructureV3 init failed: %s", e)
+            log.warning("RapidOCR init failed: %s", e)
 
     def available(self) -> bool:
         return self._engine is not None
 
     def extract(self, doc_path: Path) -> dict[str, Any]:
-        # PPStructure operates on images; convert PDF page-1 first
+        # Per rapidocr.md: PDF input requires conversion to image first
         if doc_path.suffix.lower() == ".pdf":
-            from pdf2image import convert_from_path
-            images = convert_from_path(str(doc_path), dpi=300, first_page=1, last_page=1)
-            import numpy as np
-            img = np.array(images[0])
+            try:
+                from pdf2image import convert_from_path
+                import numpy as np
+                images = convert_from_path(str(doc_path), dpi=300, first_page=1, last_page=1)
+                img = np.array(images[0])
+            except Exception as e:
+                raise RuntimeError(f"PDF requires Poppler: {e}")
         else:
             import cv2
             img = cv2.imread(str(doc_path))
-        result = self._engine(img)
-        # PPStructure returns list of regions (table, text, figure, ...)
+
+        result = self._engine(img, use_det=True, use_cls=False, use_rec=True)
+        # Per rapidocr.md CRITICAL: boxes is numpy array — explicit None check
+        _b = getattr(result, "boxes", None)
+        boxes = list(_b) if _b is not None else []
+        txts = getattr(result, "txts", []) or []
+        scores = getattr(result, "scores", []) or []
+
+        words = []
+        for i, txt in enumerate(txts):
+            if i < len(boxes) and i < len(scores):
+                box = boxes[i]
+                # box is 4-point polygon [[x0,y0],[x1,y1],[x2,y2],[x3,y3]]
+                xs = [p[0] for p in box]
+                ys = [p[1] for p in box]
+                words.append({
+                    "text": txt,
+                    "confidence": float(scores[i]),
+                    "bbox": [float(min(xs)), float(min(ys)), float(max(xs)), float(max(ys))],
+                })
         return {
             "engine": self.name,
-            "regions": [
-                {"type": r.get("type"), "bbox": r.get("bbox"), "text": str(r.get("res", ""))[:500]}
-                for r in result
-            ],
+            "raw_text": "\n".join(txts),
+            "words": words,
         }
 
 
 class OCREnsemble:
-    """Runs available OCR engines + merges results. The verifier layer
-    operates on the merged ensemble output, not on a single engine."""
+    """Runs available OCR engines + merges results. Verifier operates on
+    merged ensemble output, not a single engine. Order of preference:
+    Tesseract (clean text + per-word conf) -> RapidOCR (faded scans + tables)."""
 
-    def __init__(self, engine_names: tuple[str, ...] = ("tesseract", "paddleocr-vl", "pp-structure")):
+    def __init__(self, engine_names: tuple[str, ...] = ("tesseract", "rapidocr")):
         registry: list[OCREngine] = []
         if "tesseract" in engine_names:
             registry.append(TesseractEngine())
-        if "paddleocr-vl" in engine_names:
-            registry.append(PaddleOCRVLEngine())
-        if "pp-structure" in engine_names:
-            registry.append(PPStructureV3Engine())
+        if "rapidocr" in engine_names:
+            registry.append(RapidOCREngine())
         self.engines = [e for e in registry if e.available()]
         if not self.engines:
             raise RuntimeError(
-                "No OCR engine available. Install at least pytesseract:\n"
-                "  pip install pytesseract pillow pdf2image\n"
-                "  + system Tesseract binary (https://github.com/UB-Mannheim/tesseract/wiki on Windows)"
+                "No OCR engine available. See _dep_notes/pytesseract.md or _dep_notes/rapidocr.md.\n"
+                "  Tesseract binary: C:/Program Files/Tesseract-OCR/tesseract.exe (UB-Mannheim Windows)\n"
+                "  RapidOCR: pip install 'rapidocr==3.8.1'"
             )
 
     def run(self, doc_path: Path) -> dict[str, Any]:
@@ -601,10 +600,10 @@ def main() -> int:
     # Pick OCR engines per pipeline preset
     if args.pipeline == "tesseract-only":
         engines = ("tesseract",)
-    elif args.pipeline == "paddle-only":
-        engines = ("paddleocr-vl", "pp-structure")
+    elif args.pipeline == "rapidocr-only":
+        engines = ("rapidocr",)
     else:
-        engines = ("tesseract", "paddleocr-vl", "pp-structure")
+        engines = ("tesseract", "rapidocr")
 
     ensemble = OCREnsemble(engines)
     log.info("OCR ensemble: %s", [e.name for e in ensemble.engines])

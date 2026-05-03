@@ -1,0 +1,10 @@
+{
+  "doc_id": "test-invoice-001",
+  "source_note": "Synthetic Chadwicks invoice generated via PIL for pipeline shakedown 2026-05-04",
+  "fields": [
+    {"field_id": "vendor",   "expected_value": "CHADWICKS LIMITED"},
+    {"field_id": "total",    "expected_value": 283.52},
+    {"field_id": "vat",      "expected_value": 53.02},
+    {"field_id": "date",     "expected_value": "04/05/2026"}
+  ]
+}

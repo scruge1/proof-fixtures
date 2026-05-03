@@ -1,0 +1,63 @@
+{
+  "doc_id": "test-invoice-001",
+  "source_path": "C:\\Users\\a33_s\\Desktop\\claude MCPs\\New repos\\proof-fixtures\\fixtures\\00-test\\samples\\test-invoice-001.png",
+  "schema_version": "0.1",
+  "pipeline": "docops",
+  "started_at": 1777847323.0736454,
+  "completed_at": 1777847326.1539307,
+  "ocr_engines_used": [
+    "tesseract-5"
+  ],
+  "verifiers_used": [
+    "mistral-small-3.1"
+  ],
+  "fields": [
+    {
+      "field_id": "vendor",
+      "raw_text": "CHADWICKS LIMITED",
+      "parsed_value": "CHADWICKS LIMITED",
+      "ocr_confidence": 0.9438709677419361,
+      "verifier_verdict": "confirm",
+      "verifier_confidence": 1.0,
+      "verifier_reason": "Vendor name matches OCR text exactly",
+      "evidence_bbox": null,
+      "final_confidence": 0.9438709677419361
+    },
+    {
+      "field_id": "total",
+      "raw_text": "",
+      "parsed_value": null,
+      "ocr_confidence": 0.9438709677419361,
+      "verifier_verdict": "reject",
+      "verifier_confidence": 1.0,
+      "verifier_reason": "Field 'total' is explicitly present in OCR text as 'Total: EUR 283.52', but candidate_value is None",
+      "evidence_bbox": null,
+      "final_confidence": 0.9438709677419361
+    },
+    {
+      "field_id": "vat",
+      "raw_text": "",
+      "parsed_value": null,
+      "ocr_confidence": 0.9438709677419361,
+      "verifier_verdict": "confirm",
+      "verifier_confidence": 1.0,
+      "verifier_reason": "VAT field is explicitly present in OCR text as 'VAT IE 6543210'.",
+      "evidence_bbox": null,
+      "final_confidence": 0.9438709677419361
+    },
+    {
+      "field_id": "date",
+      "raw_text": "04/05/2026",
+      "parsed_value": "04/05/2026",
+      "ocr_confidence": 0.9438709677419361,
+      "verifier_verdict": "confirm",
+      "verifier_confidence": 1.0,
+      "verifier_reason": "Exact match of 'Date: 04/05/2026' in OCR text.",
+      "evidence_bbox": null,
+      "final_confidence": 0.9438709677419361
+    }
+  ],
+  "gate_passed": false,
+  "bounce_reason": "below-threshold: vendor (0.94), total (0.94), vat (0.94), date (0.94)",
+  "errors": []
+}

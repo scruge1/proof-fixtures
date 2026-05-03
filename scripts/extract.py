@@ -360,10 +360,16 @@ class MistralVerifier(Verifier):
             log.debug("MISTRAL_API_KEY not set; Mistral verifier disabled")
             return
         try:
-            from mistralai import Mistral
+            # mistralai 1.9.10: Mistral is in .client submodule, not top-level
+            try:
+                from mistralai.client import Mistral
+            except ImportError:
+                from mistralai import Mistral
             self._client = Mistral(api_key=api_key)
-        except ImportError:
-            log.debug("mistralai package not installed (pip install mistralai)")
+        except ImportError as e:
+            log.debug("mistralai import failed (pip install mistralai): %s", e)
+        except Exception as e:
+            log.warning("mistralai init failed: %s", e)
 
     def available(self) -> bool:
         return self._client is not None

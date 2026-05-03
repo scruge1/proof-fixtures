@@ -1,0 +1,28 @@
+# Document Ops extraction pipeline — Python deps (v0.1)
+
+# OCR layer (Tesseract is the floor — install if nothing else works)
+pytesseract>=0.3.10
+pillow>=10.0.0
+pdf2image>=1.16.0
+# (Tesseract binary required separately:
+#   Windows: https://github.com/UB-Mannheim/tesseract/wiki
+#   macOS:   brew install tesseract
+#   Linux:   apt install tesseract-ocr)
+
+# OCR layer — PaddleOCR-VL ensemble (Apache-2.0 weights, much higher accuracy)
+# Install GPU build if CUDA available:
+#   pip install paddlepaddle-gpu paddleocr
+# CPU fallback:
+#   pip install paddlepaddle paddleocr
+paddleocr>=2.7.0
+
+# OpenCV for PP-StructureV3 image handling
+opencv-python>=4.8.0
+
+# Verifier layer
+requests>=2.31.0
+mistralai>=1.0.0          # MISTRAL_API_KEY env var
+google-genai>=1.0.0       # GEMINI_API_KEY env var
+
+# Utility
+numpy>=1.24.0

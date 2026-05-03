@@ -1,0 +1,30 @@
+# Source documents downloaded by build_corpus.py — too heavy for git
+fixtures/*/samples/*.pdf
+fixtures/*/samples/*.jpg
+fixtures/*/samples/*.jpeg
+fixtures/*/samples/*.png
+fixtures/*/samples/*.tif
+fixtures/*/samples/*.tiff
+
+# Python runtime
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Benchmark intermediate
+results/*.json
+results/*.csv
+!results/.gitkeep

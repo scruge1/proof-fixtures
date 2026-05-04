@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-685cd798b358",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=construction_supplier bucket=clean seed=42004",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Murdock Builders Merchants LIMERICK"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 3570.75
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 449.83
+    },
+    {
+      "field_id": "date",
+      "expected_value": "15/03/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 3120.92
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

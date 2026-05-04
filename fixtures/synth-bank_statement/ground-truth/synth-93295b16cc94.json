@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-93295b16cc94",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=bank_statement bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "N26 Bank AG (Ireland Branch)"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 12602.63
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.0
+    },
+    {
+      "field_id": "date",
+      "expected_value": "29/03/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 12602.63
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

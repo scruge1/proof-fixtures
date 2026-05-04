@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-14679947b8e5",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=restaurant_thermal bucket=clean seed=42001",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Doody Gastropub"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 216.54
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 39.04
+    },
+    {
+      "field_id": "date",
+      "expected_value": "12/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 177.5
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

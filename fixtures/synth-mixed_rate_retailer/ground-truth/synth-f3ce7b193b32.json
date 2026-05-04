@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-f3ce7b193b32",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=mixed_rate_retailer bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Cogley Hardware + Garden"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 416.48
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 59.29
+    },
+    {
+      "field_id": "date",
+      "expected_value": "30/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 357.19
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

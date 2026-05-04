@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-671588e3faa5",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=utility_bill bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "ESB Electric Ireland"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 365.25
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 42.28
+    },
+    {
+      "field_id": "date",
+      "expected_value": "30/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 322.97
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

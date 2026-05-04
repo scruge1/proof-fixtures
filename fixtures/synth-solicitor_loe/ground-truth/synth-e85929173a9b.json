@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-e85929173a9b",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=solicitor_loe bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Cogley & Co Solicitors"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 4749.19
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 291.54
+    },
+    {
+      "field_id": "date",
+      "expected_value": "01/05/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 4457.65
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

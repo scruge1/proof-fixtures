@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-c1123dcf26df",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=handwritten_override bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Mulqueen Patisserie"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 31.57
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 2.61
+    },
+    {
+      "field_id": "date",
+      "expected_value": "08/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 28.96
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

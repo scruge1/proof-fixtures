@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-5daabbcfdac9",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=credit_note bucket=clean seed=42004",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Beggan Ltd"
+    },
+    {
+      "field_id": "total",
+      "expected_value": -6080.53
+    },
+    {
+      "field_id": "vat",
+      "expected_value": -1137.01
+    },
+    {
+      "field_id": "date",
+      "expected_value": "01/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": -4943.52
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

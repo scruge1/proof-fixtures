@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-63e6e6aaf756",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=utility_bill bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Virgin Media Ireland"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 94.3
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 9.29
+    },
+    {
+      "field_id": "date",
+      "expected_value": "01/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 85.01
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

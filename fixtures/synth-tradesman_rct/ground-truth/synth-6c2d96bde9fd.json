@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-6c2d96bde9fd",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=tradesman_rct bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Cogley, Graham and Lally Ltd"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 4929.59
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.0
+    },
+    {
+      "field_id": "date",
+      "expected_value": "30/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 4929.59
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

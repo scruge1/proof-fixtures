@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-dbde0c368266",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=credit_note bucket=clean seed=42002",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Grahams Ltd"
+    },
+    {
+      "field_id": "total",
+      "expected_value": -298.67
+    },
+    {
+      "field_id": "vat",
+      "expected_value": -55.85
+    },
+    {
+      "field_id": "date",
+      "expected_value": "06/03/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": -242.82
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

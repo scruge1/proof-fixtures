@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-de7681679515",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=photographed_receipt bucket=clean seed=42002",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Grahams Pharmacy"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 7.76
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.64
+    },
+    {
+      "field_id": "date",
+      "expected_value": "12/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 7.12
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

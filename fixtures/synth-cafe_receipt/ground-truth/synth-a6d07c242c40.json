@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-a6d07c242c40",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=cafe_receipt bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Cogley Coffee Roasters"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 56.11
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 4.64
+    },
+    {
+      "field_id": "date",
+      "expected_value": "05/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 51.47
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

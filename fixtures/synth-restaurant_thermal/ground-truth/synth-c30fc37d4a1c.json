@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-c30fc37d4a1c",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=restaurant_thermal bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Mulqueen Inn"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 338.45
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 32.59
+    },
+    {
+      "field_id": "date",
+      "expected_value": "08/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 305.86
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

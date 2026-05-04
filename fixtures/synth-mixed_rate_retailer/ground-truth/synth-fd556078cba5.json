@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-fd556078cba5",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=mixed_rate_retailer bucket=clean seed=42002",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Grahams Builders Merchants Ltd"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 338.46
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 50.43
+    },
+    {
+      "field_id": "date",
+      "expected_value": "06/03/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 288.03
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

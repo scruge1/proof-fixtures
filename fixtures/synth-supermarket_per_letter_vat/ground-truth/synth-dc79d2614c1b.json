@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-dc79d2614c1b",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=supermarket_per_letter_vat bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "TESCO IRELAND"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 224.69
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 16.06
+    },
+    {
+      "field_id": "date",
+      "expected_value": "05/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 208.63
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

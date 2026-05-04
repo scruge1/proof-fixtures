@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-efe7a772bdd6",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=construction_supplier bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Chadwicks CORK"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 9955.81
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 1786.67
+    },
+    {
+      "field_id": "date",
+      "expected_value": "03/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 8169.14
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

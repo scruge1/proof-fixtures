@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-5afeae14b47c",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=mixed_rate_retailer bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Mulqueen Hardware Store"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 462.77
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 70.74
+    },
+    {
+      "field_id": "date",
+      "expected_value": "12/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 392.03
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

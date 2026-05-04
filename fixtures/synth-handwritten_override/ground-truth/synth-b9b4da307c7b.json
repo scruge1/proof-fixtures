@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-b9b4da307c7b",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=handwritten_override bucket=clean seed=42002",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Grahams Coffee House"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 49.4
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 4.08
+    },
+    {
+      "field_id": "date",
+      "expected_value": "26/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 45.32
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

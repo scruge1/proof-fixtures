@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-660b511ce842",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=mixed_rate_retailer bucket=clean seed=42004",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Beggan Hardware + Garden"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 205.19
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 31.29
+    },
+    {
+      "field_id": "date",
+      "expected_value": "01/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 173.9
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

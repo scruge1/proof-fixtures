@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-4db89e315ffc",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=gp_medical bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Dr. Ruari Mulqueen Family Doctors"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 69.21
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.0
+    },
+    {
+      "field_id": "date",
+      "expected_value": "01/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 69.21
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

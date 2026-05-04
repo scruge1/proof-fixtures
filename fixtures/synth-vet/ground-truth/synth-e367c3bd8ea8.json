@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-e367c3bd8ea8",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=vet bucket=clean seed=42001",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Doody Veterinary Practice"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 1782.57
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 333.33
+    },
+    {
+      "field_id": "date",
+      "expected_value": "21/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 1449.24
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

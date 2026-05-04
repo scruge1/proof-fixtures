@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-81dd8d42f4fe",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=utility_bill bucket=clean seed=42002",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Energia"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 98.94
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 10.67
+    },
+    {
+      "field_id": "date",
+      "expected_value": "14/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 88.27
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

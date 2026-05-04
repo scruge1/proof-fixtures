@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-6aae38709af7",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=tradesman_rct bucket=clean seed=42001",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Doody, Diffley and Drennan Ltd"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 5506.29
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.0
+    },
+    {
+      "field_id": "date",
+      "expected_value": "21/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 5506.29
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

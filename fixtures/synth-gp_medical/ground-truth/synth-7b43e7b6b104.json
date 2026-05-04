@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-7b43e7b6b104",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=gp_medical bucket=clean seed=42003",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Cogley Primary Care Clinic"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 125.64
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.0
+    },
+    {
+      "field_id": "date",
+      "expected_value": "01/05/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 125.64
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-155a38a5b5bb",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=foreign_currency_mixed_vat bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Mulqueen Limited"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 6796.72
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 0.0
+    },
+    {
+      "field_id": "date",
+      "expected_value": "12/02/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 6796.72
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

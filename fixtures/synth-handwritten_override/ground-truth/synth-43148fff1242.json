@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-43148fff1242",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=handwritten_override bucket=clean seed=42004",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Beggan Coffee Roasters"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 41.23
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 3.4
+    },
+    {
+      "field_id": "date",
+      "expected_value": "11/03/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 37.83
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

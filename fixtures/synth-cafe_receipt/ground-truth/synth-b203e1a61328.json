@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-b203e1a61328",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=cafe_receipt bucket=clean seed=42000",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Mulqueen Patisserie"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 59.02
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 4.86
+    },
+    {
+      "field_id": "date",
+      "expected_value": "08/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 54.16
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

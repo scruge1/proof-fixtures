@@ -1,0 +1,30 @@
+{
+  "doc_id": "synth-641891c77da3",
+  "source_note": "Synth corpus v0.4.2-step0.1 template=professional_services bucket=clean seed=42001",
+  "fields": [
+    {
+      "field_id": "vendor",
+      "expected_value": "Doody Architectural Services"
+    },
+    {
+      "field_id": "total",
+      "expected_value": 1371.13
+    },
+    {
+      "field_id": "vat",
+      "expected_value": 256.39
+    },
+    {
+      "field_id": "date",
+      "expected_value": "04/04/2026"
+    },
+    {
+      "field_id": "subtotal",
+      "expected_value": 1114.74
+    },
+    {
+      "field_id": "vendor_country",
+      "expected_value": "IE"
+    }
+  ]
+}

@@ -1,28 +1,32 @@
 #!/usr/bin/env python3
 """
-Document Ops extraction pipeline (v0.3 — local-only, no paid API)
+Document Ops extraction pipeline (v0.4 — local-only, Hypercell modular).
 
-Replaces v0.2's Mistral + Gemini paid-API verifier chain with a fully
-Apache-2.0 / MIT local stack per
-`proof-fixtures/research/2026-05-04-local-ocr-deep-research.md`.
+Stage layout per CALLMEIE-DOCAI-V0.4-PRD.md §4:
+  Stage 1  ingest+provenance — pypdfium2 render or pdfplumber native text;
+           VATCA s.84(3) original-form attestation; sha256 hash; ingest ts.
+  Stage 2  classification (deferred — v0.4.1)
+  Stage 3  preprocess (Lanczos 3.5x + Hough deskew + adaptive threshold)
+  Stage 4  OCR ensemble (Tesseract + RapidOCR) [+PaddleOCR PP-StructureV3 v0.4.x]
+  Stage 5  voter + extract (regex stubs in v0.4.0; instructor+Pydantic v0.4.x)
+  Stage 6  vision verifier (GLM-OCR Q8 / Qwen2.5-VL) — local Ollama, zero cost
+  Stage 7  HaluGate confidence gate (0.98 critical) + cross-field validation
+  Stage 8  Label Studio CE corrections (v0.4.1)
+  Stage 9  Hetzner Object Storage + DVC + drift dashboard (v0.4.2)
 
 OCR layer (per `mcp-servers/_dep_notes/{pytesseract,rapidocr}.md`):
-  Tesseract 5.5.0 (UB-Mannheim Windows build at C:/Program Files/Tesseract-OCR)
-  + RapidOCR 3.8.1 (ONNX runtime, models bundled, AMD-CPU-friendly).
+  Tesseract 5.5.0 + RapidOCR 3.8.1 (ONNX, AMD-CPU-friendly).
 
-Voter layer (NEW — replaces blind ensemble):
-  TwoEngineVoter — Tesseract + RapidOCR field-level vote.
-    accept if both engines agree above threshold.
-    flag for verifier if engines disagree OR confidence < 0.85.
+Ingest layer NEW v0.4 (per `_dep_notes/{pypdfium2,pdfplumber}.md`):
+  pypdfium2 5.7.1 — embedded PDFium, no Poppler subprocess. Replaces pdf2image.
+  pdfplumber 0.11.9 — native-PDF text extractor; bypasses OCR on digital PDFs.
 
-Verifier layer (NEW — local-only, no paid API):
-  -> GLMOCRVerifier (Ollama glm-ocr:q8_0, 1.6GB, OmniDocBench V1.5 #1).
-       temperature=0.1, repeat_penalty=1.2 (prevents JSON loops).
-  -> OllamaQwenVerifier (qwen2.5vl:7b fallback, slower CPU).
-  No third-country flow. Zero per-doc cost. All Apache-2.0.
+Verifier layer (local-only, no paid API):
+  GLM-OCR Q8 via Ollama (OmniDocBench V1.5 #1 at 94.62, 1.6GB, Apache-2.0)
+  Qwen2.5-VL fallback. No third-country flow. Zero per-doc cost.
 
-Outputs per-document JSON with extracted fields, per-field confidence,
-voter agreement signal, verifier verdicts, schema-validation results,
+Outputs per-document JSON with provenance block, extracted fields, per-field
+confidence, voter agreement, verifier verdicts, schema-validation results,
 cross-field consistency, and final pass/bounce decision against 0.98 gate.
 
 Usage:
@@ -34,6 +38,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -41,6 +46,7 @@ import re
 import sys
 import time
 from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
@@ -89,7 +95,37 @@ log = logging.getLogger("extract")
 # Output schema (versioned — bump on breaking change)
 # ============================================================================
 
-SCHEMA_VERSION = "0.3"
+SCHEMA_VERSION = "0.4"
+
+
+@dataclass
+class IngestProvenance:
+    """Stage 1 — VATCA s.84(3) compliant provenance block.
+
+    `original_form` flags whether the source was digitally born or scanned —
+    Section 84(3) of the VAT Consolidation Act 2010 requires Customers to retain
+    originals on Customer-controlled storage for 6 years; this block lets us
+    attest at extraction time which form we received.
+    """
+    original_form: str                              # digital_native | image_only_pdf | paper_scan | photo
+    source_engine: str                              # pdfplumber-0.11.9 | pypdfium2-5.7.1+ocr | cv2.imread+ocr
+    file_sha256: str
+    file_size_bytes: int
+    ingest_timestamp_utc: str                       # RFC3339
+    page_count: int
+    pdf_metadata: Optional[dict[str, Any]] = None   # Title/Author/CreationDate/...
+    pdf_version: Optional[str] = None
+    is_tagged: Optional[bool] = None
+    vatca_attestation: str = "original-form-preserved"
+
+
+@dataclass
+class IngestResult:
+    """Stage 1 output — passed to downstream stages without re-reading the file."""
+    provenance: IngestProvenance
+    image_array: Any = None                          # numpy array for OCR path
+    native_text: Optional[dict[str, Any]] = None     # pdfplumber engine result
+    source_path: str = ""
 
 
 @dataclass
@@ -114,9 +150,10 @@ class DocumentExtraction:
     doc_id: str
     source_path: str
     schema_version: str = SCHEMA_VERSION
-    pipeline: str = "docops-local-only"
+    pipeline: str = "docops-local-only-v0.4"
     started_at: float = field(default_factory=time.time)
     completed_at: float = 0.0
+    provenance: Optional[IngestProvenance] = None
     ocr_engines_used: list[str] = field(default_factory=list)
     verifiers_used: list[str] = field(default_factory=list)
     fields: list[FieldExtraction] = field(default_factory=list)
@@ -179,29 +216,147 @@ def preprocess_image(img_array):
     return binarized
 
 
-def _load_doc_as_array(doc_path: Path):
-    """Load a doc (PDF or image) as a numpy array. Uses Poppler for PDFs."""
-    import cv2
-    import numpy as np
+# ============================================================================
+# Stage 1 — Ingest with provenance (VATCA s.84(3) compliant)
+# ============================================================================
 
-    if doc_path.suffix.lower() == ".pdf":
+
+def _file_sha256(path: Path, chunk: int = 65_536) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for blk in iter(lambda: f.read(chunk), b""):
+            h.update(blk)
+    return h.hexdigest()
+
+
+def _utc_now_rfc3339() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+class Ingester:
+    """Stage 1 — VATCA s.84(3) compliant doc ingest.
+
+    Native PDFs (digitally born) → pdfplumber path. No OCR run; native text and
+    bbox positions are exact. Confidence locked to 1.0.
+
+    Image-only PDFs / scans / photos → pypdfium2 (PDFs) or cv2.imread (images)
+    → numpy array → Stage 3 preprocessing → Stage 4 OCR ensemble.
+
+    Provenance is attached to the DocumentExtraction so downstream stages and
+    audit logs can prove (1) what form the original was in, (2) when we ingested,
+    (3) the unmutated SHA-256 of the bytes we received.
+    """
+
+    NATIVE_TEXT_THRESHOLD = 50    # min chars to call a PDF "native"; below → OCR
+    DEFAULT_DPI = 300              # render DPI for image_only_pdf path
+
+    def __init__(self, dpi: int = DEFAULT_DPI, native_threshold: int = NATIVE_TEXT_THRESHOLD):
+        self.dpi = dpi
+        self.native_threshold = native_threshold
+
+    def ingest(self, doc_path: Path) -> IngestResult:
+        sha = _file_sha256(doc_path)
+        size = doc_path.stat().st_size
+        ts = _utc_now_rfc3339()
+        suffix = doc_path.suffix.lower()
+
+        if suffix == ".pdf":
+            return self._ingest_pdf(doc_path, sha, size, ts)
+        if suffix in (".jpg", ".jpeg", ".png", ".tif", ".tiff", ".bmp", ".webp"):
+            return self._ingest_image(doc_path, sha, size, ts)
+        raise ValueError(f"Unsupported file type: {suffix} ({doc_path.name})")
+
+    def _ingest_pdf(self, doc_path: Path, sha: str, size: int, ts: str) -> IngestResult:
         try:
-            from pdf2image import convert_from_path
+            import pdfplumber
         except ImportError:
-            raise RuntimeError("pdf2image not installed. pip install pdf2image. See _dep_notes/pdf2image.md")
-        kwargs = {"dpi": 300, "first_page": 1, "last_page": 1}
-        if POPPLER_PATH:
-            kwargs["poppler_path"] = POPPLER_PATH
+            raise RuntimeError("pdfplumber not installed. pip install pdfplumber. See _dep_notes/pdfplumber.md")
+
+        with pdfplumber.open(str(doc_path)) as pdf:
+            n_pages = len(pdf.pages)
+            metadata = dict(pdf.metadata) if pdf.metadata else {}
+            first = pdf.pages[0] if pdf.pages else None
+            native_text = (first.extract_text() or "") if first else ""
+
+            if native_text and len(native_text.strip()) >= self.native_threshold:
+                # Native-PDF fast path — no OCR
+                words = first.extract_words(extra_attrs=["fontname"]) if first else []
+                tables = first.extract_tables() if first else []
+                native = {
+                    "engine": "pdfplumber-0.11.9",
+                    "raw_text": native_text,
+                    "words": [
+                        {
+                            "text": w["text"],
+                            "confidence": 1.0,                   # native = exact
+                            "bbox": [float(w["x0"]), float(w["top"]), float(w["x1"]), float(w["bottom"])],
+                        }
+                        for w in words
+                    ],
+                    "tables": tables,
+                }
+                prov = IngestProvenance(
+                    original_form="digital_native",
+                    source_engine="pdfplumber-0.11.9",
+                    file_sha256=sha, file_size_bytes=size, ingest_timestamp_utc=ts,
+                    page_count=n_pages, pdf_metadata=metadata,
+                )
+                return IngestResult(
+                    provenance=prov, image_array=None,
+                    native_text=native, source_path=str(doc_path.resolve()),
+                )
+
+        # Native text too short — fall through to render path (image_only_pdf)
+        arr = self._render_pdf_first_page(doc_path)
+        prov = IngestProvenance(
+            original_form="image_only_pdf",
+            source_engine="pypdfium2-5.7.1+ocr",
+            file_sha256=sha, file_size_bytes=size, ingest_timestamp_utc=ts,
+            page_count=n_pages, pdf_metadata=metadata,
+        )
+        return IngestResult(
+            provenance=prov, image_array=arr,
+            native_text=None, source_path=str(doc_path.resolve()),
+        )
+
+    def _render_pdf_first_page(self, doc_path: Path):
         try:
-            images = convert_from_path(str(doc_path), **kwargs)
-        except Exception as e:
-            raise RuntimeError(f"PDF -> image failed (Poppler? path={POPPLER_PATH}): {e}")
-        return np.array(images[0])
-    else:
+            import pypdfium2 as pdfium
+        except ImportError:
+            raise RuntimeError("pypdfium2 not installed. pip install pypdfium2. See _dep_notes/pypdfium2.md")
+        import cv2
+        scale = self.dpi / 72
+        with pdfium.PdfDocument(str(doc_path)) as doc:
+            if not len(doc):
+                raise RuntimeError(f"PDF has zero pages: {doc_path}")
+            page = doc.get_page(0)
+            try:
+                bitmap = page.render(scale=scale, rev_byteorder=True)
+                arr = bitmap.to_numpy()      # (H, W, 4) BGRA when rev_byteorder=True
+                bitmap.close()
+            finally:
+                page.close()
+        if arr.ndim == 3 and arr.shape[-1] == 4:
+            arr = cv2.cvtColor(arr, cv2.COLOR_BGRA2BGR)
+        return arr
+
+    def _ingest_image(self, doc_path: Path, sha: str, size: int, ts: str) -> IngestResult:
+        import cv2
         img = cv2.imread(str(doc_path))
         if img is None:
             raise RuntimeError(f"Could not read image: {doc_path}")
-        return img
+        # photo vs scan distinction is heuristic on EXIF / aspect ratio (deferred);
+        # default to paper_scan for non-PDF rasters
+        prov = IngestProvenance(
+            original_form="paper_scan",
+            source_engine="cv2.imread+ocr",
+            file_sha256=sha, file_size_bytes=size, ingest_timestamp_utc=ts,
+            page_count=1,
+        )
+        return IngestResult(
+            provenance=prov, image_array=img,
+            native_text=None, source_path=str(doc_path.resolve()),
+        )
 
 
 # ============================================================================
@@ -335,7 +490,174 @@ class OCREnsemble:
 
 
 # ============================================================================
-# Field extraction — regex stubs (v0.4 will use structured-prompt extraction)
+# Stage 5 — LLM extraction via instructor + Pydantic + Ollama JSON-mode
+# ============================================================================
+# Per CALLMEIE-DOCAI-V0.4-PRD.md D-V0.4-03 — instructor over regex stubs.
+# instructor 1.15.1 + Ollama 0.6.0 (OpenAI-compatible API at /v1).
+# Pydantic 2.11.5 schema-validates the output before we trust it.
+# Falls back to regex stubs if Ollama unavailable or model unloaded.
+# Acts as a third voter candidate alongside Tesseract + RapidOCR regex.
+
+
+try:
+    from pydantic import BaseModel as _PydanticBaseModel, Field as _PydanticField
+    _PYDANTIC_OK = True
+except ImportError:
+    _PYDANTIC_OK = False
+
+
+if _PYDANTIC_OK:
+    class IrishInvoiceFields(_PydanticBaseModel):
+        """Pydantic schema for IE invoice / receipt critical-field extraction.
+
+        instructor enforces JSON-mode return matching this schema. Optional
+        fields default to None when the field is genuinely missing or unreadable;
+        confidence is the model's self-rating 0.0-1.0.
+        """
+        vendor: Optional[str] = _PydanticField(
+            None,
+            description="Vendor / supplier / merchant company name (e.g. 'Tesco Ireland Limited').",
+        )
+        total: Optional[float] = _PydanticField(
+            None,
+            description="Total amount paid INCLUDING VAT, in EUR. Numeric only, no currency symbol.",
+        )
+        vat: Optional[float] = _PydanticField(
+            None,
+            description="VAT amount in EUR (the tax line, NOT the rate%). Numeric only.",
+        )
+        date: Optional[str] = _PydanticField(
+            None,
+            description="Invoice / receipt date in DD/MM/YYYY (Irish convention) or YYYY-MM-DD.",
+        )
+        vendor_confidence: float = _PydanticField(0.0, ge=0.0, le=1.0)
+        total_confidence: float = _PydanticField(0.0, ge=0.0, le=1.0)
+        vat_confidence: float = _PydanticField(0.0, ge=0.0, le=1.0)
+        date_confidence: float = _PydanticField(0.0, ge=0.0, le=1.0)
+
+
+_LLM_EXTRACT_SYSTEM = """\
+You extract critical fields from an Irish invoice or receipt OCR text.
+Be strict: return None for any field not clearly present.
+Numbers must be numeric (no €/EUR symbol). Dates as DD/MM/YYYY.
+Return JSON matching the schema. No prose, no markdown, JSON only.
+Common IE patterns:
+  - Vendor: typically the all-caps company name in the header (e.g. CHADWICKS LIMITED, Tesco Ireland Limited).
+  - Total: "Total", "Amount Due", "Grand Total" — NOT "Subtotal".
+  - VAT: line labeled "VAT 23%:", "VAT", "Tax". The MONEY value, not the percentage.
+  - Date: any DD/MM/YYYY, DD-MM-YYYY, DD/MM/YY near "Date", "Invoice Date".
+"""
+
+
+class LLMExtractor:
+    """Stage 5 — instructor + Pydantic + Ollama JSON-mode field extractor.
+
+    Per `_dep_notes/`:
+      ollama 0.6.0 + instructor 1.15.1 + openai 2.0.0 + pydantic 2.11.5
+      Ollama exposes OpenAI-compatible API at http://localhost:11434/v1
+      Model: glm-ocr:q8_0 (default) — same model as Stage 6 verifier; reuse cuts cold start.
+
+    No third-country flow. Zero per-doc cost. Apache-2.0.
+    """
+
+    name = "ollama-instructor-glm-ocr"
+    cost_per_doc_eur = 0.0
+
+    def __init__(self, model: str = "glm-ocr:q8_0", endpoint: str = "http://localhost:11434/v1"):
+        self.model = model
+        self.endpoint = endpoint
+        self._client = None
+        self._available: Optional[bool] = None
+
+    def available(self) -> bool:
+        if self._available is not None:
+            return self._available
+        if not _PYDANTIC_OK:
+            self._available = False
+            return False
+        try:
+            import instructor  # noqa: F401
+            from openai import OpenAI  # noqa: F401
+        except ImportError:
+            log.debug("instructor / openai missing; LLMExtractor disabled")
+            self._available = False
+            return False
+        # Don't probe Ollama here — let the first .extract() call surface the error.
+        # We probe Ollama tags using the existing _check_ollama_model helper.
+        bare_endpoint = self.endpoint.replace("/v1", "")
+        model_substr = self.model.split(":")[0]
+        self._available = _check_ollama_model(model_substr, bare_endpoint)
+        return self._available
+
+    def _get_client(self):
+        if self._client is None:
+            import instructor
+            from openai import OpenAI
+            base = OpenAI(base_url=self.endpoint, api_key="ollama")
+            self._client = instructor.from_openai(base, mode=instructor.Mode.JSON)
+        return self._client
+
+    def extract(self, ocr_text: str) -> Optional["IrishInvoiceFields"]:
+        if not self.available():
+            return None
+        try:
+            client = self._get_client()
+            return client.chat.completions.create(
+                model=self.model,
+                response_model=IrishInvoiceFields,
+                messages=[
+                    {"role": "system", "content": _LLM_EXTRACT_SYSTEM},
+                    {"role": "user", "content": f"OCR text:\n{ocr_text[:6000]}"},
+                ],
+                temperature=0.1,
+                max_retries=2,
+                timeout=180,
+            )
+        except Exception as e:
+            log.warning("LLMExtractor failed (fall back to regex): %s", e)
+            return None
+
+
+def llm_to_engine_output(llm_result: "IrishInvoiceFields", engine_name: str) -> dict[str, Any]:
+    """Pack LLM-extracted fields into an `OCREngine.extract`-shaped dict so the
+    voter and downstream code paths treat it as another OCR engine candidate.
+    `confidence` is the model's self-rating per field; `bbox` is None (LLM has
+    no spatial grounding without the vision crop step in Stage 6)."""
+    raw_text = "\n".join(filter(None, [
+        llm_result.vendor,
+        f"Total: {llm_result.total}" if llm_result.total is not None else None,
+        f"VAT: {llm_result.vat}" if llm_result.vat is not None else None,
+        f"Date: {llm_result.date}" if llm_result.date else None,
+    ]))
+    words = []
+    for fid, value, conf in [
+        ("vendor", llm_result.vendor, llm_result.vendor_confidence),
+        ("total", llm_result.total, llm_result.total_confidence),
+        ("vat", llm_result.vat, llm_result.vat_confidence),
+        ("date", llm_result.date, llm_result.date_confidence),
+    ]:
+        if value is not None:
+            words.append({
+                "text": str(value),
+                "confidence": float(conf),
+                "bbox": None,
+                "field_id": fid,        # marker for _extract_candidate to short-circuit
+            })
+    return {
+        "engine": engine_name,
+        "raw_text": raw_text,
+        "words": words,
+        "_llm_fields": {
+            "vendor": (llm_result.vendor, llm_result.vendor_confidence),
+            "total": (llm_result.total, llm_result.total_confidence),
+            "vat": (llm_result.vat, llm_result.vat_confidence),
+            "date": (llm_result.date, llm_result.date_confidence),
+        },
+    }
+
+
+# ============================================================================
+# Field extraction — regex stubs + LLM short-circuit (v0.4)
 # ============================================================================
 
 IE_VAT_REGEX = re.compile(r"\b(?:VAT(?:\s*No\.?)?[:\s]*)?(IE\d{7}[A-Z]{1,2})\b", re.IGNORECASE)
@@ -469,6 +791,15 @@ def two_engine_vote(ocr_output: dict) -> list[FieldExtraction]:
     for eng_name, res in ocr_output.items():
         if not isinstance(res, dict) or "raw_text" not in res:
             continue
+        # LLM extractor short-circuit: if engine has `_llm_fields`, take those directly.
+        llm_fields = res.get("_llm_fields")
+        if llm_fields:
+            per_engine[eng_name] = {
+                fid: (str(llm_fields[fid][0]) if llm_fields[fid][0] is not None else "",
+                      llm_fields[fid][0])
+                for fid in CRITICAL_FIELDS if fid in llm_fields
+            }
+            continue
         per_engine[eng_name] = {
             fid: _extract_candidate(res["raw_text"], fid)
             for fid in CRITICAL_FIELDS
@@ -505,7 +836,13 @@ def two_engine_vote(ocr_output: dict) -> list[FieldExtraction]:
 
         avg_confs = [_avg_word_confidence({e: ocr_output[e]}, e) for e, _, _ in candidates if e in ocr_output]
         ocr_conf = sum(avg_confs) / len(avg_confs) if avg_confs else 0.0
-        full_agreement = len(agreed) == len(candidates) and len(candidates) >= 2
+        # Native pdfplumber path = exact extraction, treat as trivially agreed.
+        is_native = len(candidates) == 1 and candidates[0][0].startswith("pdfplumber-")
+        if is_native:
+            full_agreement = True
+            ocr_conf = 1.0
+        else:
+            full_agreement = len(agreed) == len(candidates) and len(candidates) >= 2
 
         fields.append(FieldExtraction(
             field_id=fid,
@@ -562,26 +899,45 @@ def validate_field_schema(f: FieldExtraction) -> tuple[bool, str]:
 
 
 def cross_field_consistency(fields: list[FieldExtraction]) -> dict[str, Any]:
-    """`subtotal + vat ≈ total` within ±0.02 EUR tolerance. We don't have
-    subtotal as a critical field yet; check `vat <= total`."""
+    """Stage 7 — HaluGate cross-field validation.
+
+    - vat / total ratio against IE statutory rates (0%, 4.8%, 9%, 13.5%, 23%).
+    - vat <= total (sanity invariant; vat > total is always a bounce).
+    - date plausibility (1900-2100, regex-validated).
+    - bounce_conditions list — if non-empty, apply_gate will fail the doc
+      regardless of per-field confidence.
+    """
     by_id = {f.field_id: f for f in fields}
-    checks = {}
+    checks: dict[str, Any] = {}
+    bounce: list[str] = []
 
     total = by_id.get("total")
     vat = by_id.get("vat")
     if total and vat and isinstance(total.parsed_value, (int, float)) and isinstance(vat.parsed_value, (int, float)):
         ratio = vat.parsed_value / total.parsed_value if total.parsed_value > 0 else 0
-        # IE std rate 23%, reduced 13.5%, super-reduced 9% / 4.8% / 0%
-        plausible_rates = (0.0, 0.048, 0.09, 0.135, 0.21, 0.23, 0.30)  # ratios off the gross
-        # For VAT-on-net invoices, vat/total ≈ rate / (1 + rate). Convert.
+        # IE rates per Revenue: 23% (std), 13.5% (reduced), 9% (tourism/printed), 4.8% (livestock), 0% (zero-rated)
+        plausible_rates = (0.0, 0.048, 0.09, 0.135, 0.23)
         net_ratios = [r / (1 + r) for r in plausible_rates]
         plausible = any(abs(ratio - pr) < 0.005 for pr in net_ratios)
         checks["vat_total_ratio"] = round(ratio, 4)
         checks["vat_rate_plausible"] = plausible
+        if not plausible and total.parsed_value > 0:
+            bounce.append(
+                f"vat/total ratio {ratio:.4f} not within ±0.005 of IE rates "
+                f"(0%, 4.8%, 9%, 13.5%, 23%)"
+            )
+        if vat.parsed_value > total.parsed_value:
+            bounce.append(f"vat ({vat.parsed_value}) exceeds total ({total.parsed_value})")
     else:
         checks["vat_total_ratio"] = None
         checks["vat_rate_plausible"] = None
 
+    # Date plausibility (already validate_field_schema covers regex/range — surface as cross-field anyway)
+    date = by_id.get("date")
+    if date and not date.schema_valid and date.parsed_value is not None:
+        bounce.append(f"date schema invalid: {date.schema_reason}")
+
+    checks["bounce_conditions"] = bounce
     return checks
 
 
@@ -741,16 +1097,30 @@ def select_verifier(chain: tuple[str, ...]) -> Optional[Verifier]:
 # ============================================================================
 
 
-def apply_gate(extraction: DocumentExtraction, threshold: float = CONFIDENCE_GATE) -> None:
-    """Composite confidence per field:
+HALUGATE_FLOOR = 0.80   # Stage 7 — token-confidence floor; below = warn always
 
+
+def apply_gate(extraction: DocumentExtraction, threshold: float = CONFIDENCE_GATE) -> None:
+    """Stage 7 HaluGate composite gate.
+
+    Per-field composite confidence:
     - voter agreement + schema valid: trust the consensus (verifier was skipped
       by design per research §3.2). final = min(1.0, ocr_conf * 1.05).
     - voter disagreement: verifier weighs in. final = ocr*0.3 + verifier*0.55 +
       schema*0.15.
     - voter disagreement + no verifier: low trust. final = ocr * 0.5.
+
+    Bounce conditions (any one fails the doc):
+    - any critical field final_confidence < `threshold` (0.98 default)
+    - cross_field_checks.bounce_conditions non-empty (vat ratio implausible,
+      vat > total, date invalid)
+
+    Floor (warning, not bounce):
+    - any field final_confidence < HALUGATE_FLOOR (0.8) — recorded in
+      `bounce_reason` as `[WARN]` even when the gate otherwise passes.
     """
     failing = []
+    below_floor = []
     for f in extraction.fields:
         if f.field_id not in CRITICAL_FIELDS:
             continue
@@ -770,8 +1140,21 @@ def apply_gate(extraction: DocumentExtraction, threshold: float = CONFIDENCE_GAT
             f.final_confidence = f.ocr_confidence * 0.5
         if f.final_confidence < threshold:
             failing.append(f"{f.field_id}={f.final_confidence:.2f}")
-    extraction.gate_passed = not failing
-    extraction.bounce_reason = "below-threshold: " + ", ".join(failing) if failing else None
+        if f.final_confidence < HALUGATE_FLOOR:
+            below_floor.append(f"{f.field_id}={f.final_confidence:.2f}")
+
+    cross_bounces = list(extraction.cross_field_checks.get("bounce_conditions", []) or [])
+
+    extraction.gate_passed = (not failing) and (not cross_bounces)
+
+    parts = []
+    if failing:
+        parts.append("below-threshold: " + ", ".join(failing))
+    if cross_bounces:
+        parts.append("cross-field: " + "; ".join(cross_bounces))
+    if below_floor and not failing:
+        parts.append(f"halugate-floor<{HALUGATE_FLOOR}: " + ", ".join(below_floor) + " [WARN]")
+    extraction.bounce_reason = " | ".join(parts) if parts else None
 
 
 # ============================================================================
@@ -779,23 +1162,56 @@ def apply_gate(extraction: DocumentExtraction, threshold: float = CONFIDENCE_GAT
 # ============================================================================
 
 
-def extract_one(doc_path: Path, ensemble: OCREnsemble, verifier: Optional[Verifier]) -> DocumentExtraction:
+def extract_one(
+    doc_path: Path,
+    ensemble: OCREnsemble,
+    verifier: Optional[Verifier],
+    ingester: Ingester,
+    llm_extractor: Optional[LLMExtractor] = None,
+) -> DocumentExtraction:
     extraction = DocumentExtraction(
         doc_id=doc_path.stem,
         source_path=str(doc_path.resolve()),
     )
 
-    # Load + preprocess
-    log.info("Load+preprocess: %s", doc_path.name)
-    img_array = _load_doc_as_array(doc_path)
-    preprocessed = preprocess_image(img_array)
+    # Stage 1 — ingest with provenance
+    log.info("Stage 1 ingest: %s", doc_path.name)
+    ingest = ingester.ingest(doc_path)
+    extraction.provenance = ingest.provenance
+    log.info(
+        "  original_form=%s source=%s sha256=%s pages=%d",
+        ingest.provenance.original_form,
+        ingest.provenance.source_engine,
+        ingest.provenance.file_sha256[:12] + "…",
+        ingest.provenance.page_count,
+    )
 
-    # OCR layer
-    log.info("OCR: %s", doc_path.name)
-    ocr_output = ensemble.run(doc_path, preprocessed)
-    extraction.ocr_engines_used = [e.name for e in ensemble.engines]
+    if ingest.native_text is not None:
+        # Native PDF fast path — pdfplumber output IS the OCR output
+        log.info("Stage 4 SKIP — native PDF, using pdfplumber as single engine")
+        ocr_output = {ingest.native_text["engine"]: ingest.native_text}
+        extraction.ocr_engines_used = [ingest.native_text["engine"]]
+    else:
+        # Stage 3 + 4 — preprocess + OCR ensemble
+        log.info("Stage 3 preprocess: %s", doc_path.name)
+        preprocessed = preprocess_image(ingest.image_array)
+        log.info("Stage 4 OCR: %s", doc_path.name)
+        ocr_output = ensemble.run(doc_path, preprocessed)
+        extraction.ocr_engines_used = [e.name for e in ensemble.engines]
 
-    # Voter — field-level extraction + agreement check
+    # Stage 5a — instructor + Pydantic + Ollama JSON-mode (LLM-based extract).
+    # Joins ocr_output as a third voter candidate alongside Tesseract + RapidOCR.
+    if llm_extractor is not None and llm_extractor.available():
+        combined_text = "\n".join(
+            r.get("raw_text", "") for r in ocr_output.values() if isinstance(r, dict)
+        )
+        log.info("Stage 5a LLM extract: %s (model=%s)", doc_path.name, llm_extractor.model)
+        llm_result = llm_extractor.extract(combined_text)
+        if llm_result is not None:
+            ocr_output[llm_extractor.name] = llm_to_engine_output(llm_result, llm_extractor.name)
+            extraction.ocr_engines_used.append(llm_extractor.name)
+
+    # Stage 5b — voter + regex fallback (LLM short-circuits regex when present)
     extraction.fields = two_engine_vote(ocr_output)
 
     # Schema validation per-field
@@ -864,6 +1280,14 @@ def main() -> int:
                     help="Comma-separated verifier preference order")
     ap.add_argument("--output-dir", type=Path, default=RESULTS_DIR,
                     help="Where to write per-doc JSON results")
+    ap.add_argument("--ingest-dpi", type=int, default=300,
+                    help="Render DPI for image_only PDFs (Stage 1 fallback path)")
+    ap.add_argument("--llm-extract", dest="llm_extract", action="store_true",
+                    default=True, help="Stage 5 LLM extract via instructor + Ollama (default ON)")
+    ap.add_argument("--no-llm-extract", dest="llm_extract", action="store_false",
+                    help="Disable Stage 5 LLM extract (regex stubs only)")
+    ap.add_argument("--llm-extract-model", default="glm-ocr:q8_0",
+                    help="Ollama model for LLM extract (default: glm-ocr:q8_0)")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
 
@@ -879,7 +1303,21 @@ def main() -> int:
 
     ensemble = OCREnsemble(engines)
     log.info("OCR ensemble: %s", [e.name for e in ensemble.engines])
-    log.info("Poppler path: %s", POPPLER_PATH or "NOT FOUND — PDF input will fail")
+    log.info("Poppler path: %s (legacy fallback only — Stage 1 uses pypdfium2)", POPPLER_PATH or "—")
+
+    ingester = Ingester(dpi=args.ingest_dpi)
+    log.info("Ingester: pypdfium2 + pdfplumber (DPI=%d, native_threshold=%d)",
+             ingester.dpi, ingester.native_threshold)
+
+    llm_extractor: Optional[LLMExtractor] = None
+    if args.llm_extract:
+        candidate = LLMExtractor(model=args.llm_extract_model)
+        if candidate.available():
+            log.info("LLMExtractor: %s (instructor + Ollama JSON-mode)", candidate.name)
+            llm_extractor = candidate
+        else:
+            log.warning("LLMExtractor model unavailable (%s); falling back to regex stubs",
+                        args.llm_extract_model)
 
     verifier = None if args.no_verifier else select_verifier(tuple(args.verifier_chain.split(",")))
 
@@ -895,7 +1333,7 @@ def main() -> int:
     pass_count, bounce_count, error_count = 0, 0, 0
     for doc in docs:
         try:
-            ext = extract_one(doc, ensemble, verifier)
+            ext = extract_one(doc, ensemble, verifier, ingester, llm_extractor)
             (out_dir / f"{ext.doc_id}.json").write_text(
                 json.dumps(asdict(ext), indent=2, default=str),
                 encoding="utf-8",

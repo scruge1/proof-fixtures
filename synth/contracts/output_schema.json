@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/scruge1/proof-fixtures/synth/contracts/output_schema.json",
+  "title": "Synth corpus ground-truth output schema",
+  "description": "v0.4.2 synth-generated invoice ground truth. Per PDR v0.2 §7 Step 0. Each generated doc emits one JSON file matching this schema alongside the rendered PDF/PNG. Used for self-supervised training + evaluation.",
+  "type": "object",
+  "required": [
+    "doc_id",
+    "source_path",
+    "schema_version",
+    "contracts_version",
+    "template_family",
+    "corruption_bucket",
+    "ground_truth_fields",
+    "ground_truth_provenance",
+    "synthetic_seed",
+    "synthetic_generator_commit",
+    "license_tag"
+  ],
+  "properties": {
+    "doc_id": { "type": "string", "pattern": "^synth-[a-f0-9]{12}$" },
+    "source_path": { "type": "string" },
+    "schema_version": { "type": "string", "const": "0.4" },
+    "contracts_version": { "type": "string", "const": "0.4.2-step0" },
+    "template_family": {
+      "type": "string",
+      "enum": [
+        "tradesman_rct",
+        "restaurant_thermal",
+        "supermarket_per_letter_vat",
+        "professional_services",
+        "utility_bill",
+        "bank_statement",
+        "mixed_rate_retailer",
+        "construction_supplier",
+        "credit_note",
+        "photographed_receipt",
+        "foreign_currency_mixed_vat",
+        "handwritten_override"
+      ]
+    },
+    "corruption_bucket": {
+      "type": "string",
+      "enum": ["clean", "light", "heavy", "very-heavy"]
+    },
+    "ground_truth_fields": {
+      "type": "object",
+      "required": ["vendor", "total", "vat", "date"],
+      "properties": {
+        "vendor": { "type": "string" },
+        "total":  { "type": "number", "minimum": 0 },
+        "vat":    { "type": "number", "minimum": 0 },
+        "date":   { "type": "string", "pattern": "^\\d{2}/\\d{2}/\\d{4}$" }
+      }
+    },
+    "ground_truth_line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description":     { "type": ["string", "null"] },
+          "quantity":        { "type": ["number", "null"] },
+          "unit_price":      { "type": ["number", "null"] },
+          "vat_rate_pct":    { "type": ["number", "null"], "enum": [null, 0, 4.8, 9, 13.5, 23] },
+          "vat_letter_code": { "type": ["string", "null"] },
+          "amount_net":      { "type": ["number", "null"] },
+          "amount_vat":      { "type": ["number", "null"] },
+          "amount_gross":    { "type": ["number", "null"] }
+        }
+      }
+    },
+    "ground_truth_header": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "ground_truth_provenance": {
+      "type": "object",
+      "required": ["original_form", "source_engine", "file_sha256", "ingest_timestamp_utc", "page_count", "vatca_attestation"],
+      "properties": {
+        "original_form": {
+          "type": "string",
+          "enum": ["digital_native", "image_only_pdf", "paper_scan", "photo"]
+        },
+        "source_engine": { "type": "string" },
+        "file_sha256":   { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "file_size_bytes": { "type": "integer", "minimum": 0 },
+        "ingest_timestamp_utc": { "type": "string" },
+        "page_count":    { "type": "integer", "minimum": 1 },
+        "vatca_attestation": { "type": "string", "const": "original-form-preserved" }
+      }
+    },
+    "synthetic_seed":              { "type": "integer" },
+    "synthetic_generator_commit":  { "type": "string", "pattern": "^[a-f0-9]{40}$|^pending$" },
+    "license_tag":                 { "type": "string", "const": "Apache-2.0" }
+  }
+}

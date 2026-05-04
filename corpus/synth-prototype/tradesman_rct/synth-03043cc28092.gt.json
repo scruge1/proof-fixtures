@@ -1,0 +1,119 @@
+{
+  "doc_id": "synth-03043cc28092",
+  "source_path": "corpus/synth-prototype/tradesman_rct/synth-03043cc28092.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "tradesman_rct",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Broy Group Ltd",
+    "total": 5370.38,
+    "vat": 0.0,
+    "date": "01/04/2026",
+    "subtotal": 5370.38,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Heating — radiator power-flush (per radiator)",
+      "quantity": 2.0,
+      "unit_price": 54.75,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 109.5,
+      "amount_vat": 0.0,
+      "amount_gross": 109.5
+    },
+    {
+      "description": "Electrical — consumer unit upgrade",
+      "quantity": 3.0,
+      "unit_price": 866.72,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 2600.16,
+      "amount_vat": 0.0,
+      "amount_gross": 2600.16
+    },
+    {
+      "description": "Heating — thermostat installation",
+      "quantity": 1.0,
+      "unit_price": 261.92,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 261.92,
+      "amount_vat": 0.0,
+      "amount_gross": 261.92
+    },
+    {
+      "description": "Roofing — slate replacement (per slate)",
+      "quantity": 2.0,
+      "unit_price": 67.95,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 135.9,
+      "amount_vat": 0.0,
+      "amount_gross": 135.9
+    },
+    {
+      "description": "Roofing — gutter clearance + check",
+      "quantity": 2.0,
+      "unit_price": 144.33,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 288.66,
+      "amount_vat": 0.0,
+      "amount_gross": 288.66
+    },
+    {
+      "description": "Painting — interior room (labour only)",
+      "quantity": 3.0,
+      "unit_price": 462.51,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 1387.53,
+      "amount_vat": 0.0,
+      "amount_gross": 1387.53
+    },
+    {
+      "description": "Materials — copper pipe + fittings (lump sum)",
+      "quantity": 3.0,
+      "unit_price": 195.57,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 586.71,
+      "amount_vat": 0.0,
+      "amount_gross": 586.71
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Broy Group Ltd",
+    "vendor_address_line1": "26 Neelan Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Ennis",
+    "vendor_eircode": "V95 JVL1",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 807 401 4234",
+    "vendor_email": "alexandramannix@mcentaggart.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5557217Q",
+    "vendor_iban": "IE14NTSB39267598240440",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260401-067",
+    "invoice_date": "01/04/2026",
+    "due_date": "",
+    "po_reference": "PO/20386"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "2ea9c19f1ef5a115f1089570762d626afe53f389912f452128f1c48ec1d9ef55",
+    "file_size_bytes": 20690,
+    "ingest_timestamp_utc": "2026-05-04T17:05:21Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42004,
+  "synthetic_generator_commit": "8d0cfc5859b81bf08497c55eba6edc3a64d625b7",
+  "license_tag": "Apache-2.0"
+}

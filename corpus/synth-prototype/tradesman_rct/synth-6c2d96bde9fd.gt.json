@@ -1,0 +1,119 @@
+{
+  "doc_id": "synth-6c2d96bde9fd",
+  "source_path": "corpus/synth-prototype/tradesman_rct/synth-6c2d96bde9fd.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "tradesman_rct",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley, Graham and Lally Ltd",
+    "total": 4929.59,
+    "vat": 0.0,
+    "date": "30/04/2026",
+    "subtotal": 4929.59,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Plumbing — replace bathroom tap set",
+      "quantity": 3.0,
+      "unit_price": 274.77,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 824.31,
+      "amount_vat": 0.0,
+      "amount_gross": 824.31
+    },
+    {
+      "description": "Roofing — gutter clearance + check",
+      "quantity": 3.0,
+      "unit_price": 199.55,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 598.65,
+      "amount_vat": 0.0,
+      "amount_gross": 598.65
+    },
+    {
+      "description": "Call-out + diagnostic charge",
+      "quantity": 1.0,
+      "unit_price": 89.73,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 89.73,
+      "amount_vat": 0.0,
+      "amount_gross": 89.73
+    },
+    {
+      "description": "Carpentry — wardrobe assembly + fitting",
+      "quantity": 4.0,
+      "unit_price": 186.81,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 747.24,
+      "amount_vat": 0.0,
+      "amount_gross": 747.24
+    },
+    {
+      "description": "Carpentry — wardrobe assembly + fitting",
+      "quantity": 4.0,
+      "unit_price": 166.46,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 665.84,
+      "amount_vat": 0.0,
+      "amount_gross": 665.84
+    },
+    {
+      "description": "Plumbing — replace bathroom tap set",
+      "quantity": 4.0,
+      "unit_price": 271.8,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 1087.2,
+      "amount_vat": 0.0,
+      "amount_gross": 1087.2
+    },
+    {
+      "description": "Carpentry — wardrobe assembly + fitting",
+      "quantity": 3.0,
+      "unit_price": 305.54,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 916.62,
+      "amount_vat": 0.0,
+      "amount_gross": 916.62
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley, Graham and Lally Ltd",
+    "vendor_address_line1": "77 Barrnette Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Cork",
+    "vendor_eircode": "T23 RTN3",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 108 2383",
+    "vendor_email": "meibh70@loughlin-keaney.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260430-437",
+    "invoice_date": "30/04/2026",
+    "due_date": "",
+    "po_reference": "PO/72763"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "66a79b1ad7c49d46bc95a9255c9ad6bc8789e08a68d07d2c6ca24ce9352167b0",
+    "file_size_bytes": 20340,
+    "ingest_timestamp_utc": "2026-05-04T17:05:21Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "8d0cfc5859b81bf08497c55eba6edc3a64d625b7",
+  "license_tag": "Apache-2.0"
+}

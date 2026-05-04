@@ -21,7 +21,7 @@
     "doc_id": { "type": "string", "pattern": "^synth-[a-f0-9]{12}$" },
     "source_path": { "type": "string" },
     "schema_version": { "type": "string", "const": "0.4" },
-    "contracts_version": { "type": "string", "const": "0.4.2-step0" },
+    "contracts_version": { "type": "string", "pattern": "^0\\.4\\.2-step[0-9]+(\\.[0-9]+)?$" },
     "template_family": {
       "type": "string",
       "enum": [
@@ -36,7 +36,11 @@
         "credit_note",
         "photographed_receipt",
         "foreign_currency_mixed_vat",
-        "handwritten_override"
+        "handwritten_override",
+        "cafe_receipt",
+        "gp_medical",
+        "vet",
+        "solicitor_loe"
       ]
     },
     "corruption_bucket": {
@@ -45,12 +49,14 @@
     },
     "ground_truth_fields": {
       "type": "object",
-      "required": ["vendor", "total", "vat", "date"],
+      "required": ["vendor", "total", "vat", "date", "subtotal", "vendor_country"],
       "properties": {
-        "vendor": { "type": "string" },
-        "total":  { "type": "number", "minimum": 0 },
-        "vat":    { "type": "number", "minimum": 0 },
-        "date":   { "type": "string", "pattern": "^\\d{2}/\\d{2}/\\d{4}$" }
+        "vendor":         { "type": "string" },
+        "total":          { "type": "number", "minimum": 0 },
+        "vat":            { "type": "number", "minimum": 0 },
+        "date":           { "type": "string", "pattern": "^\\d{2}/\\d{2}/\\d{4}$" },
+        "subtotal":       { "type": "number", "minimum": 0 },
+        "vendor_country": { "type": "string", "pattern": "^[A-Z]{2}$" }
       }
     },
     "ground_truth_line_items": {

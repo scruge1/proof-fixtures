@@ -1,0 +1,119 @@
+{
+  "doc_id": "synth-2db404da7426",
+  "source_path": "corpus/synth-prototype/tradesman_rct/synth-2db404da7426.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "tradesman_rct",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Grahams, Hawe and Kilmartin Ltd",
+    "total": 4290.91,
+    "vat": 0.0,
+    "date": "01/05/2026",
+    "subtotal": 4290.91,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Plumbing — leaking pipe repair",
+      "quantity": 4.0,
+      "unit_price": 198.69,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 794.76,
+      "amount_vat": 0.0,
+      "amount_gross": 794.76
+    },
+    {
+      "description": "Heating — thermostat installation",
+      "quantity": 3.0,
+      "unit_price": 197.87,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 593.61,
+      "amount_vat": 0.0,
+      "amount_gross": 593.61
+    },
+    {
+      "description": "Heating — radiator power-flush (per radiator)",
+      "quantity": 2.0,
+      "unit_price": 77.38,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 154.76,
+      "amount_vat": 0.0,
+      "amount_gross": 154.76
+    },
+    {
+      "description": "Carpentry — skirting board replacement (per metre)",
+      "quantity": 3.0,
+      "unit_price": 38.2,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 114.6,
+      "amount_vat": 0.0,
+      "amount_gross": 114.6
+    },
+    {
+      "description": "Electrical — consumer unit upgrade",
+      "quantity": 3.0,
+      "unit_price": 782.61,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 2347.83,
+      "amount_vat": 0.0,
+      "amount_gross": 2347.83
+    },
+    {
+      "description": "Carpentry — kitchen door re-hang",
+      "quantity": 2.0,
+      "unit_price": 85.6,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 171.2,
+      "amount_vat": 0.0,
+      "amount_gross": 171.2
+    },
+    {
+      "description": "Electrical — additional double socket installation",
+      "quantity": 1.0,
+      "unit_price": 114.15,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 114.15,
+      "amount_vat": 0.0,
+      "amount_gross": 114.15
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Grahams, Hawe and Kilmartin Ltd",
+    "vendor_address_line1": "75 Cosgrave Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Cork",
+    "vendor_eircode": "T23 ORWT",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 875 974 1067",
+    "vendor_email": "connollyaoibheann@ging.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE1611531N",
+    "vendor_iban": "IE39AIBK75071534183127",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260501-324",
+    "invoice_date": "01/05/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "7b1a40b288dba5212be3d946db3e8e3d25af3aa361e3bb4c0f272569f8e7830c",
+    "file_size_bytes": 20911,
+    "ingest_timestamp_utc": "2026-05-04T17:05:20Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "8d0cfc5859b81bf08497c55eba6edc3a64d625b7",
+  "license_tag": "Apache-2.0"
+}

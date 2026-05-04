@@ -1,0 +1,109 @@
+{
+  "doc_id": "synth-6aae38709af7",
+  "source_path": "corpus/synth-prototype/tradesman_rct/synth-6aae38709af7.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "tradesman_rct",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Doody, Diffley and Drennan Ltd",
+    "total": 5506.29,
+    "vat": 0.0,
+    "date": "21/02/2026",
+    "subtotal": 5506.29,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Painting — exterior render touch-up",
+      "quantity": 3.0,
+      "unit_price": 563.42,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 1690.26,
+      "amount_vat": 0.0,
+      "amount_gross": 1690.26
+    },
+    {
+      "description": "Materials — paint + sundries",
+      "quantity": 3.0,
+      "unit_price": 158.49,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 475.47,
+      "amount_vat": 0.0,
+      "amount_gross": 475.47
+    },
+    {
+      "description": "Materials — copper pipe + fittings (lump sum)",
+      "quantity": 4.0,
+      "unit_price": 230.52,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 922.08,
+      "amount_vat": 0.0,
+      "amount_gross": 922.08
+    },
+    {
+      "description": "Plumbing — replace bathroom tap set",
+      "quantity": 4.0,
+      "unit_price": 198.14,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 792.56,
+      "amount_vat": 0.0,
+      "amount_gross": 792.56
+    },
+    {
+      "description": "Heating — thermostat installation",
+      "quantity": 4.0,
+      "unit_price": 309.95,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 1239.8,
+      "amount_vat": 0.0,
+      "amount_gross": 1239.8
+    },
+    {
+      "description": "Plumbing — leaking pipe repair",
+      "quantity": 4.0,
+      "unit_price": 96.53,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 386.12,
+      "amount_vat": 0.0,
+      "amount_gross": 386.12
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Doody, Diffley and Drennan Ltd",
+    "vendor_address_line1": "78 McWalter Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Limerick",
+    "vendor_eircode": "V42 IXS2",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 884 517 1312",
+    "vendor_email": "wbrassil@crilly.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE6029919LW",
+    "vendor_iban": "IE67REVO42300518451129",
+    "vendor_bic": "REVOIE23",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260221-483",
+    "invoice_date": "21/02/2026",
+    "due_date": "14/03/2026",
+    "po_reference": "PO/80909"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "65cbfa3c79a947221ab07ba088a07efcaf2f2185b4908677dfc33b13b5f1ab04",
+    "file_size_bytes": 20606,
+    "ingest_timestamp_utc": "2026-05-04T17:05:19Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "8d0cfc5859b81bf08497c55eba6edc3a64d625b7",
+  "license_tag": "Apache-2.0"
+}

@@ -1,0 +1,99 @@
+{
+  "doc_id": "synth-349656601f67",
+  "source_path": "corpus/synth-prototype/tradesman_rct/synth-349656601f67.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "tradesman_rct",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Weaver-O'Farrelly Ltd",
+    "total": 2176.39,
+    "vat": 0.0,
+    "date": "12/02/2026",
+    "subtotal": 2176.39,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Electrical — fault diagnostic + repair",
+      "quantity": 2.0,
+      "unit_price": 133.98,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 267.96,
+      "amount_vat": 0.0,
+      "amount_gross": 267.96
+    },
+    {
+      "description": "Plumbing — leaking pipe repair",
+      "quantity": 4.0,
+      "unit_price": 196.59,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 786.36,
+      "amount_vat": 0.0,
+      "amount_gross": 786.36
+    },
+    {
+      "description": "Carpentry — skirting board replacement (per metre)",
+      "quantity": 2.0,
+      "unit_price": 25.53,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 51.06,
+      "amount_vat": 0.0,
+      "amount_gross": 51.06
+    },
+    {
+      "description": "Carpentry — kitchen door re-hang",
+      "quantity": 3.0,
+      "unit_price": 74.35,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 223.05,
+      "amount_vat": 0.0,
+      "amount_gross": 223.05
+    },
+    {
+      "description": "Painting — interior room (labour only)",
+      "quantity": 2.0,
+      "unit_price": 423.98,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 847.96,
+      "amount_vat": 0.0,
+      "amount_gross": 847.96
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Weaver-O'Farrelly Ltd",
+    "vendor_address_line1": "01 McMenamin Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Dublin 24",
+    "vendor_eircode": "D24 35MC",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 817 724 7478",
+    "vendor_email": "orlaithconree@heskin-sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5315399A",
+    "vendor_iban": "IE34IPBS36614760918773",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260212-123",
+    "invoice_date": "12/02/2026",
+    "due_date": "26/02/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "0038d4afcd4cfb920643ff5254bb5852e3ac62df6c7397331456e20822c54e7d",
+    "file_size_bytes": 20671,
+    "ingest_timestamp_utc": "2026-05-04T17:05:19Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "8d0cfc5859b81bf08497c55eba6edc3a64d625b7",
+  "license_tag": "Apache-2.0"
+}

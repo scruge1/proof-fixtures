@@ -146,6 +146,18 @@ class FieldExtraction:
 
 
 @dataclass
+class LineItem:
+    """v0.4.1 Stage 4b — invoice line item from PaddleOCR PP-StructureV3 / RapidTable.
+    Fields all optional because the table parser may yield partial rows."""
+    description: Optional[str] = None
+    quantity: Optional[float] = None
+    unit_price: Optional[float] = None
+    amount: Optional[float] = None
+    raw_cells: list[str] = field(default_factory=list)
+    row_idx: int = 0
+
+
+@dataclass
 class DocumentExtraction:
     doc_id: str
     source_path: str
@@ -157,6 +169,7 @@ class DocumentExtraction:
     ocr_engines_used: list[str] = field(default_factory=list)
     verifiers_used: list[str] = field(default_factory=list)
     fields: list[FieldExtraction] = field(default_factory=list)
+    line_items: list[LineItem] = field(default_factory=list)
     cross_field_checks: dict[str, Any] = field(default_factory=dict)
     gate_passed: bool = False
     bounce_reason: Optional[str] = None
@@ -487,6 +500,157 @@ class OCREnsemble:
                 log.warning("OCR engine %s failed on %s: %s", eng.name, doc_path.name, e)
                 results[eng.name] = {"engine": eng.name, "error": str(e)}
         return results
+
+
+# ============================================================================
+# Stage 4b — Line-item table extraction via RapidTable (v0.4.1)
+# ============================================================================
+# Per CALLMEIE-DOCAI-V0.4-PRD.md Stage 4 — table layer for invoice line items.
+# rapid-table 3.0.2 wraps PaddleOCR PP-Structure ONNX (Apache-2.0) without the
+# paddlepaddle 3.x runtime that fails on Windows (PIR onednn ConvertPirAttribute2RuntimeAttribute).
+# Per `_dep_notes/rapid_table.md`. ~2.5-3s/page on Vega 8.
+#
+# Skipped on digital_native PDFs (pdfplumber.extract_tables() is exact and free).
+
+
+def _flatten_native_tables(tables: list[list[list[str]]]) -> list[list[str]]:
+    """pdfplumber.extract_tables() returns list[table] where each table is list[row]
+    where each row is list[cell-or-None]. Flatten into list[row] across all tables.
+    """
+    flat: list[list[str]] = []
+    for tbl in tables or []:
+        for row in tbl or []:
+            flat.append([("" if c is None else str(c)) for c in row])
+    return flat
+
+
+_LINE_ITEM_HEADER_HINTS = (
+    "description", "item", "qty", "quantity", "rate", "unit", "value",
+)
+# Rows containing these keywords are summary rows (subtotal/vat/total) — drop.
+_LINE_ITEM_SUMMARY_KEYWORDS = (
+    "subtotal", "sub-total", "vat ", "vat:", "total:", "amount due",
+    "balance due", "grand total", "tax:", "tax ",
+)
+_MONEY_REGEX_TABLE = re.compile(
+    r"(?:€|EUR)?\s*([\d,]+\.\d{2})|([\d,]+\.\d{2})\s*(?:€|EUR)?", re.IGNORECASE,
+)
+
+
+def _parse_money_cell(s: str) -> Optional[float]:
+    if not s:
+        return None
+    m = _MONEY_REGEX_TABLE.search(s)
+    if not m:
+        return None
+    raw = (m.group(1) or m.group(2) or "").replace(",", "")
+    try:
+        return float(raw)
+    except ValueError:
+        return None
+
+
+def _parse_qty_cell(s: str) -> Optional[float]:
+    if not s:
+        return None
+    m = re.search(r"(\d+(?:\.\d+)?)", s)
+    if not m:
+        return None
+    try:
+        return float(m.group(1))
+    except ValueError:
+        return None
+
+
+class LineItemsExtractor:
+    """Stage 4b — invoice line items via RapidTable (PP-Structure ONNX).
+
+    Skipped on digital_native PDFs — pdfplumber.extract_tables() output is
+    already wired into the native_text path (see Ingester._build_native_result).
+    """
+
+    name = "rapid-table-3.0.2-ppstructure-en"
+
+    def __init__(self):
+        self._engine = None
+        self._available: Optional[bool] = None
+
+    def available(self) -> bool:
+        if self._available is not None:
+            return self._available
+        try:
+            from rapid_table import RapidTable, RapidTableInput, ModelType, EngineType
+            input_args = RapidTableInput(
+                model_type=ModelType.PPSTRUCTURE_EN,
+                engine_type=EngineType.ONNXRUNTIME,
+                use_ocr=True,
+            )
+            self._engine = RapidTable(input_args)
+            self._available = True
+        except Exception as e:
+            log.debug("rapid-table init failed: %s", e)
+            self._available = False
+        return self._available
+
+    def extract(self, image_array) -> list[LineItem]:
+        if not self.available():
+            return []
+        try:
+            out = self._engine(image_array)
+        except Exception as e:
+            log.warning("LineItemsExtractor predict failed: %s", e)
+            return []
+
+        if not out.pred_htmls:
+            return []
+        return self._parse_html_table(out.pred_htmls[0])
+
+    def _parse_html_table(self, html: str) -> list[LineItem]:
+        try:
+            import bs4
+        except ImportError:
+            log.warning("bs4 not installed; skipping HTML table parse")
+            return []
+        soup = bs4.BeautifulSoup(html, "lxml")
+        items: list[LineItem] = []
+        # Find header-row index via hint keywords; rows after that are line-items.
+        rows = soup.find_all("tr")
+        header_idx = -1
+        for i, tr in enumerate(rows):
+            cells = [td.get_text(strip=True).lower() for td in tr.find_all("td")]
+            joined = " ".join(cells)
+            if sum(1 for hint in _LINE_ITEM_HEADER_HINTS if hint in joined) >= 2:
+                header_idx = i
+                break
+
+        for i, tr in enumerate(rows):
+            cells = [td.get_text(" ", strip=True) for td in tr.find_all("td")]
+            cells = [c for c in cells if c]  # drop empty
+            if not cells:
+                continue
+            if i <= header_idx:
+                continue
+            # Drop summary rows (subtotal / vat / total)
+            joined_lower = " ".join(cells).lower()
+            if any(kw in joined_lower for kw in _LINE_ITEM_SUMMARY_KEYWORDS):
+                continue
+            # Drop rows with no money cell — likely header / vendor / metadata.
+            money_cells = [(idx, _parse_money_cell(c)) for idx, c in enumerate(cells)]
+            money_cells = [(idx, v) for idx, v in money_cells if v is not None]
+            if not money_cells:
+                continue
+            amount = money_cells[-1][1]
+            description = max((c for c in cells if not _parse_money_cell(c)),
+                              key=len, default="") or None
+            qty = _parse_qty_cell(description or "") if description else None
+            items.append(LineItem(
+                description=description,
+                quantity=qty,
+                amount=amount,
+                raw_cells=cells,
+                row_idx=i,
+            ))
+        return items
 
 
 # ============================================================================
@@ -1168,6 +1332,7 @@ def extract_one(
     verifier: Optional[Verifier],
     ingester: Ingester,
     llm_extractor: Optional[LLMExtractor] = None,
+    line_items_extractor: Optional[LineItemsExtractor] = None,
 ) -> DocumentExtraction:
     extraction = DocumentExtraction(
         doc_id=doc_path.stem,
@@ -1191,6 +1356,22 @@ def extract_one(
         log.info("Stage 4 SKIP — native PDF, using pdfplumber as single engine")
         ocr_output = {ingest.native_text["engine"]: ingest.native_text}
         extraction.ocr_engines_used = [ingest.native_text["engine"]]
+        # Native tables come from pdfplumber.extract_tables() at ingest time.
+        native_tables = ingest.native_text.get("tables") or []
+        for row_idx, row in enumerate(_flatten_native_tables(native_tables)):
+            cells = [c.strip() if c else "" for c in row]
+            if not any(cells):
+                continue
+            money_cells = [_parse_money_cell(c) for c in cells]
+            amount = next((m for m in reversed(money_cells) if m is not None), None)
+            description = max((c for c in cells if not _parse_money_cell(c)),
+                              key=len, default="") or None
+            extraction.line_items.append(LineItem(
+                description=description,
+                amount=amount,
+                raw_cells=cells,
+                row_idx=row_idx,
+            ))
     else:
         # Stage 3 + 4 — preprocess + OCR ensemble
         log.info("Stage 3 preprocess: %s", doc_path.name)
@@ -1198,10 +1379,25 @@ def extract_one(
         log.info("Stage 4 OCR: %s", doc_path.name)
         ocr_output = ensemble.run(doc_path, preprocessed)
         extraction.ocr_engines_used = [e.name for e in ensemble.engines]
+        # Stage 4b — line items via RapidTable / PP-Structure (image path only)
+        if line_items_extractor is not None and line_items_extractor.available():
+            log.info("Stage 4b line items: %s (%s)", doc_path.name, line_items_extractor.name)
+            try:
+                extraction.line_items = line_items_extractor.extract(ingest.image_array)
+                log.info("  found %d line items", len(extraction.line_items))
+            except Exception as e:
+                log.warning("Line-items extraction failed: %s", e)
+                extraction.errors.append(f"line_items: {e}")
 
     # Stage 5a — instructor + Pydantic + Ollama JSON-mode (LLM-based extract).
     # Joins ocr_output as a third voter candidate alongside Tesseract + RapidOCR.
-    if llm_extractor is not None and llm_extractor.available():
+    # SKIP on digital_native PDFs — pdfplumber output is exact (conf 1.0), and
+    # LLM call would add ~30-78s on Vega 8 without accuracy lift (v0.4.1).
+    is_digital_native = (
+        ingest.provenance is not None
+        and ingest.provenance.original_form == "digital_native"
+    )
+    if llm_extractor is not None and llm_extractor.available() and not is_digital_native:
         combined_text = "\n".join(
             r.get("raw_text", "") for r in ocr_output.values() if isinstance(r, dict)
         )
@@ -1210,6 +1406,8 @@ def extract_one(
         if llm_result is not None:
             ocr_output[llm_extractor.name] = llm_to_engine_output(llm_result, llm_extractor.name)
             extraction.ocr_engines_used.append(llm_extractor.name)
+    elif is_digital_native and llm_extractor is not None:
+        log.info("Stage 5a SKIP — digital_native PDF, pdfplumber already exact (conf 1.0)")
 
     # Stage 5b — voter + regex fallback (LLM short-circuits regex when present)
     extraction.fields = two_engine_vote(ocr_output)
@@ -1288,6 +1486,10 @@ def main() -> int:
                     help="Disable Stage 5 LLM extract (regex stubs only)")
     ap.add_argument("--llm-extract-model", default="glm-ocr:q8_0",
                     help="Ollama model for LLM extract (default: glm-ocr:q8_0)")
+    ap.add_argument("--line-items", dest="line_items", action="store_true",
+                    default=True, help="Stage 4b line-item extract via RapidTable (default ON)")
+    ap.add_argument("--no-line-items", dest="line_items", action="store_false",
+                    help="Disable Stage 4b line-item extract")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
 
@@ -1319,6 +1521,15 @@ def main() -> int:
             log.warning("LLMExtractor model unavailable (%s); falling back to regex stubs",
                         args.llm_extract_model)
 
+    line_items_extractor: Optional[LineItemsExtractor] = None
+    if args.line_items:
+        candidate = LineItemsExtractor()
+        if candidate.available():
+            log.info("LineItemsExtractor: %s", candidate.name)
+            line_items_extractor = candidate
+        else:
+            log.warning("LineItemsExtractor unavailable (rapid-table import failed)")
+
     verifier = None if args.no_verifier else select_verifier(tuple(args.verifier_chain.split(",")))
 
     docs = discover_docs(args.set_slug, args.doc)
@@ -1333,7 +1544,7 @@ def main() -> int:
     pass_count, bounce_count, error_count = 0, 0, 0
     for doc in docs:
         try:
-            ext = extract_one(doc, ensemble, verifier, ingester, llm_extractor)
+            ext = extract_one(doc, ensemble, verifier, ingester, llm_extractor, line_items_extractor)
             (out_dir / f"{ext.doc_id}.json").write_text(
                 json.dumps(asdict(ext), indent=2, default=str),
                 encoding="utf-8",

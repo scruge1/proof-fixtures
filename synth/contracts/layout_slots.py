@@ -1,4 +1,4 @@
-"""Layout slot taxonomy — per-template slot positions for 12 IE seed layouts.
+"""Layout slot taxonomy — per-template slot positions for 16 IE seed layouts.
 
 Each template family declares which slots it surfaces + their positional
 hints. Templates are HTML+CSS (rendered via WeasyPrint) referencing these
@@ -6,9 +6,11 @@ slot names as `<span data-slot="vendor_name">`. The content engine fills
 slots; the renderer rasterizes; the ground-truth emitter records the
 slot-bbox map for downstream training.
 
-Per PDR v0.2 §5 — 12 templates × 4× augmentation = 48 layout-pose
-permutations BEFORE corruption. Adding a new template family requires
-bumping CONTRACTS_VERSION in __init__.py.
+Per PDR v0.2 §5 + Adam review 2026-05-04 — 16 templates × 4× augmentation
+= 64 layout-pose permutations BEFORE corruption. Adding a new template
+family requires bumping CONTRACTS_VERSION in __init__.py.
+
+v0.4.2-step0.1 added: cafe_receipt, gp_medical, vet, solicitor_loe.
 """
 from __future__ import annotations
 
@@ -215,6 +217,60 @@ TEMPLATE_FAMILIES: Final[tuple[TemplateFamily, ...]] = (
         multi_vat_rate=False,
         typical_line_item_count=(1, 6),
     ),
+    # ── v0.4.2-step0.1 additions (Adam review 2026-05-04) ──
+    TemplateFamily(
+        name="cafe_receipt",
+        description="Cafe / coffee-shop thermal receipt — single-VAT 9% (food-and-drink consumed on premises)",
+        slots=(
+            LayoutSlot("vendor_name", True, (0.10, 0.90), (0.02, 0.10)),
+            LayoutSlot("vendor_address_line1", False, (0.10, 0.90), (0.08, 0.14)),
+            LayoutSlot("invoice_date", True, (0.10, 0.90), (0.14, 0.20)),
+            LayoutSlot("invoice_number", False, (0.10, 0.90), (0.18, 0.24)),
+            LayoutSlot("vat", True, (0.10, 0.90), (0.85, 0.92)),
+            LayoutSlot("total", True, (0.10, 0.90), (0.92, 0.98)),
+        ),
+        page_size="thermal_80mm",
+        has_line_items=True,
+        multi_vat_rate=False,
+        typical_line_item_count=(1, 6),
+    ),
+    TemplateFamily(
+        name="gp_medical",
+        description="GP / medical-practice fee receipt — exempt VAT (medical services 0% per VATCA Sched 1)",
+        slots=_VENDOR_HEADER_SLOTS + (
+            LayoutSlot("service_description", True, (0.05, 0.95), (0.35, 0.55), True),
+            LayoutSlot("subtotal_amount", False, (0.55, 0.95), (0.65, 0.78)),
+            LayoutSlot("total", True, (0.55, 0.95), (0.78, 0.90)),
+            LayoutSlot("vatca_attestation", False, (0.05, 0.95), (0.90, 0.97), True),
+        ),
+        page_size="A4",
+        has_line_items=False,
+        multi_vat_rate=False,  # medical exempt, no VAT line at all
+        typical_line_item_count=(1, 1),
+    ),
+    TemplateFamily(
+        name="vet",
+        description="Veterinary practice — mixed VAT (consultation 23%, livestock medicines 4.8%, food 0%)",
+        slots=_VENDOR_HEADER_SLOTS + _FOOTER_TOTAL_SLOTS + (
+            LayoutSlot("vat_breakdown_table", True, (0.05, 0.95), (0.60, 0.78), True),
+        ),
+        page_size="A4",
+        has_line_items=True,
+        multi_vat_rate=True,
+        typical_line_item_count=(2, 8),
+    ),
+    TemplateFamily(
+        name="solicitor_loe",
+        description="Solicitor letter-of-engagement — A4 letterhead with PA fee + outlay split, single 23% VAT",
+        slots=_VENDOR_HEADER_SLOTS + _FOOTER_TOTAL_SLOTS + (
+            LayoutSlot("service_description", True, (0.05, 0.95), (0.30, 0.55), True),
+            LayoutSlot("rct_clause", False, (0.05, 0.95), (0.55, 0.65), True),  # outlay disclosure
+        ),
+        page_size="A4",
+        has_line_items=True,
+        multi_vat_rate=False,
+        typical_line_item_count=(2, 6),
+    ),
 )
 
 
@@ -225,7 +281,9 @@ LAYOUT_SLOTS: Final[dict[str, TemplateFamily]] = {
 
 
 # Sanity assertions at import time
-assert len(TEMPLATE_FAMILIES) == 12, \
-    f"Expected 12 IE seed templates per PDR v0.2 §5; got {len(TEMPLATE_FAMILIES)}"
+assert len(TEMPLATE_FAMILIES) == 16, \
+    f"Expected 16 IE seed templates per PDR v0.2 §5 + step0.1; got {len(TEMPLATE_FAMILIES)}"
 assert all(f.license_tag == "Apache-2.0" for f in TEMPLATE_FAMILIES), \
     "All synth templates must be Apache-2.0 (no GPL/CC-BY-NC)"
+assert len(LAYOUT_SLOTS) == len(TEMPLATE_FAMILIES), \
+    f"TemplateFamily.name collision detected — LAYOUT_SLOTS has {len(LAYOUT_SLOTS)} entries vs {len(TEMPLATE_FAMILIES)} families"

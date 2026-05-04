@@ -12,7 +12,12 @@ runs pin the version they were built against.
 """
 from __future__ import annotations
 
-CONTRACTS_VERSION = "0.4.2-step0"
+CONTRACTS_VERSION = "0.4.2-step0.1"
+# step0   = initial Codex-reviewed lock 2026-05-04
+# step0.1 = Adam review 2026-05-04: +subtotal +vendor_country in INVOICE_FIELDS,
+#           +cafe_receipt +gp_medical +vet +solicitor_loe in TEMPLATE_FAMILIES,
+#           +centra +spar +eurogiant in IE_PER_LETTER_VAT, +BACKFILL in Role,
+#           two-tier MinHash gate (0.85 soft / 0.95 hard) + identity-strip normalization.
 
 from .vat_constants import IE_VAT_RATES, IE_PER_LETTER_VAT, IE_VAT_NUMBER_REGEX
 from .placeholder_taxonomy import (

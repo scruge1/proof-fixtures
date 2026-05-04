@@ -16,7 +16,10 @@ from pathlib import Path
 from typing import Literal
 
 
-Role = Literal["TRAIN", "EVAL", "EVAL-ONLY-PRIVATE", "RED-TEAM-EVAL"]
+Role = Literal["TRAIN", "EVAL", "EVAL-ONLY-PRIVATE", "RED-TEAM-EVAL", "BACKFILL"]
+# BACKFILL = retro-imported pre-v0.4.2 corpus entries; admitted to manifest for
+# provenance only. Never used in TRAIN, EVAL, or RED-TEAM splits until promoted
+# via explicit role-flip + commit-hash pin. Per D-V0.4.2-21 (Adam 2026-05-04).
 LicenseTag = Literal[
     "Apache-2.0",
     "MIT",
@@ -73,6 +76,14 @@ def build_dvc_manifest(entries: list[CorpusEntry], out_path: Path) -> None:
             f.write(json.dumps(e.to_dict(), ensure_ascii=False) + "\n")
 
 
+# Roles that may carry CC-BY-NC-SA-4.0 (or other non-commercial) content.
+# EVAL-ONLY-PRIVATE: explicit Codex P0-4 carve-out for DocILE-class private R&D.
+# BACKFILL:          provenance-only retro-import (never used in TRAIN/EVAL/RED-TEAM
+#                    until role-flipped via explicit promotion, which MUST re-run
+#                    validate_license_posture under the new role per D-V0.4.2-21).
+_NC_PERMITTED_ROLES: frozenset[str] = frozenset({"EVAL-ONLY-PRIVATE", "BACKFILL"})
+
+
 def build_license_manifest(entries: list[CorpusEntry], out_path: Path) -> None:
     """Writes a per-source license summary for legal audit. Group entries
     by source + license_tag, count documents, mark role.
@@ -90,22 +101,29 @@ def build_license_manifest(entries: list[CorpusEntry], out_path: Path) -> None:
         f.write("|---|---|---|---|\n")
         for (source, lic, role), count in sorted(summary.items()):
             warn = ""
-            if lic == "CC-BY-NC-SA-4.0" and role != "EVAL-ONLY-PRIVATE":
-                warn = " ⚠️ NC license — must be EVAL-ONLY-PRIVATE per Codex P0-4"
+            if lic == "CC-BY-NC-SA-4.0" and role not in _NC_PERMITTED_ROLES:
+                warn = " ⚠️ NC license — must be EVAL-ONLY-PRIVATE or BACKFILL per Codex P0-4 + D-V0.4.2-21"
             f.write(f"| {source} | {lic} | {role} | {count} |{warn}\n")
         f.write("\n")
-        f.write("**Codex P0-4 enforcement:** any row with license `CC-BY-NC-SA-4.0` "
-                "MUST have role `EVAL-ONLY-PRIVATE`. Any other role is a "
-                "license-posture violation.\n")
+        f.write("**Codex P0-4 + D-V0.4.2-21 enforcement:** any row with license "
+                "`CC-BY-NC-SA-4.0` MUST have role in {`EVAL-ONLY-PRIVATE`, "
+                "`BACKFILL`}. Any other role is a license-posture violation. "
+                "Promoting a `BACKFILL` row to `TRAIN`/`EVAL`/`RED-TEAM-EVAL` "
+                "MUST re-run `validate_license_posture` under the new role.\n")
 
 
 def validate_license_posture(entries: list[CorpusEntry]) -> list[str]:
-    """Returns list of violation strings. Empty list = clean."""
+    """Returns list of violation strings. Empty list = clean.
+
+    BACKFILL is exempt because retro-import entries are provenance-only and
+    never used for TRAIN/EVAL/RED-TEAM. Any role-flip BACKFILL→active must
+    re-run this validator under the new role (caller responsibility).
+    """
     violations = []
     for e in entries:
-        if e.license_tag == "CC-BY-NC-SA-4.0" and e.role != "EVAL-ONLY-PRIVATE":
+        if e.license_tag == "CC-BY-NC-SA-4.0" and e.role not in _NC_PERMITTED_ROLES:
             violations.append(
                 f"VIOLATION: {e.doc_id} ({e.source}) license={e.license_tag} "
-                f"but role={e.role} — must be EVAL-ONLY-PRIVATE per Codex P0-4"
+                f"but role={e.role} — must be EVAL-ONLY-PRIVATE or BACKFILL per Codex P0-4 + D-V0.4.2-21"
             )
     return violations

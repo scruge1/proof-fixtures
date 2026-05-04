@@ -16,6 +16,7 @@ HEADER_FIELDS: Final[tuple[str, ...]] = (
     "vendor_address_line2",
     "vendor_city",
     "vendor_eircode",
+    "vendor_country",        # ISO-3166-1 alpha-2 (default "IE"); critical for foreign_currency_mixed_vat + cross-border RCT
     "vendor_phone",
     "vendor_email",
     "vendor_website",
@@ -29,12 +30,17 @@ HEADER_FIELDS: Final[tuple[str, ...]] = (
     "po_reference",
 )
 
-# Critical fields (the four extract.py CRITICAL_FIELDS — MUST match v0.4.1 schema)
+# Critical fields (extract.py CRITICAL_FIELDS — MUST match v0.4.1 schema).
+# v0.4.2-step0.1: extended from 4 → 6 (added subtotal, vendor_country) per Adam
+# review 2026-05-04. extract.py CRITICAL_FIELDS tuple in document-ops-portal MUST
+# be bumped in lock-step with this — see D-V0.4.2-20.
 INVOICE_FIELDS: Final[tuple[str, ...]] = (
-    "vendor",       # vendor_name normalized
-    "total",        # gross including VAT, EUR
-    "vat",          # VAT amount, EUR
-    "date",         # invoice_date in DD/MM/YYYY
+    "vendor",          # vendor_name normalized
+    "total",           # gross including VAT, EUR
+    "vat",             # VAT amount, EUR
+    "date",            # invoice_date in DD/MM/YYYY
+    "subtotal",        # net before VAT, EUR — required for cross-field check (subtotal + vat ≈ total ±0.01)
+    "vendor_country",  # ISO-3166-1 alpha-2; "IE" domestic, anything else = foreign_currency_mixed_vat path
 )
 
 # Line-item-level fields

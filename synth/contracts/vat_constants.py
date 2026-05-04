@@ -31,10 +31,14 @@ IE_PER_LETTER_VAT: Final[dict[str, dict[str, float]]] = {
     "tesco": {"A": 23.0, "B": 13.5, "C": 9.0, "D": 4.8, "Z": 0.0},
     "dunnes": {"A": 23.0, "B": 13.5, "C": 9.0, "D": 4.8, "Z": 0.0},
     "supervalu": {"A": 23.0, "B": 13.5, "C": 9.0, "D": 4.8, "Z": 0.0},
-    # Aldi + Lidl use full %s on receipt, no per-letter code, but still
+    # Centra + Spar (Musgrave + BWG forecourt-grocer chains) — same A/B/C/D/Z scheme as parent group.
+    "centra": {"A": 23.0, "B": 13.5, "C": 9.0, "D": 4.8, "Z": 0.0},
+    "spar": {"A": 23.0, "B": 13.5, "C": 9.0, "D": 4.8, "Z": 0.0},
+    # Aldi + Lidl + Eurogiant use full %s on receipt, no per-letter code, but still
     # encoded here for mixed-rate receipt generation.
     "aldi": {"23": 23.0, "13.5": 13.5, "9": 9.0, "4.8": 4.8, "0": 0.0},
     "lidl": {"23": 23.0, "13.5": 13.5, "9": 9.0, "4.8": 4.8, "0": 0.0},
+    "eurogiant": {"23": 23.0, "13.5": 13.5, "9": 9.0, "4.8": 4.8, "0": 0.0},
 }
 
 # IE VAT-number format: IE + 7 digits + 1-2 letters (latest scheme accepts

@@ -1,0 +1,35 @@
+# v0.4.1 Stage 9 — DVC pipeline.
+# Reproducible build of the training shard from raw corrections.jsonl.
+# v0.5 LoRA / distillation training reads `train_shard.jsonl` ONLY.
+
+stages:
+
+  shard_train:
+    desc: Build the training shard from accumulated corrections.
+    cmd: python scripts/build_train_shard.py
+         --corrections corpus/corrections.jsonl
+         --extractions corpus/extractions.jsonl
+         --out corpus/train_shard.jsonl
+         --metrics corpus/metrics.json
+    deps:
+      - corpus/corrections.jsonl
+      - corpus/extractions.jsonl
+      - scripts/build_train_shard.py
+    outs:
+      - corpus/train_shard.jsonl
+    metrics:
+      - corpus/metrics.json:
+          cache: false
+
+  bench_holdout:
+    desc: Score the v0 holdout (D-V0.4-10) with current pipeline.
+    cmd: python scripts/score.py
+         --set holdout-v0
+         --out corpus/holdout_score.json
+    deps:
+      - corpus/holdout/
+      - scripts/extract.py
+      - scripts/score.py
+    metrics:
+      - corpus/holdout_score.json:
+          cache: false

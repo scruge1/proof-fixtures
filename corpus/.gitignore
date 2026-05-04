@@ -1,0 +1,8 @@
+# Corpus content tracked by DVC, NOT git. The `.dvc` pointer files ARE
+# tracked by git (they hold the content hash); the actual JSONL bytes
+# live in Hetzner Object Storage.
+/corrections.jsonl
+/corrections.jsonl.bak.*
+/extractions.jsonl
+/train_shard.jsonl
+/holdout/

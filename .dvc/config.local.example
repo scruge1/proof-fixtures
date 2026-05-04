@@ -1,0 +1,6 @@
+# Copy to .dvc/config.local (gitignored). Never commit real credentials.
+# Hetzner Cloud Console -> Object Storage -> Credentials -> Generate.
+# Bucket "callmeie-corpus" must already exist in fsn1.
+['remote "hetzner"']
+    access_key_id = HETZNER_OBJECT_STORAGE_ACCESS_KEY_HERE
+    secret_access_key = HETZNER_OBJECT_STORAGE_SECRET_KEY_HERE

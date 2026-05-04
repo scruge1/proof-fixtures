@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  shard_train:
+    cmd: python scripts/build_train_shard.py --corrections 
+      corpus/corrections.jsonl --extractions corpus/extractions.jsonl --out 
+      corpus/train_shard.jsonl --metrics corpus/metrics.json
+    deps:
+    - path: corpus/corrections.jsonl
+      hash: md5
+      md5: 8fe0156d1d0aa01b556c629c1a4b5fe3
+      size: 530
+    - path: corpus/extractions.jsonl
+      hash: md5
+      md5: 016e20b48efaeca39c646574855729cc
+      size: 93
+    - path: scripts/build_train_shard.py
+      hash: md5
+      md5: 43252b3ad36f6f85d43508eecb678fda
+      size: 5170
+    outs:
+    - path: corpus/metrics.json
+      hash: md5
+      md5: 9019e608883613a08b58f986e433a842
+      size: 218
+    - path: corpus/train_shard.jsonl
+      hash: md5
+      md5: 62d91b56d48b5fcb149240b3e5780e1e
+      size: 584

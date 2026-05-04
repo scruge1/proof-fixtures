@@ -1,0 +1,11 @@
+[core]
+    remote = hetzner
+    autostage = true
+['remote "hetzner"']
+    url = s3://callmeie-corpus
+    endpointurl = https://fsn1.your-objectstorage.com
+    region = fsn1
+    # AWS_ACCESS_KEY_ID + AWS_SECRET_ACCESS_KEY supplied via env or
+    # .dvc/config.local (gitignored). Hetzner Object Storage credentials
+    # are generated in Hetzner Cloud Console > Object Storage > Credentials.
+    use_ssl = true

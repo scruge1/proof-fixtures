@@ -1,0 +1,99 @@
+{
+  "doc_id": "synth-9972138c115e",
+  "source_path": "corpus/synth-prototype/vet/synth-9972138c115e.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "vet",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulqueen Veterinary Surgery",
+    "total": 1825.66,
+    "vat": 325.29,
+    "date": "12/02/2026",
+    "subtotal": 1500.37,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Annual vaccination booster (dog)",
+      "quantity": 1.0,
+      "unit_price": 78.81,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 78.81,
+      "amount_vat": 18.13,
+      "amount_gross": 96.94
+    },
+    {
+      "description": "Dental scale + polish (general anaesthetic)",
+      "quantity": 3.0,
+      "unit_price": 303.62,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 910.86,
+      "amount_vat": 209.5,
+      "amount_gross": 1120.36
+    },
+    {
+      "description": "Annual vaccination booster (cat)",
+      "quantity": 1.0,
+      "unit_price": 77.26,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 77.26,
+      "amount_vat": 17.77,
+      "amount_gross": 95.03
+    },
+    {
+      "description": "Dental scale + polish (general anaesthetic)",
+      "quantity": 1.0,
+      "unit_price": 324.66,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 324.66,
+      "amount_vat": 74.67,
+      "amount_gross": 399.33
+    },
+    {
+      "description": "Livestock antibiotic injection (per dose)",
+      "quantity": 3.0,
+      "unit_price": 36.26,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": null,
+      "amount_net": 108.78,
+      "amount_vat": 5.22,
+      "amount_gross": 114.0
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulqueen Veterinary Surgery",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "F91 35MC",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 817 724 7478",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5315399A",
+    "vendor_iban": "IE34IPBS36614760918773",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260212-123",
+    "invoice_date": "12/02/2026",
+    "due_date": "05/03/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "264484ae39030598ef998dedcd8a6e002c1cc16da2a25c3c4f54c8ce8c50bd94",
+    "file_size_bytes": 21022,
+    "ingest_timestamp_utc": "2026-05-04T17:33:49Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

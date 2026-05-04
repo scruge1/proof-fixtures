@@ -1,0 +1,99 @@
+{
+  "doc_id": "synth-f8d7b7a067f6",
+  "source_path": "corpus/synth-prototype/solicitor_loe/synth-f8d7b7a067f6.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "solicitor_loe",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Ging Grahams & Partners Solicitors",
+    "total": 4541.72,
+    "vat": 826.74,
+    "date": "03/02/2026",
+    "subtotal": 3714.98,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Probate application (legal fee)",
+      "quantity": 1.0,
+      "unit_price": 1455.76,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 1455.76,
+      "amount_vat": 334.82,
+      "amount_gross": 1790.58
+    },
+    {
+      "description": "Will drafting (standard)",
+      "quantity": 1.0,
+      "unit_price": 304.91,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 304.91,
+      "amount_vat": 70.13,
+      "amount_gross": 375.04
+    },
+    {
+      "description": "Letter of engagement preparation",
+      "quantity": 1.0,
+      "unit_price": 180.65,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 180.65,
+      "amount_vat": 41.55,
+      "amount_gross": 222.2
+    },
+    {
+      "description": "Probate application (legal fee)",
+      "quantity": 1.0,
+      "unit_price": 1653.2,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 1653.2,
+      "amount_vat": 380.24,
+      "amount_gross": 2033.44
+    },
+    {
+      "description": "Land Registry — Form 17 outlay [Outlay]",
+      "quantity": 1.0,
+      "unit_price": 120.46,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "OUTLAY",
+      "amount_net": 120.46,
+      "amount_vat": 0.0,
+      "amount_gross": 120.46
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Ging Grahams & Partners Solicitors",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 T3XA",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 816 167 2140",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5318360KY",
+    "vendor_iban": "IE76AIBK71534183127508",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260203-887",
+    "invoice_date": "03/02/2026",
+    "due_date": "05/03/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "1b4cfd4b5628a2af95f518606166ebba9b41f6b666a1ef9dd3e6ffeac6d7f5b1",
+    "file_size_bytes": 25620,
+    "ingest_timestamp_utc": "2026-05-04T17:33:56Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

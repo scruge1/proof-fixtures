@@ -1,0 +1,59 @@
+{
+  "doc_id": "synth-7b43e7b6b104",
+  "source_path": "corpus/synth-prototype/gp_medical/synth-7b43e7b6b104.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "gp_medical",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Primary Care Clinic",
+    "total": 125.64,
+    "vat": 0.0,
+    "date": "01/05/2026",
+    "subtotal": 125.64,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Out-of-hours consultation",
+      "quantity": 1.0,
+      "unit_price": 125.64,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 125.64,
+      "amount_vat": 0.0,
+      "amount_gross": 125.64
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Primary Care Clinic",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "R95 RTN3",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 108 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "GP-202605-357",
+    "invoice_date": "01/05/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "1a77409bf3e6f4ca3f87ffbbe16f3130bb92e8a059d61bd22e7a40d3baf28b89",
+    "file_size_bytes": 19276,
+    "ingest_timestamp_utc": "2026-05-04T17:33:44Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

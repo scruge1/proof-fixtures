@@ -1,0 +1,172 @@
+/* solicitor_loe.css — A4 portrait IE solicitor letter-of-engagement, single 23% VAT on fees, 0% on outlay. */
+
+@page {
+    size: A4 portrait;
+    margin: 18mm 18mm 20mm 18mm;
+}
+
+body {
+    font-family: "Liberation Serif", "DejaVu Serif", "Times New Roman", serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+header.firm {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2.5px solid #4a3018;
+    padding-bottom: 6mm;
+    margin-bottom: 5mm;
+}
+
+.firm-block { flex: 1.4; }
+
+.firm-block h1 {
+    font-size: 18pt;
+    color: #4a3018;
+    margin: 0 0 1mm 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-family: "Liberation Serif", "DejaVu Serif", "Times New Roman", serif;
+}
+
+.firm-block .strap {
+    font-size: 9pt;
+    color: #7a5b3d;
+    font-style: italic;
+    margin-bottom: 3mm;
+    letter-spacing: 0.3px;
+}
+
+.firm-block div { margin: 0.5mm 0; }
+
+.vat-num {
+    margin-top: 2mm;
+    font-size: 9pt;
+    color: #555;
+}
+
+.invoice-meta {
+    flex: 0.9;
+    text-align: right;
+    font-size: 9.5pt;
+}
+
+.loe-label {
+    font-size: 12pt;
+    color: #4a3018;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3mm;
+}
+
+.invoice-meta .meta-row { margin: 1mm 0; }
+
+.invoice-meta .label {
+    color: #666;
+    margin-right: 4mm;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.5px;
+}
+
+section.engagement {
+    margin-bottom: 5mm;
+    padding: 3mm 4mm;
+    background: #faf6ef;
+    border-left: 3px solid #c9a875;
+    font-size: 10pt;
+}
+
+section.engagement p { margin: 1.5mm 0; }
+
+section.rct-clause {
+    margin-bottom: 5mm;
+    padding: 2.5mm 4mm;
+    background: #f5f1e8;
+    border: 0.5px solid #d4c4a3;
+    font-size: 9pt;
+    color: #5a4318;
+}
+
+section.rct-clause p { margin: 1mm 0; }
+
+table.line-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5mm;
+}
+
+table.line-items thead th {
+    background: #f0eadc;
+    border-bottom: 1.5px solid #4a3018;
+    text-align: left;
+    padding: 2mm 3mm;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #4a3018;
+}
+
+table.line-items tbody td {
+    border-bottom: 0.5px solid #d0d0d0;
+    padding: 2mm 3mm;
+    font-size: 10pt;
+    vertical-align: top;
+}
+
+.row-outlay {
+    background: #fafafa;
+    color: #555;
+    font-style: italic;
+}
+
+.col-amt, .col-vat, .col-gross {
+    text-align: right;
+    width: 22mm;
+    font-variant-numeric: tabular-nums;
+}
+
+.col-desc { text-align: left; }
+
+table.totals {
+    width: 80mm;
+    margin-left: auto;
+    border-collapse: collapse;
+    margin-top: 4mm;
+}
+
+table.totals td { padding: 1.5mm 3mm; font-size: 10pt; }
+
+table.totals .lbl { text-align: right; color: #444; }
+
+table.totals .amt {
+    text-align: right;
+    width: 30mm;
+    font-variant-numeric: tabular-nums;
+}
+
+table.totals .grand-total td {
+    border-top: 1.5px solid #4a3018;
+    padding-top: 2.5mm;
+    font-size: 11.5pt;
+    color: #4a3018;
+}
+
+footer.payment-details {
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 0.5px solid #d0d0d0;
+    font-size: 9pt;
+    color: #444;
+}
+
+footer.payment-details div { margin: 0.8mm 0; }
+
+.footer-note {
+    margin-top: 3mm !important;
+    color: #888;
+    font-size: 8pt;
+    font-style: italic;
+}

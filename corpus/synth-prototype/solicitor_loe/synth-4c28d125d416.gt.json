@@ -1,0 +1,79 @@
+{
+  "doc_id": "synth-4c28d125d416",
+  "source_path": "corpus/synth-prototype/solicitor_loe/synth-4c28d125d416.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "solicitor_loe",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulhern Doody & Partners Solicitors",
+    "total": 827.09,
+    "vat": 137.08,
+    "date": "03/02/2026",
+    "subtotal": 690.01,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Companies Registration Office filing fee [Outlay]",
+      "quantity": 1.0,
+      "unit_price": 48.29,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "OUTLAY",
+      "amount_net": 48.29,
+      "amount_vat": 0.0,
+      "amount_gross": 48.29
+    },
+    {
+      "description": "Lease review + advice (commercial)",
+      "quantity": 1.0,
+      "unit_price": 596.01,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 596.01,
+      "amount_vat": 137.08,
+      "amount_gross": 733.09
+    },
+    {
+      "description": "Companies Registration Office filing fee [Outlay]",
+      "quantity": 1.0,
+      "unit_price": 45.71,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "OUTLAY",
+      "amount_net": 45.71,
+      "amount_vat": 0.0,
+      "amount_gross": 45.71
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulhern Doody & Partners Solicitors",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Suite 22",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 S27T",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 860 504 1393",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE2991996WM",
+    "vendor_iban": "IE25IPBS23005184511292",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260203-175",
+    "invoice_date": "03/02/2026",
+    "due_date": "05/03/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "922f8e2e8ef7fd3306db877571769bd62b9c506c1c40aef68204ec59784e9605",
+    "file_size_bytes": 25481,
+    "ingest_timestamp_utc": "2026-05-04T17:33:56Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

@@ -1,0 +1,129 @@
+{
+  "doc_id": "synth-78d54e7d2bd6",
+  "source_path": "corpus/synth-prototype/vet/synth-78d54e7d2bd6.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "vet",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Grahams Veterinary Practice",
+    "total": 2092.01,
+    "vat": 317.57,
+    "date": "06/03/2026",
+    "subtotal": 1774.44,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Livestock antibiotic injection (per dose)",
+      "quantity": 3.0,
+      "unit_price": 36.74,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": null,
+      "amount_net": 110.22,
+      "amount_vat": 5.29,
+      "amount_gross": 115.51
+    },
+    {
+      "description": "Hill's Science Diet 7kg bag (prescription)",
+      "quantity": 2.0,
+      "unit_price": 64.04,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 128.08,
+      "amount_vat": 0.0,
+      "amount_gross": 128.08
+    },
+    {
+      "description": "Dental scale + polish (general anaesthetic)",
+      "quantity": 2.0,
+      "unit_price": 305.53,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 611.06,
+      "amount_vat": 140.54,
+      "amount_gross": 751.6
+    },
+    {
+      "description": "Blood panel (in-house)",
+      "quantity": 2.0,
+      "unit_price": 90.33,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 180.66,
+      "amount_vat": 41.55,
+      "amount_gross": 222.21
+    },
+    {
+      "description": "Annual vaccination booster (dog)",
+      "quantity": 3.0,
+      "unit_price": 75.41,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 226.23,
+      "amount_vat": 52.03,
+      "amount_gross": 278.26
+    },
+    {
+      "description": "Cattle pour-on wormer (per litre)",
+      "quantity": 1.0,
+      "unit_price": 47.94,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": null,
+      "amount_net": 47.94,
+      "amount_vat": 2.3,
+      "amount_gross": 50.24
+    },
+    {
+      "description": "Dental scale + polish (general anaesthetic)",
+      "quantity": 1.0,
+      "unit_price": 329.82,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 329.82,
+      "amount_vat": 75.86,
+      "amount_gross": 405.68
+    },
+    {
+      "description": "Hill's Science Diet 7kg bag (prescription)",
+      "quantity": 3.0,
+      "unit_price": 46.81,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 140.43,
+      "amount_vat": 0.0,
+      "amount_gross": 140.43
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Grahams Veterinary Practice",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 T3XA",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 816 167 2140",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5318360KY",
+    "vendor_iban": "IE76AIBK71534183127508",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260306-764",
+    "invoice_date": "06/03/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "5510a06a0780e207261275cf29e7472277c0c52688850dfb457cd2281e745382",
+    "file_size_bytes": 21724,
+    "ingest_timestamp_utc": "2026-05-04T17:33:50Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

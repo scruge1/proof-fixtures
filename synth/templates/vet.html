@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Invoice {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="vet.css">
+</head>
+<body>
+<header class="vendor">
+    <div class="vendor-block">
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div data-slot="vendor_address_line1">{{ vendor_address_line1 }}</div>
+        {% if vendor_address_line2 %}<div data-slot="vendor_address_line2">{{ vendor_address_line2 }}</div>{% endif %}
+        <div data-slot="vendor_city">{{ vendor_city }}{% if vendor_eircode %}, <span data-slot="vendor_eircode">{{ vendor_eircode }}</span>{% endif %}</div>
+        <div data-slot="vendor_phone">Tel: {{ vendor_phone }}</div>
+        <div data-slot="vendor_email">{{ vendor_email }}</div>
+        <div class="vat-num">VAT No: <span data-slot="vendor_vat_number">{{ vendor_vat_number }}</span></div>
+    </div>
+    <div class="invoice-meta">
+        <div class="invoice-label">VETERINARY INVOICE</div>
+        <div class="meta-row"><span class="label">No</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span class="label">Date</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+        {% if due_date %}<div class="meta-row"><span class="label">Due</span><span data-slot="due_date">{{ due_date }}</span></div>{% endif %}
+    </div>
+</header>
+
+<table class="line-items">
+    <thead>
+        <tr>
+            <th class="col-desc">Procedure / Item</th>
+            <th class="col-qty">Qty</th>
+            <th class="col-price">Unit (€)</th>
+            <th class="col-vat">VAT %</th>
+            <th class="col-net">Net (€)</th>
+            <th class="col-amt">Total (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in line_items %}
+        <tr>
+            <td class="col-desc" data-slot="description">{{ item.description }}</td>
+            <td class="col-qty" data-slot="quantity">{{ "%g"|format(item.quantity) }}</td>
+            <td class="col-price" data-slot="unit_price">{{ "%.2f"|format(item.unit_price) }}</td>
+            <td class="col-vat" data-slot="vat_rate_pct">{{ "%.1f"|format(item.vat_rate_pct) }}%</td>
+            <td class="col-net" data-slot="amount_net">{{ "%.2f"|format(item.amount_net) }}</td>
+            <td class="col-amt" data-slot="amount_gross">{{ "%.2f"|format(item.amount_gross) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<section class="vat-breakdown" data-slot="vat_breakdown_table">
+    <h3>VAT Breakdown by Rate</h3>
+    <table>
+        <thead>
+            <tr><th>Rate</th><th>Net Amount (€)</th><th>VAT (€)</th></tr>
+        </thead>
+        <tbody>
+            {% for row in vat_breakdown_rows %}
+            <tr>
+                <td>{{ "%.1f"|format(row.rate_pct) }}%{% if row.rate_pct == 23.0 %} (Standard){% elif row.rate_pct == 4.8 %} (Livestock med){% elif row.rate_pct == 0.0 %} (Zero — pet food){% endif %}</td>
+                <td>{{ "%.2f"|format(row.net) }}</td>
+                <td>{{ "%.2f"|format(row.vat) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<table class="totals">
+    <tr>
+        <td class="lbl">Subtotal (Net)</td>
+        <td class="amt" data-slot="subtotal_amount">€{{ "%.2f"|format(subtotal) }}</td>
+    </tr>
+    <tr>
+        <td class="lbl">Total VAT</td>
+        <td class="amt" data-slot="vat">€{{ "%.2f"|format(vat) }}</td>
+    </tr>
+    <tr class="grand-total">
+        <td class="lbl"><strong>TOTAL DUE</strong></td>
+        <td class="amt"><strong data-slot="total">€{{ "%.2f"|format(total) }}</strong></td>
+    </tr>
+</table>
+
+<footer class="payment-details">
+    <div>Payment by EFT to:</div>
+    <div data-slot="vendor_iban">IBAN: {{ vendor_iban }}{% if vendor_bic %} &nbsp;|&nbsp; BIC: <span data-slot="vendor_bic">{{ vendor_bic }}</span>{% endif %}</div>
+    <div class="footer-note">Goods/services supplied in the State of Ireland ({{ vendor_country }}). Original-form retention per VATCA s.84(3). Mixed VAT rates per Revenue.ie eBrief — consultation/procedure 23%, livestock medicines 4.8%, pet food 0% zero-rated.</div>
+</footer>
+</body>
+</html>

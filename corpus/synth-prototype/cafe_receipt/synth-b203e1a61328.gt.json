@@ -1,0 +1,109 @@
+{
+  "doc_id": "synth-b203e1a61328",
+  "source_path": "corpus/synth-prototype/cafe_receipt/synth-b203e1a61328.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "cafe_receipt",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulqueen Patisserie",
+    "total": 59.02,
+    "vat": 4.86,
+    "date": "08/04/2026",
+    "subtotal": 54.16,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Avocado toast",
+      "quantity": 3.0,
+      "unit_price": 11.06,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 30.44,
+      "amount_vat": 2.74,
+      "amount_gross": 33.18
+    },
+    {
+      "description": "Cappuccino",
+      "quantity": 1.0,
+      "unit_price": 4.09,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 3.75,
+      "amount_vat": 0.34,
+      "amount_gross": 4.09
+    },
+    {
+      "description": "Americano",
+      "quantity": 2.0,
+      "unit_price": 3.3,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 6.06,
+      "amount_vat": 0.54,
+      "amount_gross": 6.6
+    },
+    {
+      "description": "Latte",
+      "quantity": 1.0,
+      "unit_price": 3.93,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 3.61,
+      "amount_vat": 0.32,
+      "amount_gross": 3.93
+    },
+    {
+      "description": "Americano",
+      "quantity": 2.0,
+      "unit_price": 4.2,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.71,
+      "amount_vat": 0.69,
+      "amount_gross": 8.4
+    },
+    {
+      "description": "Sparkling water 330ml",
+      "quantity": 1.0,
+      "unit_price": 2.82,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 2.59,
+      "amount_vat": 0.23,
+      "amount_gross": 2.82
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulqueen Patisserie",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 307 1519",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE1796531HT",
+    "vendor_iban": "IE62NTSB83043661476091",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "R68017",
+    "invoice_date": "08/04/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "4f78d111b6481ead1c790704863f2e6d7ae00041ac75b7b6ae1b0ef7b3fbbd6f",
+    "file_size_bytes": 14592,
+    "ingest_timestamp_utc": "2026-05-04T17:33:38Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

@@ -1,0 +1,59 @@
+{
+  "doc_id": "synth-6432a06cb6ef",
+  "source_path": "corpus/synth-prototype/gp_medical/synth-6432a06cb6ef.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "gp_medical",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Doody Primary Care Clinic",
+    "total": 63.42,
+    "vat": 0.0,
+    "date": "04/04/2026",
+    "subtotal": 63.42,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Standard GP consultation fee",
+      "quantity": 1.0,
+      "unit_price": 63.42,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 63.42,
+      "amount_vat": 0.0,
+      "amount_gross": 63.42
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Doody Primary Care Clinic",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Unit 20",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "R95 XS27",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 846 766 1312",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE6029919LW",
+    "vendor_iban": "IE67REVO42300518451129",
+    "vendor_bic": "REVOIE23",
+    "vendor_logo_present": "",
+    "invoice_number": "GP-202604-351",
+    "invoice_date": "04/04/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "94d4970bbbc08181e13a17e316770100f06da0684d4eb3f83ceb23df6878d709",
+    "file_size_bytes": 18751,
+    "ingest_timestamp_utc": "2026-05-04T17:33:43Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

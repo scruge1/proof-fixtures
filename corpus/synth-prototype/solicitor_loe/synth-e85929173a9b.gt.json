@@ -1,0 +1,79 @@
+{
+  "doc_id": "synth-e85929173a9b",
+  "source_path": "corpus/synth-prototype/solicitor_loe/synth-e85929173a9b.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "solicitor_loe",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley & Co Solicitors",
+    "total": 4749.19,
+    "vat": 291.54,
+    "date": "01/05/2026",
+    "subtotal": 4457.65,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Stamp duty (1% on €260K residential) [Outlay]",
+      "quantity": 1.0,
+      "unit_price": 3148.2,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "OUTLAY",
+      "amount_net": 3148.2,
+      "amount_vat": 0.0,
+      "amount_gross": 3148.2
+    },
+    {
+      "description": "Conveyancing — residential sale (legal fee)",
+      "quantity": 1.0,
+      "unit_price": 1267.56,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 1267.56,
+      "amount_vat": 291.54,
+      "amount_gross": 1559.1
+    },
+    {
+      "description": "Companies Registration Office filing fee [Outlay]",
+      "quantity": 1.0,
+      "unit_price": 41.89,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "OUTLAY",
+      "amount_net": 41.89,
+      "amount_vat": 0.0,
+      "amount_gross": 41.89
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley & Co Solicitors",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H91 TN35",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 870 667 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260501-258",
+    "invoice_date": "01/05/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "31e08f1f7f83e242f3d79a7eb73dfd916d2cfa3f9c6deba86e2a7d0da7f57a26",
+    "file_size_bytes": 25478,
+    "ingest_timestamp_utc": "2026-05-04T17:33:57Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Receipt {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="gp_medical.css">
+</head>
+<body>
+<header class="practice">
+    <div class="practice-block">
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div data-slot="vendor_address_line1">{{ vendor_address_line1 }}</div>
+        {% if vendor_address_line2 %}<div data-slot="vendor_address_line2">{{ vendor_address_line2 }}</div>{% endif %}
+        <div data-slot="vendor_city">{{ vendor_city }}{% if vendor_eircode %}, <span data-slot="vendor_eircode">{{ vendor_eircode }}</span>{% endif %}</div>
+        <div data-slot="vendor_phone">Tel: {{ vendor_phone }}</div>
+        <div data-slot="vendor_email">{{ vendor_email }}</div>
+        <div class="vat-num">VAT Reg: <span data-slot="vendor_vat_number">{{ vendor_vat_number }}</span></div>
+    </div>
+    <div class="invoice-meta">
+        <div class="receipt-label">RECEIPT</div>
+        <div class="meta-row"><span class="label">No</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span class="label">Date</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+        {% if due_date %}<div class="meta-row"><span class="label">Due</span><span data-slot="due_date">{{ due_date }}</span></div>{% endif %}
+    </div>
+</header>
+
+<section class="exempt-banner">
+    <strong>VAT EXEMPT</strong> — Medical services per VATCA Sched 1 §2 (medical &amp; healthcare professional services exempt).
+</section>
+
+<section class="service-block">
+    <h2>Services rendered</h2>
+    <div class="service-row" data-slot="service_description">{{ service_description }}</div>
+    <div class="service-fee">
+        <span>Fee</span>
+        <span data-slot="amount_net">€{{ "%.2f"|format(line_items[0].amount_net) }}</span>
+    </div>
+</section>
+
+<table class="totals">
+    <tr>
+        <td class="lbl">Subtotal</td>
+        <td class="amt" data-slot="subtotal_amount">€{{ "%.2f"|format(subtotal) }}</td>
+    </tr>
+    <tr>
+        <td class="lbl">VAT (Exempt)</td>
+        <td class="amt" data-slot="vat">€{{ "%.2f"|format(vat) }}</td>
+    </tr>
+    <tr class="grand-total">
+        <td class="lbl"><strong>TOTAL DUE</strong></td>
+        <td class="amt"><strong data-slot="total">€{{ "%.2f"|format(total) }}</strong></td>
+    </tr>
+</table>
+
+<footer class="payment">
+    <div>Payment by cash / card on the day; or EFT to:</div>
+    <div data-slot="vendor_iban">IBAN: {{ vendor_iban }}{% if vendor_bic %} &nbsp;|&nbsp; BIC: <span data-slot="vendor_bic">{{ vendor_bic }}</span>{% endif %}</div>
+    <div class="vatca-attest">Goods/services supplied in the State of Ireland ({{ vendor_country }}). Original-form retention per VATCA s.84(3). Receipt eligible for Med 1 / private health insurance claim.</div>
+</footer>
+</body>
+</html>

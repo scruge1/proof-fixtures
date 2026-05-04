@@ -1,0 +1,119 @@
+{
+  "doc_id": "synth-e9732eef2526",
+  "source_path": "corpus/synth-prototype/vet/synth-e9732eef2526.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "vet",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Veterinary Practice",
+    "total": 939.81,
+    "vat": 153.9,
+    "date": "30/04/2026",
+    "subtotal": 785.91,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Microchip implant + registration",
+      "quantity": 1.0,
+      "unit_price": 52.82,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 52.82,
+      "amount_vat": 12.15,
+      "amount_gross": 64.97
+    },
+    {
+      "description": "X-ray (per region)",
+      "quantity": 3.0,
+      "unit_price": 144.47,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 433.41,
+      "amount_vat": 99.68,
+      "amount_gross": 533.09
+    },
+    {
+      "description": "Cattle pour-on wormer (per litre)",
+      "quantity": 1.0,
+      "unit_price": 50.7,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": null,
+      "amount_net": 50.7,
+      "amount_vat": 2.43,
+      "amount_gross": 53.13
+    },
+    {
+      "description": "Livestock anti-parasitic (per dose)",
+      "quantity": 2.0,
+      "unit_price": 16.89,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": null,
+      "amount_net": 33.78,
+      "amount_vat": 1.62,
+      "amount_gross": 35.4
+    },
+    {
+      "description": "Livestock anti-parasitic (per dose)",
+      "quantity": 3.0,
+      "unit_price": 21.02,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": null,
+      "amount_net": 63.06,
+      "amount_vat": 3.03,
+      "amount_gross": 66.09
+    },
+    {
+      "description": "Standard consultation",
+      "quantity": 1.0,
+      "unit_price": 71.74,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 71.74,
+      "amount_vat": 16.5,
+      "amount_gross": 88.24
+    },
+    {
+      "description": "Microchip implant + registration",
+      "quantity": 2.0,
+      "unit_price": 40.2,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 80.4,
+      "amount_vat": 18.49,
+      "amount_gross": 98.89
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Veterinary Practice",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "R95 RTN3",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 108 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260430-437",
+    "invoice_date": "30/04/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "10935b264ac395e9a0662e9b20b863222d3aa8d888cf4c1ccadc31a50d8060d5",
+    "file_size_bytes": 21232,
+    "ingest_timestamp_utc": "2026-05-04T17:33:50Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "2284ec7dd2fab67c23c8c0b068ac6b638896c07a",
+  "license_tag": "Apache-2.0"
+}

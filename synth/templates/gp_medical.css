@@ -1,0 +1,144 @@
+/* gp_medical.css — A4 portrait IE GP/medical receipt, VAT-exempt (Sched 1 §2). */
+
+@page {
+    size: A4 portrait;
+    margin: 18mm 18mm 20mm 18mm;
+}
+
+body {
+    font-family: "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+header.practice {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #2c5e3f;
+    padding-bottom: 6mm;
+    margin-bottom: 5mm;
+}
+
+.practice-block { flex: 1.4; }
+
+.practice-block h1 {
+    font-size: 17pt;
+    color: #2c5e3f;
+    margin: 0 0 2mm 0;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.practice-block div { margin: 0.5mm 0; }
+
+.vat-num {
+    margin-top: 2mm;
+    font-size: 9pt;
+    color: #666;
+}
+
+.invoice-meta {
+    flex: 0.9;
+    text-align: right;
+    font-size: 9.5pt;
+}
+
+.receipt-label {
+    font-size: 13pt;
+    color: #2c5e3f;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 3mm;
+}
+
+.invoice-meta .meta-row { margin: 1mm 0; }
+
+.invoice-meta .label {
+    color: #666;
+    margin-right: 4mm;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.5px;
+}
+
+section.exempt-banner {
+    background: #e8f3ec;
+    border-left: 4px solid #2c5e3f;
+    padding: 2.5mm 4mm;
+    font-size: 9.5pt;
+    margin-bottom: 6mm;
+    color: #1f4530;
+}
+
+section.service-block {
+    margin-bottom: 6mm;
+}
+
+section.service-block h2 {
+    font-size: 11pt;
+    color: #2c5e3f;
+    margin: 0 0 3mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: 0.5px solid #d0d0d0;
+    padding-bottom: 1.5mm;
+}
+
+.service-row {
+    margin: 2mm 0 5mm 0;
+    font-size: 11pt;
+    padding: 2mm 4mm;
+    background: #f8f9fa;
+    border: 0.5px solid #d0d0d0;
+}
+
+.service-fee {
+    display: flex;
+    justify-content: space-between;
+    padding: 2mm 4mm;
+    font-size: 11pt;
+    font-weight: 600;
+    border-bottom: 0.8px solid #2c5e3f;
+}
+
+table.totals {
+    width: 75mm;
+    margin-left: auto;
+    border-collapse: collapse;
+    margin-top: 4mm;
+}
+
+table.totals td { padding: 1.5mm 3mm; font-size: 10pt; }
+
+table.totals .lbl { text-align: right; color: #444; }
+
+table.totals .amt {
+    text-align: right;
+    width: 30mm;
+    font-variant-numeric: tabular-nums;
+}
+
+table.totals .grand-total td {
+    border-top: 1.5px solid #2c5e3f;
+    padding-top: 2.5mm;
+    font-size: 11.5pt;
+    color: #2c5e3f;
+}
+
+footer.payment {
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 0.5px solid #d0d0d0;
+    font-size: 9pt;
+    color: #444;
+}
+
+footer.payment div { margin: 0.8mm 0; }
+
+.vatca-attest {
+    margin-top: 3mm !important;
+    color: #888;
+    font-size: 8pt;
+    font-style: italic;
+}

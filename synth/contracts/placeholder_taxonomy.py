@@ -30,10 +30,22 @@ HEADER_FIELDS: Final[tuple[str, ...]] = (
     "po_reference",
 )
 
-# Critical fields (extract.py CRITICAL_FIELDS — MUST match v0.4.1 schema).
-# v0.4.2-step0.1: extended from 4 → 6 (added subtotal, vendor_country) per Adam
-# review 2026-05-04. extract.py CRITICAL_FIELDS tuple in document-ops-portal MUST
-# be bumped in lock-step with this — see D-V0.4.2-20.
+# Critical fields = LABEL TARGET for v0.4.2 synth corpus + eval scoring.
+# v0.4.2-step0.1: extended from 4 → 6 (added subtotal, vendor_country) per
+# Adam review 2026-05-04 + path A (D-V0.4.2-20-corrected).
+#
+# IMPORTANT — divergence is intentional:
+#   - INVOICE_FIELDS (here)              = 6 fields, the ground-truth target
+#   - extract.py CRITICAL_FIELDS         = 4 fields, the v0.4.1 verifier baseline
+#     (lives at proof-fixtures/scripts/extract.py:57, NOT document-ops-portal)
+#   - score.py CRITICAL_FIELDS           = 4 fields on legacy fixtures, 6 on v0.4.2
+#     (split logic added in step 9 baseline-run scaffold)
+# The v0.4.2 thesis IS that LoRA training closes the 4 → 6 gap. Lock-step
+# bump would let prompt-engineering, not training, account for the lift —
+# preempting the experiment. Sync layer (extract.py 4 → 6 + extractor
+# logic + cross-field subtotal+vat≈total check + ground-truth retrofit)
+# DEFERRED to v0.4.3 per D-V0.4.2-23 (also depends on D-V0.4.2-18 verifier
+# refactor for vision-crop path).
 INVOICE_FIELDS: Final[tuple[str, ...]] = (
     "vendor",          # vendor_name normalized
     "total",           # gross including VAT, EUR

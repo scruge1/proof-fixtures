@@ -1,0 +1,179 @@
+{
+  "doc_id": "synth-937f104a6754",
+  "source_path": "corpus/synth-prototype/restaurant_thermal/synth-937f104a6754.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "restaurant_thermal",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Grahams Bistro",
+    "total": 483.5,
+    "vat": 57.92,
+    "date": "26/02/2026",
+    "subtotal": 425.58,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Sticky toffee pudding",
+      "quantity": 1.0,
+      "unit_price": 8.6,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.89,
+      "amount_vat": 0.71,
+      "amount_gross": 8.6
+    },
+    {
+      "description": "Soup of the day",
+      "quantity": 4.0,
+      "unit_price": 9.04,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 33.17,
+      "amount_vat": 2.99,
+      "amount_gross": 36.16
+    },
+    {
+      "description": "Fresh orange juice",
+      "quantity": 3.0,
+      "unit_price": 4.19,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 11.53,
+      "amount_vat": 1.04,
+      "amount_gross": 12.57
+    },
+    {
+      "description": "Bottle of house red 750ml",
+      "quantity": 4.0,
+      "unit_price": 29.89,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 97.2,
+      "amount_vat": 22.36,
+      "amount_gross": 119.56
+    },
+    {
+      "description": "10oz sirloin steak + chips",
+      "quantity": 3.0,
+      "unit_price": 31.52,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 86.75,
+      "amount_vat": 7.81,
+      "amount_gross": 94.56
+    },
+    {
+      "description": "Bacon + cabbage",
+      "quantity": 3.0,
+      "unit_price": 18.94,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 52.13,
+      "amount_vat": 4.69,
+      "amount_gross": 56.82
+    },
+    {
+      "description": "Pan-fried hake + champ",
+      "quantity": 2.0,
+      "unit_price": 23.92,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 43.89,
+      "amount_vat": 3.95,
+      "amount_gross": 47.84
+    },
+    {
+      "description": "Beef + Guinness stew",
+      "quantity": 1.0,
+      "unit_price": 21.58,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 19.8,
+      "amount_vat": 1.78,
+      "amount_gross": 21.58
+    },
+    {
+      "description": "Whiskey single measure",
+      "quantity": 1.0,
+      "unit_price": 7.57,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 6.15,
+      "amount_vat": 1.42,
+      "amount_gross": 7.57
+    },
+    {
+      "description": "Glass of house white wine",
+      "quantity": 2.0,
+      "unit_price": 7.53,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 12.24,
+      "amount_vat": 2.82,
+      "amount_gross": 15.06
+    },
+    {
+      "description": "Sticky toffee pudding",
+      "quantity": 4.0,
+      "unit_price": 8.29,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 30.42,
+      "amount_vat": 2.74,
+      "amount_gross": 33.16
+    },
+    {
+      "description": "Glass of house red wine",
+      "quantity": 3.0,
+      "unit_price": 7.86,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 19.17,
+      "amount_vat": 4.41,
+      "amount_gross": 23.58
+    },
+    {
+      "description": "Pint of Guinness",
+      "quantity": 1.0,
+      "unit_price": 6.44,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 5.24,
+      "amount_vat": 1.2,
+      "amount_gross": 6.44
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Grahams Bistro",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 894 579 6971",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE0161153Q",
+    "vendor_iban": "IE04BOFI60750715341831",
+    "vendor_bic": "BOFIIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "R69588",
+    "invoice_date": "26/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "18461dd665b163032b9fe455b14b26c832dd69370c1e4c8bd8dc97ad11ac804a",
+    "file_size_bytes": 15695,
+    "ingest_timestamp_utc": "2026-05-04T17:44:42Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

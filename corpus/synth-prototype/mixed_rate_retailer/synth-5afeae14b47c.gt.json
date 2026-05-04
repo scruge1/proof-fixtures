@@ -1,0 +1,159 @@
+{
+  "doc_id": "synth-5afeae14b47c",
+  "source_path": "corpus/synth-prototype/mixed_rate_retailer/synth-5afeae14b47c.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "mixed_rate_retailer",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulqueen Hardware Store",
+    "total": 462.77,
+    "vat": 70.74,
+    "date": "12/02/2026",
+    "subtotal": 392.03,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "LED bulb 9W (5-pack)",
+      "quantity": 1.0,
+      "unit_price": 16.6,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 16.6,
+      "amount_vat": 3.82,
+      "amount_gross": 20.42
+    },
+    {
+      "description": "Insulation roll 100mm",
+      "quantity": 1.0,
+      "unit_price": 51.72,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 51.72,
+      "amount_vat": 6.98,
+      "amount_gross": 58.7
+    },
+    {
+      "description": "Screwdriver set 12-piece",
+      "quantity": 1.0,
+      "unit_price": 25.84,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 25.84,
+      "amount_vat": 5.94,
+      "amount_gross": 31.78
+    },
+    {
+      "description": "LED bulb 9W (5-pack)",
+      "quantity": 2.0,
+      "unit_price": 12.18,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 24.36,
+      "amount_vat": 5.6,
+      "amount_gross": 29.96
+    },
+    {
+      "description": "Grass seed 5kg",
+      "quantity": 2.0,
+      "unit_price": 21.05,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 42.1,
+      "amount_vat": 9.68,
+      "amount_gross": 51.78
+    },
+    {
+      "description": "Sand 25kg bag",
+      "quantity": 3.0,
+      "unit_price": 5.05,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 15.15,
+      "amount_vat": 2.05,
+      "amount_gross": 17.2
+    },
+    {
+      "description": "Screwdriver set 12-piece",
+      "quantity": 1.0,
+      "unit_price": 18.13,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 18.13,
+      "amount_vat": 4.17,
+      "amount_gross": 22.3
+    },
+    {
+      "description": "Trade journal subscription",
+      "quantity": 3.0,
+      "unit_price": 31.09,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 93.27,
+      "amount_vat": 8.39,
+      "amount_gross": 101.66
+    },
+    {
+      "description": "Compost 50L bag",
+      "quantity": 4.0,
+      "unit_price": 9.59,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 38.36,
+      "amount_vat": 8.82,
+      "amount_gross": 47.18
+    },
+    {
+      "description": "Hammer + claw 16oz",
+      "quantity": 2.0,
+      "unit_price": 13.57,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 27.14,
+      "amount_vat": 6.24,
+      "amount_gross": 33.38
+    },
+    {
+      "description": "Compost 50L bag",
+      "quantity": 4.0,
+      "unit_price": 9.84,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 39.36,
+      "amount_vat": 9.05,
+      "amount_gross": 48.41
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulqueen Hardware Store",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "F91 35MC",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 817 724 7478",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5315399A",
+    "vendor_iban": "IE34IPBS36614760918773",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260212-123",
+    "invoice_date": "12/02/2026",
+    "due_date": "14/03/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "7c3e5ddd29c076d068f5275af6bd617fd42b1b5c341378c3828bf784bc233cbe",
+    "file_size_bytes": 20503,
+    "ingest_timestamp_utc": "2026-05-04T17:45:03Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

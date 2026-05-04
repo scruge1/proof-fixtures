@@ -134,6 +134,122 @@ SOLICITOR_FIRM_SUFFIXES: tuple[str, ...] = (
 )
 
 
+# ─── Restaurant items (restaurant_thermal template) ───────────────────────────
+# Mixed VAT: food/non-alcohol-drinks 9% (reduced — on-premises consumption);
+# alcohol 23% (standard). Per Revenue.ie eBrief.
+# (description, min_EUR, max_EUR, vat_rate_pct, category)
+RESTAURANT_ITEMS: tuple[tuple[str, float, float, float, str], ...] = (
+    # Starters (9%)
+    ("Soup of the day",                    6.50,  9.50, 9.0, "starter"),
+    ("Caesar salad",                       9.50, 13.50, 9.0, "starter"),
+    ("Garlic bread + cheese",              5.50,  7.80, 9.0, "starter"),
+    ("Smoked salmon + soda bread",        12.50, 16.00, 9.0, "starter"),
+    # Mains (9%)
+    ("Bacon + cabbage",                   16.50, 22.00, 9.0, "main"),
+    ("Beef + Guinness stew",              18.50, 24.00, 9.0, "main"),
+    ("Pan-fried hake + champ",            22.00, 28.00, 9.0, "main"),
+    ("10oz sirloin steak + chips",        28.00, 36.00, 9.0, "main"),
+    ("Wild mushroom risotto",             16.50, 21.00, 9.0, "main"),
+    ("Battered cod + chips",              17.50, 22.50, 9.0, "main"),
+    # Desserts (9%)
+    ("Sticky toffee pudding",              7.50,  9.50, 9.0, "dessert"),
+    ("Chocolate brownie + ice cream",      7.00,  9.00, 9.0, "dessert"),
+    # Drinks non-alcohol (9%)
+    ("Pot of tea",                         3.50,  4.50, 9.0, "drink_soft"),
+    ("Sparkling water",                    3.20,  4.20, 9.0, "drink_soft"),
+    ("Fresh orange juice",                 4.00,  5.50, 9.0, "drink_soft"),
+    # Alcohol — 23%
+    ("Pint of Guinness",                   6.20,  7.50, 23.0, "drink_alcohol"),
+    ("Pint of Heineken",                   6.50,  7.80, 23.0, "drink_alcohol"),
+    ("Glass of house red wine",            7.50,  9.50, 23.0, "drink_alcohol"),
+    ("Glass of house white wine",          7.50,  9.50, 23.0, "drink_alcohol"),
+    ("Bottle of house red 750ml",         28.00, 36.00, 23.0, "drink_alcohol"),
+    ("Whiskey single measure",             6.00,  8.50, 23.0, "drink_alcohol"),
+    ("Bottle of Coors Light",              5.80,  6.80, 23.0, "drink_alcohol"),
+)
+
+RESTAURANT_VENDOR_SUFFIXES: tuple[str, ...] = (
+    "Restaurant", "Bar + Restaurant", "Gastropub", "Bistro",
+    "Steakhouse", "Carvery + Bar", "Inn", "Tavern",
+)
+
+
+# ─── Supermarket per-letter VAT (supermarket_per_letter_vat template) ────────
+# Per-letter VAT codes per IE_PER_LETTER_VAT (Tesco/Dunnes/SuperValu/Centra/Spar).
+# Letters: A=23, B=13.5, C=9, D=4.8, Z=0.
+# (description, min_EUR, max_EUR, vat_letter)
+SUPERMARKET_ITEMS: tuple[tuple[str, float, float, str], ...] = (
+    # A — 23% (general taxable: confectionery, soft drinks, hardware, alcohol)
+    ("Coca-Cola 1.75L",                    2.50,  3.50, "A"),
+    ("Cadbury Dairy Milk 200g",            2.80,  4.20, "A"),
+    ("Pringles Original 200g",             2.50,  3.80, "A"),
+    ("Coors Light 4-pack",                10.00, 14.00, "A"),
+    ("Tayto cheese + onion 50g",           1.20,  1.80, "A"),
+    # B — 13.5% (fuel, building, hairdressing)
+    ("Briquettes 12.5kg pack",             8.50, 12.50, "B"),
+    ("Firelogs 6-pack",                    6.00,  9.50, "B"),
+    # C — 9% (newspapers, e-books, sports facility)
+    ("Irish Independent newspaper",        3.20,  3.80, "C"),
+    ("Irish Times Saturday",               3.50,  4.20, "C"),
+    # D — 4.8% (livestock-related, very narrow)
+    ("Animal feed (small bag)",            6.50, 12.00, "D"),
+    # Z — 0% (most groceries: bread, milk, eggs, vegetables, meat, baby items)
+    ("White sliced pan loaf 800g",         1.40,  2.20, "Z"),
+    ("Brown bread 800g",                   1.80,  2.80, "Z"),
+    ("2L milk",                            2.00,  2.80, "Z"),
+    ("Free-range eggs 12-pack",            3.50,  5.20, "Z"),
+    ("Bananas (per kg)",                   1.50,  2.20, "Z"),
+    ("Potatoes 5kg sack",                  3.20,  4.80, "Z"),
+    ("Carrots 1kg",                        1.20,  1.80, "Z"),
+    ("Chicken breast fillets 600g",        5.50,  8.00, "Z"),
+    ("Cheddar cheese 400g",                3.50,  5.20, "Z"),
+    ("Brown rice 1kg",                     2.00,  3.00, "Z"),
+    ("Olive oil 500ml",                    4.50,  6.80, "Z"),
+)
+
+# VAT letter → percentage map (matches IE_PER_LETTER_VAT["tesco"] etc.).
+_LETTER_TO_PCT: dict[str, float] = {"A": 23.0, "B": 13.5, "C": 9.0, "D": 4.8, "Z": 0.0}
+
+SUPERMARKET_CHAINS: tuple[str, ...] = (
+    "TESCO IRELAND",
+    "DUNNES STORES",
+    "SUPERVALU",
+    "CENTRA",
+    "SPAR",
+)
+
+
+# ─── Mixed-rate retailer (mixed_rate_retailer template) ──────────────────────
+# A4 multi-VAT retailer with sub-totals per rate. Hardware/garden/builder-
+# merchant style — different VAT rates on different lines, A4 invoice with
+# breakdown. (description, min_EUR, max_EUR, vat_rate_pct)
+MIXED_RATE_RETAILER_ITEMS: tuple[tuple[str, float, float, float], ...] = (
+    # Hardware @ 23%
+    ("Power drill (corded, 720W)",        85.00, 145.00, 23.0),
+    ("Hammer + claw 16oz",                12.00,  22.00, 23.0),
+    ("Screwdriver set 12-piece",          18.00,  35.00, 23.0),
+    ("LED bulb 9W (5-pack)",              12.00,  22.00, 23.0),
+    # Building materials @ 13.5%
+    ("Cement 25kg bag",                    8.50,  14.00, 13.5),
+    ("Sand 25kg bag",                      4.50,   7.50, 13.5),
+    ("Plasterboard 12.5mm 2400x1200",     14.00,  22.00, 13.5),
+    ("Insulation roll 100mm",             32.00,  58.00, 13.5),
+    # Garden @ 9% (printed matter / books on gardening) — using 13.5% for plants since they're farm-like
+    # Actually plants are 0% if from raw nursery; here treat as 23% retail
+    ("Compost 50L bag",                    8.00,  12.00, 23.0),
+    ("Grass seed 5kg",                    18.00,  30.00, 23.0),
+    # Books / newspapers @ 9%
+    ("Garden design book",                14.00,  22.00, 9.0),
+    ("Trade journal subscription",        25.00,  45.00, 9.0),
+)
+
+MIXED_RETAILER_SUFFIXES: tuple[str, ...] = (
+    "Hardware + Garden", "Builders Merchants Ltd", "Trade Supplies",
+    "Hardware Store", "DIY + Trade Centre",
+)
+
+
+
 # Tradesman service descriptions — used by tradesman_rct template family.
 # Real-world pricing in EUR (2026 IE market rates; Codex-reviewed for plausibility).
 TRADESMAN_SERVICES: tuple[tuple[str, float, float], ...] = (
@@ -608,14 +724,293 @@ def build_solicitor_loe(seed: int) -> dict[str, Any]:
     }
 
 
+# ─── Builder: restaurant_thermal (thermal 80mm, food 9% + alcohol 23%) ────────
+
+
+def build_restaurant_thermal(seed: int) -> dict[str, Any]:
+    """Restaurant receipt thermal-strip 80mm. Multi-VAT: food/non-alcohol 9%,
+    alcohol 23%. 3-15 line items per layout_slots.restaurant_thermal."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, RESTAURANT_VENDOR_SUFFIXES, include_eircode=False)
+    issue_date = gen_recent_date(rng)
+    invoice_number = f"R{rng.randint(10000, 99999)}"
+
+    n_items = rng.randint(3, 15)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max, vat_pct, _cat = rng.choice(RESTAURANT_ITEMS)
+        qty = float(rng.randint(1, 4))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_gross = round(qty * unit_price, 2)
+        amount_net = round(amount_gross / (1 + vat_pct / 100.0), 2)
+        amount_vat = round(amount_gross - amount_net, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=vat_pct, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    total = round(sum(li.amount_gross for li in line_items), 2)
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)
+    subtotal = round(total - vat_amount, 2)
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": "",
+        "po_reference": "",
+        "line_items": [li.to_dict() for li in line_items],
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: supermarket_per_letter_vat (thermal, A/B/C/D/Z codes) ───────────
+
+
+def build_supermarket_per_letter_vat(seed: int) -> dict[str, Any]:
+    """Supermarket VAT receipt — Tesco/Dunnes/SuperValu/Centra/Spar style with
+    per-letter VAT codes A=23/B=13.5/C=9/D=4.8/Z=0. 5-25 line items per
+    layout_slots.supermarket_per_letter_vat."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    chain_name = rng.choice(SUPERMARKET_CHAINS)
+    vendor = _gen_vendor_identity(rng, faker, ("Store",), include_eircode=False)
+    vendor["vendor_name"] = chain_name  # override Faker random name with chain
+    issue_date = gen_recent_date(rng)
+    invoice_number = f"#{rng.randint(100000, 999999)}"
+
+    n_items = rng.randint(5, 25)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max, letter = rng.choice(SUPERMARKET_ITEMS)
+        vat_pct = _LETTER_TO_PCT[letter]
+        qty = float(rng.randint(1, 3))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_gross = round(qty * unit_price, 2)
+        amount_net = round(amount_gross / (1 + vat_pct / 100.0), 2) if vat_pct > 0 else amount_gross
+        amount_vat = round(amount_gross - amount_net, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=vat_pct, vat_letter_code=letter,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    total = round(sum(li.amount_gross for li in line_items), 2)
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)
+    subtotal = round(total - vat_amount, 2)
+
+    # Per-letter aggregate for receipt footer ("VAT A €X / B €Y / C €Z" etc.)
+    per_letter: dict[str, dict[str, float]] = {}
+    for li in line_items:
+        if not li.vat_letter_code:
+            continue
+        bucket = per_letter.setdefault(li.vat_letter_code, {"net": 0.0, "vat": 0.0, "rate": li.vat_rate_pct})
+        bucket["net"] = round(bucket["net"] + li.amount_net, 2)
+        bucket["vat"] = round(bucket["vat"] + li.amount_vat, 2)
+    per_letter_rows = [
+        {"letter": k, "rate_pct": v["rate"], "net": v["net"], "vat": v["vat"]}
+        for k, v in sorted(per_letter.items())
+    ]
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": "",
+        "po_reference": "",
+        "line_items": [li.to_dict() for li in line_items],
+        "per_letter_rows": per_letter_rows,
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: photographed_receipt (thermal restaurant style; corruption Step 4) ──
+
+
+def build_photographed_receipt(seed: int) -> dict[str, Any]:
+    """Photographed receipt — thermal-strip rendered cleanly here; Augraphy
+    Step 4 will perspective+lens-distort to simulate a phone photo of a real
+    paper receipt. PROTOTYPE = same content as restaurant_thermal-style but
+    smaller item count (1-6 per layout_slots.photographed_receipt) + slightly
+    different vendor pool (cafes, fuel, taxis — receipts likely to be photoed)."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    photo_suffixes = ("Service Station", "Cafe", "Newsagent", "Bakery",
+                      "Convenience Store", "Coffee Shop", "Pharmacy")
+    vendor = _gen_vendor_identity(rng, faker, photo_suffixes, include_eircode=False)
+    issue_date = gen_recent_date(rng)
+    invoice_number = f"R{rng.randint(10000, 99999)}"
+
+    n_items = rng.randint(1, 6)
+    line_items: list[LineItem] = []
+    # Photo-receipts typically simpler — pull from CAFE_ITEMS pool (food/drink 9%)
+    for _ in range(n_items):
+        desc, p_min, p_max = rng.choice(CAFE_ITEMS)
+        qty = float(rng.randint(1, 2))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_gross = round(qty * unit_price, 2)
+        amount_net = round(amount_gross / 1.09, 2)
+        amount_vat = round(amount_gross - amount_net, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=9.0, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    total = round(sum(li.amount_gross for li in line_items), 2)
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)
+    subtotal = round(total - vat_amount, 2)
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": "",
+        "po_reference": "",
+        "line_items": [li.to_dict() for li in line_items],
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: handwritten_override (printed receipt + handwritten total override) ─
+
+
+def build_handwritten_override(seed: int) -> dict[str, Any]:
+    """Printed receipt with handwritten total override — staff strikes through
+    printed total and writes corrected amount (discount/error correction).
+    Per layout_slots.handwritten_override: thermal_80mm, 1-6 line items.
+    Ground truth `total` = HANDWRITTEN amount (the corrected one); printed
+    total preserved for OCR-vs-truth challenge."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, CAFE_VENDOR_SUFFIXES, include_eircode=False)
+    issue_date = gen_recent_date(rng)
+    invoice_number = f"R{rng.randint(10000, 99999)}"
+
+    n_items = rng.randint(1, 6)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max = rng.choice(CAFE_ITEMS)
+        qty = float(rng.randint(1, 2))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_gross = round(qty * unit_price, 2)
+        amount_net = round(amount_gross / 1.09, 2)
+        amount_vat = round(amount_gross - amount_net, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=9.0, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    printed_total = round(sum(li.amount_gross for li in line_items), 2)
+    # Handwritten override = printed - random discount (5-25%)
+    discount_pct = rng.uniform(0.05, 0.25)
+    handwritten_total = round(printed_total * (1 - discount_pct), 2)
+    # GT recovers the HANDWRITTEN value (the actual amount paid)
+    total = handwritten_total
+    # VAT/subtotal recomputed against the handwritten total
+    vat_amount = round(total - (total / 1.09), 2)
+    subtotal = round(total - vat_amount, 2)
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": "",
+        "po_reference": "",
+        "line_items": [li.to_dict() for li in line_items],
+        "printed_total": printed_total,
+        "handwritten_total": handwritten_total,
+        "handwritten_signature": faker.first_name()[0] + faker.last_name()[0],  # initials
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: mixed_rate_retailer (A4, multi-VAT with sub-totals per rate) ───
+
+
+def build_mixed_rate_retailer(seed: int) -> dict[str, Any]:
+    """Mixed-rate retailer A4 — hardware/builder-merchant style with multiple
+    VAT rates per invoice and explicit sub-totals per rate. 4-12 line items
+    per layout_slots.mixed_rate_retailer."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, MIXED_RETAILER_SUFFIXES, include_eircode=True)
+    issue_date = gen_recent_date(rng)
+    invoice_number = gen_invoice_number(rng, issue_date)
+
+    n_items = rng.randint(4, 12)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max, vat_pct = rng.choice(MIXED_RATE_RETAILER_ITEMS)
+        qty = float(rng.randint(1, 4))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_net = round(qty * unit_price, 2)
+        amount_vat = round(amount_net * (vat_pct / 100.0), 2)
+        amount_gross = round(amount_net + amount_vat, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=vat_pct, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    subtotal = round(sum(li.amount_net for li in line_items), 2)
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)
+    total = round(subtotal + vat_amount, 2)
+
+    # VAT breakdown by rate
+    vat_breakdown: dict[float, dict[str, float]] = {}
+    for li in line_items:
+        b = vat_breakdown.setdefault(li.vat_rate_pct, {"net": 0.0, "vat": 0.0})
+        b["net"] = round(b["net"] + li.amount_net, 2)
+        b["vat"] = round(b["vat"] + li.amount_vat, 2)
+    vat_breakdown_rows = [
+        {"rate_pct": rate, "net": data["net"], "vat": data["vat"]}
+        for rate, data in sorted(vat_breakdown.items())
+    ]
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": (issue_date + timedelta(days=30)).strftime("%d/%m/%Y") if rng.random() < 0.55 else "",
+        "po_reference": f"PO/{rng.randint(1000, 99999)}" if rng.random() < 0.40 else "",
+        "line_items": [li.to_dict() for li in line_items],
+        "vat_breakdown_rows": vat_breakdown_rows,
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
 # ─── Builder registry ────────────────────────────────────────────────────────
 
 BUILDERS: dict[str, Any] = {
-    "tradesman_rct":  build_tradesman_rct,
-    "cafe_receipt":   build_cafe_receipt,
-    "gp_medical":     build_gp_medical,
-    "vet":            build_vet,
-    "solicitor_loe":  build_solicitor_loe,
+    "tradesman_rct":               build_tradesman_rct,
+    "cafe_receipt":                build_cafe_receipt,
+    "gp_medical":                  build_gp_medical,
+    "vet":                         build_vet,
+    "solicitor_loe":               build_solicitor_loe,
+    "restaurant_thermal":          build_restaurant_thermal,
+    "supermarket_per_letter_vat":  build_supermarket_per_letter_vat,
+    "photographed_receipt":        build_photographed_receipt,
+    "handwritten_override":        build_handwritten_override,
+    "mixed_rate_retailer":         build_mixed_rate_retailer,
 }
 
 

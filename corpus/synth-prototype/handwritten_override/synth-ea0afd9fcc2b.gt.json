@@ -1,0 +1,69 @@
+{
+  "doc_id": "synth-ea0afd9fcc2b",
+  "source_path": "corpus/synth-prototype/handwritten_override/synth-ea0afd9fcc2b.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "handwritten_override",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Doody Espresso Bar",
+    "total": 7.83,
+    "vat": 0.65,
+    "date": "12/02/2026",
+    "subtotal": 7.18,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Espresso (single)",
+      "quantity": 2.0,
+      "unit_price": 2.8,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 5.14,
+      "amount_vat": 0.46,
+      "amount_gross": 5.6
+    },
+    {
+      "description": "Pot of tea",
+      "quantity": 1.0,
+      "unit_price": 3.87,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 3.55,
+      "amount_vat": 0.32,
+      "amount_gross": 3.87
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Doody Espresso Bar",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Suite 22",
+    "vendor_city": "Galway",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 847 973 9452",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE4606029S",
+    "vendor_iban": "IE41NTSB65642300518451",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "R96783",
+    "invoice_date": "12/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "99eea89013fdbe8a08cd2bb16fc3897506bb899b31628d95f73d9ec0102435b7",
+    "file_size_bytes": 17231,
+    "ingest_timestamp_utc": "2026-05-04T17:44:57Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

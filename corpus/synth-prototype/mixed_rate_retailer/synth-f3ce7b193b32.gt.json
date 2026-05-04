@@ -1,0 +1,129 @@
+{
+  "doc_id": "synth-f3ce7b193b32",
+  "source_path": "corpus/synth-prototype/mixed_rate_retailer/synth-f3ce7b193b32.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "mixed_rate_retailer",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Hardware + Garden",
+    "total": 416.48,
+    "vat": 59.29,
+    "date": "30/04/2026",
+    "subtotal": 357.19,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Screwdriver set 12-piece",
+      "quantity": 1.0,
+      "unit_price": 24.35,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 24.35,
+      "amount_vat": 5.6,
+      "amount_gross": 29.95
+    },
+    {
+      "description": "Garden design book",
+      "quantity": 4.0,
+      "unit_price": 16.27,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 65.08,
+      "amount_vat": 5.86,
+      "amount_gross": 70.94
+    },
+    {
+      "description": "Garden design book",
+      "quantity": 1.0,
+      "unit_price": 20.6,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 20.6,
+      "amount_vat": 1.85,
+      "amount_gross": 22.45
+    },
+    {
+      "description": "Cement 25kg bag",
+      "quantity": 4.0,
+      "unit_price": 9.93,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 39.72,
+      "amount_vat": 5.36,
+      "amount_gross": 45.08
+    },
+    {
+      "description": "Cement 25kg bag",
+      "quantity": 4.0,
+      "unit_price": 9.31,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 37.24,
+      "amount_vat": 5.03,
+      "amount_gross": 42.27
+    },
+    {
+      "description": "Hammer + claw 16oz",
+      "quantity": 4.0,
+      "unit_price": 16.59,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 66.36,
+      "amount_vat": 15.26,
+      "amount_gross": 81.62
+    },
+    {
+      "description": "Grass seed 5kg",
+      "quantity": 3.0,
+      "unit_price": 22.16,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 66.48,
+      "amount_vat": 15.29,
+      "amount_gross": 81.77
+    },
+    {
+      "description": "Insulation roll 100mm",
+      "quantity": 1.0,
+      "unit_price": 37.36,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 37.36,
+      "amount_vat": 5.04,
+      "amount_gross": 42.4
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Hardware + Garden",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H91 TN35",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 870 667 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260430-437",
+    "invoice_date": "30/04/2026",
+    "due_date": "30/05/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "30293d71070beed24a4776283b5f1b50df17bb64293808d60e02d0ac280b3c46",
+    "file_size_bytes": 20478,
+    "ingest_timestamp_utc": "2026-05-04T17:45:05Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

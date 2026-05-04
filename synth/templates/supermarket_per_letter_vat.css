@@ -1,0 +1,110 @@
+/* supermarket_per_letter_vat.css — thermal 80mm with per-letter VAT codes A/B/C/D/Z. */
+
+@page { size: 80mm auto; margin: 4mm 4mm 6mm 4mm; }
+
+body {
+    font-family: "Liberation Mono", "Courier New", monospace;
+    font-size: 8pt;
+    color: #111;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.receipt { width: 72mm; }
+
+header { text-align: center; margin-bottom: 2mm; }
+
+header h1 {
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 0 0 1mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+header .addr { margin: 0; font-size: 7.5pt; }
+
+header .vat-num {
+    margin-top: 1mm;
+    font-size: 7pt;
+    color: #444;
+}
+
+.meta { margin: 1.5mm 0; }
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    padding: 0.2mm 0;
+}
+
+.rule { border-top: 0.5px dashed #444; margin: 1.5mm 0; }
+
+table.items, table.vat-breakdown, table.totals {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.items td {
+    padding: 0.4mm 0;
+    vertical-align: top;
+    font-size: 8pt;
+}
+
+table.items .desc { text-align: left; padding-right: 1mm; }
+table.items .qty { width: 6mm; text-align: right; }
+table.items .letter {
+    width: 5mm;
+    text-align: center;
+    font-weight: 700;
+    color: #2a2a2a;
+}
+table.items .amt {
+    width: 14mm;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+table.vat-breakdown {
+    margin: 1mm 0;
+    font-size: 7.5pt;
+}
+
+table.vat-breakdown th {
+    text-align: right;
+    padding: 0.5mm 1mm;
+    border-bottom: 0.5px solid #888;
+    font-weight: 600;
+}
+
+table.vat-breakdown th:first-child,
+table.vat-breakdown td:first-child { text-align: center; }
+
+table.vat-breakdown td {
+    text-align: right;
+    padding: 0.4mm 1mm;
+    font-variant-numeric: tabular-nums;
+}
+
+table.totals td { padding: 0.5mm 0; font-size: 8.5pt; }
+table.totals td:nth-child(2) { text-align: right; font-variant-numeric: tabular-nums; }
+
+table.totals .grand td {
+    border-top: 0.8px solid #111;
+    padding-top: 1mm;
+    font-size: 11pt;
+}
+
+footer {
+    margin-top: 2mm;
+    text-align: center;
+    font-size: 7pt;
+    color: #444;
+}
+
+footer .ie {
+    margin-top: 1mm;
+    font-size: 6.5pt;
+    color: #888;
+}

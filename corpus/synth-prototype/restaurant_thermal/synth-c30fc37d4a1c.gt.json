@@ -1,0 +1,179 @@
+{
+  "doc_id": "synth-c30fc37d4a1c",
+  "source_path": "corpus/synth-prototype/restaurant_thermal/synth-c30fc37d4a1c.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "restaurant_thermal",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulqueen Inn",
+    "total": 338.45,
+    "vat": 32.59,
+    "date": "08/04/2026",
+    "subtotal": 305.86,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Fresh orange juice",
+      "quantity": 2.0,
+      "unit_price": 4.11,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.54,
+      "amount_vat": 0.68,
+      "amount_gross": 8.22
+    },
+    {
+      "description": "Fresh orange juice",
+      "quantity": 2.0,
+      "unit_price": 4.0,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.34,
+      "amount_vat": 0.66,
+      "amount_gross": 8.0
+    },
+    {
+      "description": "Garlic bread + cheese",
+      "quantity": 4.0,
+      "unit_price": 7.46,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 27.38,
+      "amount_vat": 2.46,
+      "amount_gross": 29.84
+    },
+    {
+      "description": "Smoked salmon + soda bread",
+      "quantity": 2.0,
+      "unit_price": 12.97,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 23.8,
+      "amount_vat": 2.14,
+      "amount_gross": 25.94
+    },
+    {
+      "description": "Soup of the day",
+      "quantity": 4.0,
+      "unit_price": 9.0,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 33.03,
+      "amount_vat": 2.97,
+      "amount_gross": 36.0
+    },
+    {
+      "description": "10oz sirloin steak + chips",
+      "quantity": 2.0,
+      "unit_price": 28.14,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 51.63,
+      "amount_vat": 4.65,
+      "amount_gross": 56.28
+    },
+    {
+      "description": "Glass of house white wine",
+      "quantity": 2.0,
+      "unit_price": 8.01,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 13.02,
+      "amount_vat": 3.0,
+      "amount_gross": 16.02
+    },
+    {
+      "description": "Sticky toffee pudding",
+      "quantity": 3.0,
+      "unit_price": 7.86,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 21.63,
+      "amount_vat": 1.95,
+      "amount_gross": 23.58
+    },
+    {
+      "description": "Beef + Guinness stew",
+      "quantity": 1.0,
+      "unit_price": 18.54,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 17.01,
+      "amount_vat": 1.53,
+      "amount_gross": 18.54
+    },
+    {
+      "description": "Sticky toffee pudding",
+      "quantity": 3.0,
+      "unit_price": 8.37,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 23.04,
+      "amount_vat": 2.07,
+      "amount_gross": 25.11
+    },
+    {
+      "description": "Pint of Guinness",
+      "quantity": 4.0,
+      "unit_price": 7.13,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 23.19,
+      "amount_vat": 5.33,
+      "amount_gross": 28.52
+    },
+    {
+      "description": "Pan-fried hake + champ",
+      "quantity": 2.0,
+      "unit_price": 23.06,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 42.31,
+      "amount_vat": 3.81,
+      "amount_gross": 46.12
+    },
+    {
+      "description": "Pot of tea",
+      "quantity": 4.0,
+      "unit_price": 4.07,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 14.94,
+      "amount_vat": 1.34,
+      "amount_gross": 16.28
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulqueen Inn",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 307 1519",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE1796531HT",
+    "vendor_iban": "IE62NTSB83043661476091",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "R68017",
+    "invoice_date": "08/04/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "99f5ed25070933b9ad03be401ed8d7f1faee7007397e85a5efaaa9412b4f8776",
+    "file_size_bytes": 15165,
+    "ingest_timestamp_utc": "2026-05-04T17:44:41Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

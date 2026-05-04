@@ -1,0 +1,162 @@
+/* mixed_rate_retailer.css — A4 portrait IE multi-VAT retailer invoice. */
+
+@page { size: A4 portrait; margin: 18mm 16mm 20mm 16mm; }
+
+body {
+    font-family: "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    line-height: 1.35;
+}
+
+header.vendor {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #b8530a;
+    padding-bottom: 6mm;
+    margin-bottom: 5mm;
+}
+
+.vendor-block { flex: 1.4; }
+
+.vendor-block h1 {
+    font-size: 16pt;
+    color: #b8530a;
+    margin: 0 0 2mm 0;
+    font-weight: 700;
+}
+
+.vendor-block div { margin: 0.5mm 0; }
+
+.vat-num {
+    margin-top: 2mm;
+    font-size: 9pt;
+    color: #555;
+}
+
+.invoice-meta { flex: 0.9; text-align: right; font-size: 9.5pt; }
+
+.invoice-label {
+    font-size: 12pt;
+    color: #b8530a;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3mm;
+}
+
+.invoice-meta .meta-row { margin: 1mm 0; }
+
+.invoice-meta .label {
+    color: #666;
+    margin-right: 4mm;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.5px;
+}
+
+table.line-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5mm;
+}
+
+table.line-items thead th {
+    background: #fdf2e6;
+    border-bottom: 1.5px solid #b8530a;
+    text-align: left;
+    padding: 2mm 2.5mm;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #b8530a;
+}
+
+table.line-items tbody td {
+    border-bottom: 0.5px solid #d0d0d0;
+    padding: 2mm 2.5mm;
+    font-size: 9.5pt;
+    vertical-align: top;
+}
+
+.col-qty, .col-price, .col-vat, .col-net, .col-amt {
+    text-align: right;
+    width: 17mm;
+    font-variant-numeric: tabular-nums;
+}
+
+.col-vat { width: 14mm; }
+.col-desc { text-align: left; }
+
+section.vat-breakdown {
+    margin: 5mm 0;
+    padding: 3mm 4mm;
+    background: #fef8f3;
+    border: 0.5px solid #e6c8a8;
+    page-break-inside: avoid;
+}
+
+section.vat-breakdown h3 {
+    font-size: 10pt;
+    color: #b8530a;
+    margin: 0 0 2mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+section.vat-breakdown table { width: 100%; border-collapse: collapse; }
+
+section.vat-breakdown th,
+section.vat-breakdown td {
+    padding: 1.2mm 3mm;
+    font-size: 9pt;
+    text-align: right;
+}
+
+section.vat-breakdown th {
+    background: #fae5ce;
+    text-align: right;
+    font-weight: 600;
+    color: #8c3d05;
+}
+
+section.vat-breakdown th:first-child,
+section.vat-breakdown td:first-child { text-align: left; }
+
+table.totals {
+    width: 75mm;
+    margin-left: auto;
+    border-collapse: collapse;
+    margin-top: 4mm;
+}
+
+table.totals td { padding: 1.5mm 3mm; font-size: 10pt; }
+table.totals .lbl { text-align: right; color: #444; }
+table.totals .amt {
+    text-align: right;
+    width: 30mm;
+    font-variant-numeric: tabular-nums;
+}
+
+table.totals .grand-total td {
+    border-top: 1.5px solid #b8530a;
+    padding-top: 2.5mm;
+    font-size: 11.5pt;
+    color: #b8530a;
+}
+
+footer.payment-details {
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 0.5px solid #d0d0d0;
+    font-size: 9pt;
+    color: #444;
+}
+
+footer.payment-details div { margin: 0.8mm 0; }
+
+.footer-note {
+    margin-top: 3mm !important;
+    color: #888;
+    font-size: 8pt;
+    font-style: italic;
+}

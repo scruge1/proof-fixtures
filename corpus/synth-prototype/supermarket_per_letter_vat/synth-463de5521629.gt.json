@@ -1,0 +1,149 @@
+{
+  "doc_id": "synth-463de5521629",
+  "source_path": "corpus/synth-prototype/supermarket_per_letter_vat/synth-463de5521629.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "supermarket_per_letter_vat",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "DUNNES STORES",
+    "total": 57.16,
+    "vat": 1.47,
+    "date": "12/02/2026",
+    "subtotal": 55.69,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Brown rice 1kg",
+      "quantity": 1.0,
+      "unit_price": 2.47,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 2.47,
+      "amount_vat": 0.0,
+      "amount_gross": 2.47
+    },
+    {
+      "description": "Coca-Cola 1.75L",
+      "quantity": 1.0,
+      "unit_price": 2.64,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 2.15,
+      "amount_vat": 0.49,
+      "amount_gross": 2.64
+    },
+    {
+      "description": "Brown rice 1kg",
+      "quantity": 3.0,
+      "unit_price": 2.33,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 6.99,
+      "amount_vat": 0.0,
+      "amount_gross": 6.99
+    },
+    {
+      "description": "2L milk",
+      "quantity": 3.0,
+      "unit_price": 2.42,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 7.26,
+      "amount_vat": 0.0,
+      "amount_gross": 7.26
+    },
+    {
+      "description": "Cheddar cheese 400g",
+      "quantity": 2.0,
+      "unit_price": 4.9,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 9.8,
+      "amount_vat": 0.0,
+      "amount_gross": 9.8
+    },
+    {
+      "description": "Olive oil 500ml",
+      "quantity": 2.0,
+      "unit_price": 5.49,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 10.98,
+      "amount_vat": 0.0,
+      "amount_gross": 10.98
+    },
+    {
+      "description": "Potatoes 5kg sack",
+      "quantity": 1.0,
+      "unit_price": 3.92,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.92,
+      "amount_vat": 0.0,
+      "amount_gross": 3.92
+    },
+    {
+      "description": "Bananas (per kg)",
+      "quantity": 2.0,
+      "unit_price": 2.15,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 4.3,
+      "amount_vat": 0.0,
+      "amount_gross": 4.3
+    },
+    {
+      "description": "Coca-Cola 1.75L",
+      "quantity": 2.0,
+      "unit_price": 2.62,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 4.26,
+      "amount_vat": 0.98,
+      "amount_gross": 5.24
+    },
+    {
+      "description": "Cheddar cheese 400g",
+      "quantity": 1.0,
+      "unit_price": 3.56,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.56,
+      "amount_vat": 0.0,
+      "amount_gross": 3.56
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "DUNNES STORES",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Suite 12",
+    "vendor_city": "Galway",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 878 766 5932",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE6060299S",
+    "vendor_iban": "IE41NTSB65642300518451",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "#794271",
+    "invoice_date": "12/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "bef7000a809314387806639f7fc252c649bbd7f7c40a268ab4c24ea3e6c2c0c1",
+    "file_size_bytes": 15904,
+    "ingest_timestamp_utc": "2026-05-04T17:44:47Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

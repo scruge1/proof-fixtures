@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Receipt {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="supermarket_per_letter_vat.css">
+</head>
+<body>
+<div class="receipt">
+    <header>
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div class="addr" data-slot="vendor_address_line1">{{ vendor_address_line1 }}</div>
+        <div class="addr" data-slot="vendor_city">{{ vendor_city }}</div>
+        <div class="vat-num">VAT {{ vendor_vat_number }}</div>
+    </header>
+
+    <div class="meta">
+        <div class="meta-row"><span>Trans</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span>Date</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <table class="items">
+        {% for item in line_items %}
+        <tr>
+            <td class="desc" data-slot="description">{{ item.description }}</td>
+            <td class="qty" data-slot="quantity">{{ "%g"|format(item.quantity) }}</td>
+            <td class="letter" data-slot="vat_letter_code">{{ item.vat_letter_code }}</td>
+            <td class="amt" data-slot="amount_gross">{{ "%.2f"|format(item.amount_gross) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="rule"></div>
+
+    <table class="vat-breakdown">
+        <thead>
+            <tr><th>Code</th><th>Rate</th><th>Net</th><th>VAT</th></tr>
+        </thead>
+        <tbody>
+            {% for row in per_letter_rows %}
+            <tr>
+                <td>{{ row.letter }}</td>
+                <td>{{ "%g"|format(row.rate_pct) }}%</td>
+                <td>{{ "%.2f"|format(row.net) }}</td>
+                <td>{{ "%.2f"|format(row.vat) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="rule"></div>
+
+    <table class="totals">
+        <tr><td>Subtotal (net)</td><td data-slot="subtotal_amount">€{{ "%.2f"|format(subtotal) }}</td></tr>
+        <tr><td>VAT total</td><td data-slot="vat">€{{ "%.2f"|format(vat) }}</td></tr>
+        <tr class="grand"><td><strong>TOTAL</strong></td><td><strong data-slot="total">€{{ "%.2f"|format(total) }}</strong></td></tr>
+    </table>
+
+    <div class="rule"></div>
+
+    <footer>
+        <div>Codes: A=23% B=13.5% C=9% D=4.8% Z=0%</div>
+        <div class="ie">Ireland ({{ vendor_country }}) &middot; Retain receipt for VAT claim</div>
+    </footer>
+</div>
+</body>
+</html>

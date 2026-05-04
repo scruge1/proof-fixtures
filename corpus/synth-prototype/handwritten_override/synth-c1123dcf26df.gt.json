@@ -1,0 +1,109 @@
+{
+  "doc_id": "synth-c1123dcf26df",
+  "source_path": "corpus/synth-prototype/handwritten_override/synth-c1123dcf26df.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "handwritten_override",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulqueen Patisserie",
+    "total": 31.57,
+    "vat": 2.61,
+    "date": "08/04/2026",
+    "subtotal": 28.96,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Avocado toast",
+      "quantity": 1.0,
+      "unit_price": 8.27,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.59,
+      "amount_vat": 0.68,
+      "amount_gross": 8.27
+    },
+    {
+      "description": "Avocado toast",
+      "quantity": 1.0,
+      "unit_price": 8.01,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.35,
+      "amount_vat": 0.66,
+      "amount_gross": 8.01
+    },
+    {
+      "description": "Cappuccino",
+      "quantity": 2.0,
+      "unit_price": 4.54,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 8.33,
+      "amount_vat": 0.75,
+      "amount_gross": 9.08
+    },
+    {
+      "description": "Latte",
+      "quantity": 1.0,
+      "unit_price": 3.93,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 3.61,
+      "amount_vat": 0.32,
+      "amount_gross": 3.93
+    },
+    {
+      "description": "Americano",
+      "quantity": 2.0,
+      "unit_price": 4.2,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.71,
+      "amount_vat": 0.69,
+      "amount_gross": 8.4
+    },
+    {
+      "description": "Sparkling water 330ml",
+      "quantity": 1.0,
+      "unit_price": 2.82,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 2.59,
+      "amount_vat": 0.23,
+      "amount_gross": 2.82
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulqueen Patisserie",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 307 1519",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE1796531HT",
+    "vendor_iban": "IE62NTSB83043661476091",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "R68017",
+    "invoice_date": "08/04/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "67e85acfc2e46b78cb1c1e1eb60c3389172e4338e9a8cc16cb3f58628b75d289",
+    "file_size_bytes": 17858,
+    "ingest_timestamp_utc": "2026-05-04T17:44:57Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

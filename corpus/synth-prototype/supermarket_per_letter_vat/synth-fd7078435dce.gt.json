@@ -1,0 +1,239 @@
+{
+  "doc_id": "synth-fd7078435dce",
+  "source_path": "corpus/synth-prototype/supermarket_per_letter_vat/synth-fd7078435dce.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "supermarket_per_letter_vat",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "DUNNES STORES",
+    "total": 123.71,
+    "vat": 8.63,
+    "date": "17/02/2026",
+    "subtotal": 115.08,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "White sliced pan loaf 800g",
+      "quantity": 3.0,
+      "unit_price": 1.45,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 4.35,
+      "amount_vat": 0.0,
+      "amount_gross": 4.35
+    },
+    {
+      "description": "Irish Independent newspaper",
+      "quantity": 3.0,
+      "unit_price": 3.69,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": "C",
+      "amount_net": 10.16,
+      "amount_vat": 0.91,
+      "amount_gross": 11.07
+    },
+    {
+      "description": "Coca-Cola 1.75L",
+      "quantity": 2.0,
+      "unit_price": 3.35,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 5.45,
+      "amount_vat": 1.25,
+      "amount_gross": 6.7
+    },
+    {
+      "description": "Bananas (per kg)",
+      "quantity": 2.0,
+      "unit_price": 1.59,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.18,
+      "amount_vat": 0.0,
+      "amount_gross": 3.18
+    },
+    {
+      "description": "Brown rice 1kg",
+      "quantity": 2.0,
+      "unit_price": 2.24,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 4.48,
+      "amount_vat": 0.0,
+      "amount_gross": 4.48
+    },
+    {
+      "description": "Irish Independent newspaper",
+      "quantity": 3.0,
+      "unit_price": 3.41,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": "C",
+      "amount_net": 9.39,
+      "amount_vat": 0.84,
+      "amount_gross": 10.23
+    },
+    {
+      "description": "Tayto cheese + onion 50g",
+      "quantity": 2.0,
+      "unit_price": 1.47,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 2.39,
+      "amount_vat": 0.55,
+      "amount_gross": 2.94
+    },
+    {
+      "description": "Firelogs 6-pack",
+      "quantity": 1.0,
+      "unit_price": 7.12,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": "B",
+      "amount_net": 6.27,
+      "amount_vat": 0.85,
+      "amount_gross": 7.12
+    },
+    {
+      "description": "Briquettes 12.5kg pack",
+      "quantity": 1.0,
+      "unit_price": 10.74,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": "B",
+      "amount_net": 9.46,
+      "amount_vat": 1.28,
+      "amount_gross": 10.74
+    },
+    {
+      "description": "Olive oil 500ml",
+      "quantity": 1.0,
+      "unit_price": 5.94,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 5.94,
+      "amount_vat": 0.0,
+      "amount_gross": 5.94
+    },
+    {
+      "description": "Cheddar cheese 400g",
+      "quantity": 1.0,
+      "unit_price": 3.52,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.52,
+      "amount_vat": 0.0,
+      "amount_gross": 3.52
+    },
+    {
+      "description": "White sliced pan loaf 800g",
+      "quantity": 2.0,
+      "unit_price": 1.72,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.44,
+      "amount_vat": 0.0,
+      "amount_gross": 3.44
+    },
+    {
+      "description": "Chicken breast fillets 600g",
+      "quantity": 3.0,
+      "unit_price": 6.2,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 18.6,
+      "amount_vat": 0.0,
+      "amount_gross": 18.6
+    },
+    {
+      "description": "Carrots 1kg",
+      "quantity": 2.0,
+      "unit_price": 1.56,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.12,
+      "amount_vat": 0.0,
+      "amount_gross": 3.12
+    },
+    {
+      "description": "Briquettes 12.5kg pack",
+      "quantity": 1.0,
+      "unit_price": 11.96,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": "B",
+      "amount_net": 10.54,
+      "amount_vat": 1.42,
+      "amount_gross": 11.96
+    },
+    {
+      "description": "Carrots 1kg",
+      "quantity": 1.0,
+      "unit_price": 1.6,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 1.6,
+      "amount_vat": 0.0,
+      "amount_gross": 1.6
+    },
+    {
+      "description": "Brown rice 1kg",
+      "quantity": 1.0,
+      "unit_price": 2.4,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 2.4,
+      "amount_vat": 0.0,
+      "amount_gross": 2.4
+    },
+    {
+      "description": "Coca-Cola 1.75L",
+      "quantity": 3.0,
+      "unit_price": 2.72,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 6.63,
+      "amount_vat": 1.53,
+      "amount_gross": 8.16
+    },
+    {
+      "description": "White sliced pan loaf 800g",
+      "quantity": 2.0,
+      "unit_price": 2.08,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 4.16,
+      "amount_vat": 0.0,
+      "amount_gross": 4.16
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "DUNNES STORES",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 859 411 8664",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5016115C",
+    "vendor_iban": "IE10NTSB36075071534183",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "#294627",
+    "invoice_date": "17/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "4550609d27a059de720163ba2e2b08b4ffac360d299be184d73790fb5bec6a41",
+    "file_size_bytes": 16627,
+    "ingest_timestamp_utc": "2026-05-04T17:44:47Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

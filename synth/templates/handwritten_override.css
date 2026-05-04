@@ -1,0 +1,125 @@
+/* handwritten_override.css — thermal receipt with HANDWRITTEN total override.
+ * Uses cursive-style font fallback (Comic Sans / Liberation Sans Italic /
+ * any handwriting font available via fontconfig) for hw block.
+ * Real handwriting will be Augraphy-overlaid in v0.4.3+ with GNHK glyphs;
+ * this prototype uses CSS handwriting-style font for visual variety.
+ */
+
+@page { size: 80mm auto; margin: 4mm 4mm 6mm 4mm; }
+
+body {
+    font-family: "Liberation Mono", "Courier New", monospace;
+    font-size: 8pt;
+    color: #1a1a1a;
+    line-height: 1.30;
+    margin: 0;
+}
+
+.receipt { width: 72mm; }
+
+header { text-align: center; margin-bottom: 3mm; }
+
+header h1 {
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 0 0 1mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+header .addr { margin: 0; font-size: 7.5pt; }
+
+header .vat-num {
+    margin-top: 1mm;
+    font-size: 7pt;
+    color: #555;
+}
+
+.meta { margin: 1.5mm 0; }
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    padding: 0.2mm 0;
+}
+
+.rule { border-top: 0.5px dashed #444; margin: 1.5mm 0; }
+
+table.items { width: 100%; border-collapse: collapse; }
+
+table.items td {
+    padding: 0.5mm 0;
+    vertical-align: top;
+    font-size: 8pt;
+}
+
+table.items .qty { width: 7mm; text-align: left; }
+table.items .desc { text-align: left; padding-right: 1mm; }
+table.items .amt {
+    width: 14mm;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.printed-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 1mm 0;
+    padding: 0.5mm 0;
+    font-size: 8.5pt;
+}
+
+.printed-line .lbl { color: #555; }
+
+.printed-line .strike {
+    text-decoration: line-through;
+    color: #888;
+    font-variant-numeric: tabular-nums;
+}
+
+.handwritten-block {
+    margin: 2mm 0 1mm 0;
+    text-align: center;
+    transform: rotate(-1.5deg);
+}
+
+.handwritten-block .hw-label {
+    font-family: "Comic Sans MS", "Liberation Sans", cursive;
+    font-style: italic;
+    font-size: 9pt;
+    color: #112d6b;
+    margin-bottom: 0.5mm;
+}
+
+.handwritten-block .handwritten {
+    font-family: "Comic Sans MS", "Liberation Sans", cursive;
+    font-size: 16pt;
+    font-weight: 700;
+    color: #112d6b;
+    letter-spacing: 1px;
+    text-shadow: 0.2mm 0.1mm 0 rgba(17, 45, 107, 0.15);
+}
+
+.handwritten-block .signature {
+    font-family: "Comic Sans MS", "Liberation Sans", cursive;
+    font-style: italic;
+    font-size: 11pt;
+    color: #112d6b;
+    margin-top: 1mm;
+    transform: rotate(2deg);
+    display: inline-block;
+}
+
+footer {
+    margin-top: 2mm;
+    text-align: center;
+    font-size: 7pt;
+    color: #555;
+}
+
+footer .ie {
+    margin-top: 1mm;
+    font-size: 6.5pt;
+    color: #888;
+}

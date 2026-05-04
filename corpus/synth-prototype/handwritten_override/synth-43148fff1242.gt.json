@@ -1,0 +1,109 @@
+{
+  "doc_id": "synth-43148fff1242",
+  "source_path": "corpus/synth-prototype/handwritten_override/synth-43148fff1242.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "handwritten_override",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Beggan Coffee Roasters",
+    "total": 41.23,
+    "vat": 3.4,
+    "date": "11/03/2026",
+    "subtotal": 37.83,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Flat white",
+      "quantity": 2.0,
+      "unit_price": 3.87,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.1,
+      "amount_vat": 0.64,
+      "amount_gross": 7.74
+    },
+    {
+      "description": "Flat white",
+      "quantity": 2.0,
+      "unit_price": 3.95,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 7.25,
+      "amount_vat": 0.65,
+      "amount_gross": 7.9
+    },
+    {
+      "description": "Eggs Benedict",
+      "quantity": 1.0,
+      "unit_price": 10.28,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 9.43,
+      "amount_vat": 0.85,
+      "amount_gross": 10.28
+    },
+    {
+      "description": "Espresso (single)",
+      "quantity": 2.0,
+      "unit_price": 3.04,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 5.58,
+      "amount_vat": 0.5,
+      "amount_gross": 6.08
+    },
+    {
+      "description": "Avocado toast",
+      "quantity": 1.0,
+      "unit_price": 10.05,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 9.22,
+      "amount_vat": 0.83,
+      "amount_gross": 10.05
+    },
+    {
+      "description": "Carrot cake slice",
+      "quantity": 1.0,
+      "unit_price": 5.36,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 4.92,
+      "amount_vat": 0.44,
+      "amount_gross": 5.36
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Beggan Coffee Roasters",
+    "vendor_address_line1": "25 Mulroy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Ennis",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 825 291 8117",
+    "vendor_email": "mlinehan@mannix-mcentaggart.info",
+    "vendor_website": "",
+    "vendor_vat_number": "IE0743555FD",
+    "vendor_iban": "IE05REVO28939267598240",
+    "vendor_bic": "REVOIE23",
+    "vendor_logo_present": "",
+    "invoice_number": "R48603",
+    "invoice_date": "11/03/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "2a1b771b1aa2f97f75b82fd50e8edbcc99dc197d09906d9f858f0d61d34c5ece",
+    "file_size_bytes": 17882,
+    "ingest_timestamp_utc": "2026-05-04T17:44:59Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42004,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

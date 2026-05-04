@@ -1,0 +1,189 @@
+{
+  "doc_id": "synth-20d7e8d1abf5",
+  "source_path": "corpus/synth-prototype/supermarket_per_letter_vat/synth-20d7e8d1abf5.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "supermarket_per_letter_vat",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "TESCO IRELAND",
+    "total": 98.7,
+    "vat": 6.19,
+    "date": "11/03/2026",
+    "subtotal": 92.51,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Cadbury Dairy Milk 200g",
+      "quantity": 2.0,
+      "unit_price": 2.89,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 4.7,
+      "amount_vat": 1.08,
+      "amount_gross": 5.78
+    },
+    {
+      "description": "Cadbury Dairy Milk 200g",
+      "quantity": 2.0,
+      "unit_price": 3.01,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 4.89,
+      "amount_vat": 1.13,
+      "amount_gross": 6.02
+    },
+    {
+      "description": "Free-range eggs 12-pack",
+      "quantity": 1.0,
+      "unit_price": 3.83,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 3.83,
+      "amount_vat": 0.0,
+      "amount_gross": 3.83
+    },
+    {
+      "description": "Tayto cheese + onion 50g",
+      "quantity": 2.0,
+      "unit_price": 1.53,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 2.49,
+      "amount_vat": 0.57,
+      "amount_gross": 3.06
+    },
+    {
+      "description": "Bananas (per kg)",
+      "quantity": 1.0,
+      "unit_price": 1.91,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 1.91,
+      "amount_vat": 0.0,
+      "amount_gross": 1.91
+    },
+    {
+      "description": "Brown bread 800g",
+      "quantity": 1.0,
+      "unit_price": 2.46,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 2.46,
+      "amount_vat": 0.0,
+      "amount_gross": 2.46
+    },
+    {
+      "description": "2L milk",
+      "quantity": 1.0,
+      "unit_price": 2.16,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 2.16,
+      "amount_vat": 0.0,
+      "amount_gross": 2.16
+    },
+    {
+      "description": "Animal feed (small bag)",
+      "quantity": 2.0,
+      "unit_price": 11.58,
+      "vat_rate_pct": 4.8,
+      "vat_letter_code": "D",
+      "amount_net": 22.1,
+      "amount_vat": 1.06,
+      "amount_gross": 23.16
+    },
+    {
+      "description": "Potatoes 5kg sack",
+      "quantity": 2.0,
+      "unit_price": 4.23,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 8.46,
+      "amount_vat": 0.0,
+      "amount_gross": 8.46
+    },
+    {
+      "description": "Tayto cheese + onion 50g",
+      "quantity": 3.0,
+      "unit_price": 1.57,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 3.83,
+      "amount_vat": 0.88,
+      "amount_gross": 4.71
+    },
+    {
+      "description": "Firelogs 6-pack",
+      "quantity": 1.0,
+      "unit_price": 7.68,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": "B",
+      "amount_net": 6.77,
+      "amount_vat": 0.91,
+      "amount_gross": 7.68
+    },
+    {
+      "description": "Cheddar cheese 400g",
+      "quantity": 3.0,
+      "unit_price": 4.23,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 12.69,
+      "amount_vat": 0.0,
+      "amount_gross": 12.69
+    },
+    {
+      "description": "Potatoes 5kg sack",
+      "quantity": 3.0,
+      "unit_price": 4.59,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "Z",
+      "amount_net": 13.77,
+      "amount_vat": 0.0,
+      "amount_gross": 13.77
+    },
+    {
+      "description": "Coca-Cola 1.75L",
+      "quantity": 1.0,
+      "unit_price": 3.01,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": "A",
+      "amount_net": 2.45,
+      "amount_vat": 0.56,
+      "amount_gross": 3.01
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "TESCO IRELAND",
+    "vendor_address_line1": "25 Mulroy Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 825 291 8117",
+    "vendor_email": "mlinehan@mannix-mcentaggart.info",
+    "vendor_website": "",
+    "vendor_vat_number": "IE0743555FD",
+    "vendor_iban": "IE05REVO28939267598240",
+    "vendor_bic": "REVOIE23",
+    "vendor_logo_present": "",
+    "invoice_number": "#840488",
+    "invoice_date": "11/03/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "f52dd68b86eb625f1146b368435619bf87c9f89664deb5ac9f60b9566d248215",
+    "file_size_bytes": 16264,
+    "ingest_timestamp_utc": "2026-05-04T17:44:48Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42004,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

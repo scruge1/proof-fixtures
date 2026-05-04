@@ -1,0 +1,169 @@
+{
+  "doc_id": "synth-43f0f1139da3",
+  "source_path": "corpus/synth-prototype/restaurant_thermal/synth-43f0f1139da3.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "restaurant_thermal",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Restaurant",
+    "total": 401.92,
+    "vat": 48.95,
+    "date": "05/02/2026",
+    "subtotal": 352.97,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Sticky toffee pudding",
+      "quantity": 2.0,
+      "unit_price": 8.85,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 16.24,
+      "amount_vat": 1.46,
+      "amount_gross": 17.7
+    },
+    {
+      "description": "Bottle of Coors Light",
+      "quantity": 3.0,
+      "unit_price": 5.97,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 14.56,
+      "amount_vat": 3.35,
+      "amount_gross": 17.91
+    },
+    {
+      "description": "Glass of house red wine",
+      "quantity": 1.0,
+      "unit_price": 8.25,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 6.71,
+      "amount_vat": 1.54,
+      "amount_gross": 8.25
+    },
+    {
+      "description": "Bottle of Coors Light",
+      "quantity": 4.0,
+      "unit_price": 6.08,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 19.77,
+      "amount_vat": 4.55,
+      "amount_gross": 24.32
+    },
+    {
+      "description": "Whiskey single measure",
+      "quantity": 1.0,
+      "unit_price": 8.06,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 6.55,
+      "amount_vat": 1.51,
+      "amount_gross": 8.06
+    },
+    {
+      "description": "Wild mushroom risotto",
+      "quantity": 4.0,
+      "unit_price": 17.67,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 64.84,
+      "amount_vat": 5.84,
+      "amount_gross": 70.68
+    },
+    {
+      "description": "Wild mushroom risotto",
+      "quantity": 4.0,
+      "unit_price": 17.16,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 62.97,
+      "amount_vat": 5.67,
+      "amount_gross": 68.64
+    },
+    {
+      "description": "Garlic bread + cheese",
+      "quantity": 4.0,
+      "unit_price": 6.56,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 24.07,
+      "amount_vat": 2.17,
+      "amount_gross": 26.24
+    },
+    {
+      "description": "Bottle of house red 750ml",
+      "quantity": 3.0,
+      "unit_price": 30.77,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 75.05,
+      "amount_vat": 17.26,
+      "amount_gross": 92.31
+    },
+    {
+      "description": "Fresh orange juice",
+      "quantity": 1.0,
+      "unit_price": 4.31,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 3.95,
+      "amount_vat": 0.36,
+      "amount_gross": 4.31
+    },
+    {
+      "description": "Soup of the day",
+      "quantity": 2.0,
+      "unit_price": 6.65,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 12.2,
+      "amount_vat": 1.1,
+      "amount_gross": 13.3
+    },
+    {
+      "description": "Caesar salad",
+      "quantity": 4.0,
+      "unit_price": 12.55,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 46.06,
+      "amount_vat": 4.14,
+      "amount_gross": 50.2
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Restaurant",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 843 567 8995",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE7081847N",
+    "vendor_iban": "IE63IPBS46320676128213",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "R77043",
+    "invoice_date": "05/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "8b0b595657eed0e49e692f16ade4953e89fb033b66a8a2cdc6ee6ad9efc8afd4",
+    "file_size_bytes": 15547,
+    "ingest_timestamp_utc": "2026-05-04T17:44:42Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

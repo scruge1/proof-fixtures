@@ -1,0 +1,89 @@
+{
+  "doc_id": "synth-fd556078cba5",
+  "source_path": "corpus/synth-prototype/mixed_rate_retailer/synth-fd556078cba5.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "mixed_rate_retailer",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Grahams Builders Merchants Ltd",
+    "total": 338.46,
+    "vat": 50.43,
+    "date": "06/03/2026",
+    "subtotal": 288.03,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Insulation roll 100mm",
+      "quantity": 2.0,
+      "unit_price": 43.67,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 87.34,
+      "amount_vat": 11.79,
+      "amount_gross": 99.13
+    },
+    {
+      "description": "Screwdriver set 12-piece",
+      "quantity": 3.0,
+      "unit_price": 28.53,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 85.59,
+      "amount_vat": 19.69,
+      "amount_gross": 105.28
+    },
+    {
+      "description": "LED bulb 9W (5-pack)",
+      "quantity": 2.0,
+      "unit_price": 17.95,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 35.9,
+      "amount_vat": 8.26,
+      "amount_gross": 44.16
+    },
+    {
+      "description": "Insulation roll 100mm",
+      "quantity": 2.0,
+      "unit_price": 39.6,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 79.2,
+      "amount_vat": 10.69,
+      "amount_gross": 89.89
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Grahams Builders Merchants Ltd",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 T3XA",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 816 167 2140",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5318360KY",
+    "vendor_iban": "IE76AIBK71534183127508",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260306-764",
+    "invoice_date": "06/03/2026",
+    "due_date": "05/04/2026",
+    "po_reference": "PO/91744"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "3aa182e7496c5fb5de8baeb812dd7b11c73e470cb7b6ea1b673829a3f9fc52dd",
+    "file_size_bytes": 19994,
+    "ingest_timestamp_utc": "2026-05-04T17:45:04Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

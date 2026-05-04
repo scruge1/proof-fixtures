@@ -1,0 +1,99 @@
+{
+  "doc_id": "synth-15627b5bc7d7",
+  "source_path": "corpus/synth-prototype/handwritten_override/synth-15627b5bc7d7.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "handwritten_override",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Coffee Roasters",
+    "total": 32.0,
+    "vat": 2.64,
+    "date": "05/02/2026",
+    "subtotal": 29.36,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Scone with butter + jam",
+      "quantity": 1.0,
+      "unit_price": 4.47,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 4.1,
+      "amount_vat": 0.37,
+      "amount_gross": 4.47
+    },
+    {
+      "description": "Croissant",
+      "quantity": 1.0,
+      "unit_price": 4.09,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 3.75,
+      "amount_vat": 0.34,
+      "amount_gross": 4.09
+    },
+    {
+      "description": "Fresh-baked sourdough loaf",
+      "quantity": 1.0,
+      "unit_price": 5.32,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 4.88,
+      "amount_vat": 0.44,
+      "amount_gross": 5.32
+    },
+    {
+      "description": "Brown bread + smoked salmon",
+      "quantity": 2.0,
+      "unit_price": 10.82,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 19.85,
+      "amount_vat": 1.79,
+      "amount_gross": 21.64
+    },
+    {
+      "description": "Fresh-baked sourdough loaf",
+      "quantity": 1.0,
+      "unit_price": 5.95,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 5.46,
+      "amount_vat": 0.49,
+      "amount_gross": 5.95
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Coffee Roasters",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 843 567 8995",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE7081847N",
+    "vendor_iban": "IE63IPBS46320676128213",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "R77043",
+    "invoice_date": "05/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "bd9677407bd67ffd78c2e108c137a033c5524a3c857f945f03942a49ff2735ca",
+    "file_size_bytes": 18246,
+    "ingest_timestamp_utc": "2026-05-04T17:44:58Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

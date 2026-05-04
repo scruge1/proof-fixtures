@@ -1,0 +1,89 @@
+{
+  "doc_id": "synth-48dfb9f982dc",
+  "source_path": "corpus/synth-prototype/mixed_rate_retailer/synth-48dfb9f982dc.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "mixed_rate_retailer",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Doody Builders Merchants Ltd",
+    "total": 295.06,
+    "vat": 40.21,
+    "date": "04/04/2026",
+    "subtotal": 254.85,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Screwdriver set 12-piece",
+      "quantity": 2.0,
+      "unit_price": 29.44,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 58.88,
+      "amount_vat": 13.54,
+      "amount_gross": 72.42
+    },
+    {
+      "description": "Grass seed 5kg",
+      "quantity": 3.0,
+      "unit_price": 21.5,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 64.5,
+      "amount_vat": 14.84,
+      "amount_gross": 79.34
+    },
+    {
+      "description": "Garden design book",
+      "quantity": 3.0,
+      "unit_price": 20.57,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 61.71,
+      "amount_vat": 5.55,
+      "amount_gross": 67.26
+    },
+    {
+      "description": "Garden design book",
+      "quantity": 4.0,
+      "unit_price": 17.44,
+      "vat_rate_pct": 9.0,
+      "vat_letter_code": null,
+      "amount_net": 69.76,
+      "amount_vat": 6.28,
+      "amount_gross": 76.04
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Doody Builders Merchants Ltd",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Suite 22",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 S27T",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 860 504 1393",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE2991996WM",
+    "vendor_iban": "IE25IPBS23005184511292",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260404-252",
+    "invoice_date": "04/04/2026",
+    "due_date": "04/05/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "65338827db7c4f1b51db7784817096bb3ebac2071d147ed8b4ddf8e4e087d560",
+    "file_size_bytes": 19956,
+    "ingest_timestamp_utc": "2026-05-04T17:45:04Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

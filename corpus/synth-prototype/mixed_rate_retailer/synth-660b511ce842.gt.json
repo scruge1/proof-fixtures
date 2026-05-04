@@ -1,0 +1,89 @@
+{
+  "doc_id": "synth-660b511ce842",
+  "source_path": "corpus/synth-prototype/mixed_rate_retailer/synth-660b511ce842.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "mixed_rate_retailer",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Beggan Hardware + Garden",
+    "total": 205.19,
+    "vat": 31.29,
+    "date": "01/04/2026",
+    "subtotal": 173.9,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Sand 25kg bag",
+      "quantity": 2.0,
+      "unit_price": 6.61,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 13.22,
+      "amount_vat": 1.78,
+      "amount_gross": 15.0
+    },
+    {
+      "description": "Plasterboard 12.5mm 2400x1200",
+      "quantity": 2.0,
+      "unit_price": 15.56,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 31.12,
+      "amount_vat": 4.2,
+      "amount_gross": 35.32
+    },
+    {
+      "description": "Screwdriver set 12-piece",
+      "quantity": 3.0,
+      "unit_price": 27.45,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 82.35,
+      "amount_vat": 18.94,
+      "amount_gross": 101.29
+    },
+    {
+      "description": "Insulation roll 100mm",
+      "quantity": 1.0,
+      "unit_price": 47.21,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 47.21,
+      "amount_vat": 6.37,
+      "amount_gross": 53.58
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Beggan Hardware + Garden",
+    "vendor_address_line1": "25 Mulroy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Ennis",
+    "vendor_eircode": "V95 JVL1",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 807 401 4234",
+    "vendor_email": "mlinehan@mannix-mcentaggart.info",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5557217Q",
+    "vendor_iban": "IE14NTSB39267598240440",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260401-067",
+    "invoice_date": "01/04/2026",
+    "due_date": "01/05/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "20495d93adef061bcbd0f59a8f436cb5d6486de54f5c81509509ec1bb65b3a1c",
+    "file_size_bytes": 20023,
+    "ingest_timestamp_utc": "2026-05-04T17:45:05Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42004,
+  "synthetic_generator_commit": "53bcbe180b1440a6e2b18057674ecaa736d20844",
+  "license_tag": "Apache-2.0"
+}

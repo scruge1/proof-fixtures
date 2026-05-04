@@ -1,0 +1,92 @@
+/* photographed_receipt.css — thermal 80mm clean render; Augraphy Step 4 will
+ * perspective+lens-distort to simulate a phone photo of paper receipt.
+ * For prototype we render clean — corruption is downstream.
+ */
+
+@page { size: 80mm auto; margin: 4mm 4mm 6mm 4mm; }
+
+body {
+    font-family: "Liberation Mono", "Courier New", monospace;
+    font-size: 8pt;
+    color: #1a1a1a;
+    line-height: 1.30;
+    margin: 0;
+}
+
+.receipt { width: 72mm; }
+
+header { text-align: center; margin-bottom: 3mm; }
+
+header h1 {
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 0 0 1mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+header .addr { margin: 0; font-size: 7.5pt; }
+
+header .vat-num {
+    margin-top: 1mm;
+    font-size: 7pt;
+    color: #555;
+}
+
+.meta { margin: 1.5mm 0; }
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    padding: 0.2mm 0;
+}
+
+.rule { border-top: 0.5px dashed #444; margin: 1.5mm 0; }
+
+table.items {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.items td {
+    padding: 0.5mm 0;
+    vertical-align: top;
+    font-size: 8pt;
+}
+
+table.items .qty { width: 7mm; text-align: left; }
+table.items .desc { text-align: left; padding-right: 1mm; }
+table.items .amt {
+    width: 14mm;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+table.totals {
+    width: 100%;
+    margin-top: 1mm;
+    border-collapse: collapse;
+}
+
+table.totals td { padding: 0.5mm 0; font-size: 8.5pt; }
+table.totals td:nth-child(2) { text-align: right; font-variant-numeric: tabular-nums; }
+
+table.totals .grand td {
+    border-top: 0.8px solid #111;
+    padding-top: 1mm;
+    font-size: 10.5pt;
+}
+
+footer {
+    margin-top: 2mm;
+    text-align: center;
+    font-size: 7pt;
+    color: #555;
+}
+
+footer .ie {
+    margin-top: 1mm;
+    font-size: 6.5pt;
+    color: #888;
+}

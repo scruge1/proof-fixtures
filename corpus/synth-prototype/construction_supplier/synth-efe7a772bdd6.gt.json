@@ -1,0 +1,149 @@
+{
+  "doc_id": "synth-efe7a772bdd6",
+  "source_path": "corpus/synth-prototype/construction_supplier/synth-efe7a772bdd6.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "construction_supplier",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Chadwicks CORK",
+    "total": 9955.81,
+    "vat": 1786.67,
+    "date": "03/02/2026",
+    "subtotal": 8169.14,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Gaffer tape 50mm x 50m",
+      "quantity": 46.0,
+      "unit_price": 8.71,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 400.66,
+      "amount_vat": 92.15,
+      "amount_gross": 492.81
+    },
+    {
+      "description": "Hollow concrete blocks 150mm (per block)",
+      "quantity": 9.0,
+      "unit_price": 2.54,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 22.86,
+      "amount_vat": 3.09,
+      "amount_gross": 25.95
+    },
+    {
+      "description": "Roof slate Welsh 500x250mm (per slate)",
+      "quantity": 16.0,
+      "unit_price": 3.91,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 62.56,
+      "amount_vat": 8.45,
+      "amount_gross": 71.01
+    },
+    {
+      "description": "Steel-toe work boots size 9",
+      "quantity": 38.0,
+      "unit_price": 125.87,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 4783.06,
+      "amount_vat": 1100.1,
+      "amount_gross": 5883.16
+    },
+    {
+      "description": "Aggregate 25kg bag",
+      "quantity": 12.0,
+      "unit_price": 5.14,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 61.68,
+      "amount_vat": 8.33,
+      "amount_gross": 70.01
+    },
+    {
+      "description": "Aggregate 25kg bag",
+      "quantity": 12.0,
+      "unit_price": 6.32,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 75.84,
+      "amount_vat": 10.24,
+      "amount_gross": 86.08
+    },
+    {
+      "description": "Gaffer tape 50mm x 50m",
+      "quantity": 6.0,
+      "unit_price": 8.05,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 48.3,
+      "amount_vat": 11.11,
+      "amount_gross": 59.41
+    },
+    {
+      "description": "Steel-toe work boots size 9",
+      "quantity": 22.0,
+      "unit_price": 89.37,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 1966.14,
+      "amount_vat": 452.21,
+      "amount_gross": 2418.35
+    },
+    {
+      "description": "Steel reinforcement bar Y12 6m length",
+      "quantity": 31.0,
+      "unit_price": 23.56,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 730.36,
+      "amount_vat": 98.6,
+      "amount_gross": 828.96
+    },
+    {
+      "description": "Hollow concrete blocks 100mm (per block)",
+      "quantity": 13.0,
+      "unit_price": 1.36,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 17.68,
+      "amount_vat": 2.39,
+      "amount_gross": 20.07
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Chadwicks CORK",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "F91 35MC",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 817 724 7478",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5315399A",
+    "vendor_iban": "IE34IPBS36614760918773",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260203-472",
+    "invoice_date": "03/02/2026",
+    "due_date": "05/03/2026",
+    "po_reference": "PO/13230"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "6f84a1cc4cfa3bf3a91089c2ad5cb11a723bba0d6110c6b125ca8042b56da286",
+    "file_size_bytes": 21122,
+    "ingest_timestamp_utc": "2026-05-04T17:53:12Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

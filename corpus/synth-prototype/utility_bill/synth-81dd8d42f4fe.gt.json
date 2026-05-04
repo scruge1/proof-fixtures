@@ -1,0 +1,79 @@
+{
+  "doc_id": "synth-81dd8d42f4fe",
+  "source_path": "corpus/synth-prototype/utility_bill/synth-81dd8d42f4fe.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "utility_bill",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Energia",
+    "total": 98.94,
+    "vat": 10.67,
+    "date": "14/04/2026",
+    "subtotal": 88.27,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "PSO levy (Public Service Obligation)",
+      "quantity": 1.0,
+      "unit_price": 9.24,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 9.24,
+      "amount_vat": 0.0,
+      "amount_gross": 9.24
+    },
+    {
+      "description": "Standing charge — gas (62 days)",
+      "quantity": 1.0,
+      "unit_price": 36.67,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 36.67,
+      "amount_vat": 4.95,
+      "amount_gross": 41.62
+    },
+    {
+      "description": "Standing charge — electricity (62 days)",
+      "quantity": 1.0,
+      "unit_price": 42.36,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 42.36,
+      "amount_vat": 5.72,
+      "amount_gross": 48.08
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Energia",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "R95 WT3X",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 801 750 7961",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE1153183BP",
+    "vendor_iban": "IE90IPBS07153418312750",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "BIL-20260414-42394",
+    "invoice_date": "14/04/2026",
+    "due_date": "28/04/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "bbae58e834f14e346b1d965e847e48030edc7173de5c92e0e8e9546ea6e61eb7",
+    "file_size_bytes": 18352,
+    "ingest_timestamp_utc": "2026-05-04T17:53:00Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

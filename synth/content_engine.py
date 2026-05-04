@@ -249,6 +249,140 @@ MIXED_RETAILER_SUFFIXES: tuple[str, ...] = (
 )
 
 
+# ─── Professional services (professional_services template) ──────────────────
+# A4 letterhead, single-fee 23% VAT (accountant/consultant/marketing/architect).
+PROF_SERVICES: tuple[tuple[str, float, float], ...] = (
+    ("Annual accounts preparation + filing",            850.00, 2400.00),
+    ("Monthly bookkeeping retainer",                    280.00,  650.00),
+    ("Income tax return (Form 11)",                     350.00,  850.00),
+    ("VAT return preparation (per quarter)",            180.00,  420.00),
+    ("Payroll bureau service (per month, 1-10 staff)",  220.00,  580.00),
+    ("Architectural design — domestic extension",      1800.00, 4500.00),
+    ("Architectural site inspection visit",             280.00,  580.00),
+    ("Marketing strategy consultation",                 950.00, 2400.00),
+    ("SEO audit + report",                              480.00, 1200.00),
+    ("Engineering report — structural inspection",      650.00, 1850.00),
+)
+
+PROF_FIRM_SUFFIXES: tuple[str, ...] = (
+    "Chartered Accountants", "& Co Accountants", "Architectural Services",
+    "Marketing Studio", "Consulting Engineers", "Tax Advisors",
+    "Business Advisory", "Accountancy Services",
+)
+
+
+# ─── Utility bill (utility_bill template) ────────────────────────────────────
+# IE utility providers + usage-based line items. Multi-period billing.
+# Electricity/gas typically 13.5% (reduced rate); standing charges 13.5%; PSO levy 0%.
+UTILITY_PROVIDERS: tuple[str, ...] = (
+    "ESB Electric Ireland", "Bord Gáis Energy", "Pinergy", "Energia",
+    "Flogas Natural Gas", "Eir Broadband + Phone", "Virgin Media Ireland",
+    "SSE Airtricity",
+)
+
+# (description, min_EUR, max_EUR, vat_rate_pct)
+UTILITY_LINE_ITEMS: tuple[tuple[str, float, float, float], ...] = (
+    ("Electricity usage (kWh) — day rate",              45.00, 220.00, 13.5),
+    ("Electricity usage (kWh) — night rate",            18.00,  85.00, 13.5),
+    ("Gas usage (cubic metres)",                        38.00, 160.00, 13.5),
+    ("Standing charge — electricity (62 days)",         32.00,  48.00, 13.5),
+    ("Standing charge — gas (62 days)",                 28.00,  42.00, 13.5),
+    ("Broadband 1 Gigabit fibre + phone (1 month)",     45.00,  85.00, 23.0),
+    ("Network maintenance fee",                          5.00,  12.00, 13.5),
+    ("PSO levy (Public Service Obligation)",             6.00,  18.00,  0.0),
+    ("Carbon tax",                                       4.50,  14.00,  0.0),
+)
+
+
+# ─── Bank statement (bank_statement template) ────────────────────────────────
+# IE bank statements: financial services VAT-EXEMPT (no VAT on transactions).
+# Format: list of debit/credit transactions with running balance.
+BANK_NAMES: tuple[str, ...] = (
+    "AIB", "Bank of Ireland", "Permanent TSB", "Revolut Bank UAB",
+    "Wise Payments Ltd", "N26 Bank AG (Ireland Branch)",
+)
+
+# (description-template, min_EUR, max_EUR, is_credit)
+BANK_TRANSACTIONS: tuple[tuple[str, float, float, bool], ...] = (
+    ("D/D ESB ELECTRIC IRELAND",         45.00, 280.00, False),
+    ("D/D BORD GÁIS ENERGY",             40.00, 180.00, False),
+    ("D/D EIR BROADBAND",                40.00,  80.00, False),
+    ("D/D VHI HEALTHCARE",              120.00, 380.00, False),
+    ("VISA TESCO IRELAND LIMERICK",      18.00, 220.00, False),
+    ("VISA DUNNES STORES SHANNON",       12.00, 180.00, False),
+    ("VISA AMAZON.IE",                   15.00, 380.00, False),
+    ("VISA APPLE.COM IRELAND",            9.99,  80.00, False),
+    ("VISA SHELL FORECOURT LIMERICK",    35.00, 110.00, False),
+    ("D/D STRIPE PAYMENTS EUROPE",       15.00,  85.00, False),
+    ("ATM CASH WITHDRAWAL",              50.00, 300.00, False),
+    ("SALARY CREDIT",                  2400.00, 6800.00, True),
+    ("STRIPE PAYOUT — owl studio",      450.00, 4200.00, True),
+    ("CUSTOMER PAYMENT — INV",          120.00, 2800.00, True),
+    ("INTEREST CREDIT",                   0.50,  18.00, True),
+    ("REFUND — STRIPE.COM",              12.00, 280.00, True),
+)
+
+
+# ─── Construction supplier (construction_supplier template) ──────────────────
+# IE builders' merchant pattern: Chadwicks / Heitons. Materials breakdown +
+# delivery note ref + RCT line. Materials = 13.5% (building reduced rate),
+# tools/sundries = 23%.
+CONSTRUCTION_ITEMS: tuple[tuple[str, float, float, float], ...] = (
+    # Materials @ 13.5%
+    ("Cement Portland 25kg bag",                 8.50,  14.00, 13.5),
+    ("Hollow concrete blocks 100mm (per block)", 1.20,   2.20, 13.5),
+    ("Hollow concrete blocks 150mm (per block)", 1.65,   2.85, 13.5),
+    ("Sand 25kg bag",                            4.50,   7.50, 13.5),
+    ("Aggregate 25kg bag",                       4.20,   7.00, 13.5),
+    ("Plasterboard 12.5mm 2400x1200mm",         14.00,  22.00, 13.5),
+    ("Insulation roll 100mm Knauf",             32.00,  58.00, 13.5),
+    ("Roof slate Welsh 500x250mm (per slate)",   3.20,   6.40, 13.5),
+    ("Steel reinforcement bar Y12 6m length",   18.00,  32.00, 13.5),
+    ("OSB board 18mm 2440x1220",                32.00,  52.00, 13.5),
+    # Tools/sundries @ 23%
+    ("Hi-vis safety vest XL",                   12.00,  22.00, 23.0),
+    ("Steel-toe work boots size 9",             65.00, 145.00, 23.0),
+    ("Tarpaulin 4m x 3m heavy-duty",            18.00,  35.00, 23.0),
+    ("Gaffer tape 50mm x 50m",                   8.00,  14.00, 23.0),
+)
+
+CONSTRUCTION_SUPPLIERS: tuple[str, ...] = (
+    "Chadwicks", "Heitons", "Brooks Building Supplies",
+    "Murdock Builders Merchants", "MFP Sales",
+)
+
+
+# ─── Credit note (credit_note template) ──────────────────────────────────────
+# Credit note = NEGATIVE invoice. References original invoice. Reasons:
+# return, defect, overcharge, cancellation. Same VAT structure but inverted.
+CREDIT_REASONS: tuple[str, ...] = (
+    "Goods returned in original condition",
+    "Defective product — refund issued",
+    "Pricing error on original invoice — overcharge corrected",
+    "Order cancellation — partial refund",
+    "Quality issue — credit applied",
+    "Damaged in transit — replacement plus credit",
+)
+
+
+# ─── Foreign-currency mixed-VAT (foreign_currency_mixed_vat template) ─────────
+# EUR + GBP cross-border with reverse-charge under EU intra-community supply rules.
+# Vendor in IE bills UK customer in GBP (with EUR conversion shown).
+# UK B2B services: 0% IE VAT, customer accounts via reverse-charge.
+FX_SERVICES: tuple[tuple[str, float, float], ...] = (
+    ("Software development — fixed-price (June)",      4500.00, 14000.00),
+    ("Cloud infrastructure (AWS Ireland passthrough)",  280.00,  1800.00),
+    ("Strategic consulting — half-day rate",           1200.00,  2400.00),
+    ("Custom integration — fixed-price",               2800.00,  9500.00),
+    ("Monthly retainer — design + dev",                2400.00,  6500.00),
+    ("Training workshop (per delegate)",                350.00,   850.00),
+)
+
+# EUR/GBP rate range — realistic 2026 figures
+FX_EUR_GBP_MIN, FX_EUR_GBP_MAX = 0.83, 0.89
+
+
+
 
 # Tradesman service descriptions — used by tradesman_rct template family.
 # Real-world pricing in EUR (2026 IE market rates; Codex-reviewed for plausibility).
@@ -998,6 +1132,348 @@ def build_mixed_rate_retailer(seed: int) -> dict[str, Any]:
     }
 
 
+# ─── Builder: professional_services (A4 letterhead, single-fee 23% VAT) ──────
+
+
+def build_professional_services(seed: int) -> dict[str, Any]:
+    """Professional services — accountant/architect/consultant single-fee
+    invoice. A4 letterhead, no line items per layout_slots (count 1,1),
+    single 23% VAT."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, PROF_FIRM_SUFFIXES, include_eircode=True)
+    issue_date = gen_recent_date(rng)
+    invoice_number = gen_invoice_number(rng, issue_date)
+
+    desc, p_min, p_max = rng.choice(PROF_SERVICES)
+    fee = round(rng.uniform(p_min, p_max), 2)
+    vat_amount = round(fee * 0.23, 2)
+    total = round(fee + vat_amount, 2)
+    line_items = [LineItem(
+        description=desc, quantity=1.0, unit_price=fee, vat_rate_pct=23.0,
+        vat_letter_code=None, amount_net=fee, amount_vat=vat_amount, amount_gross=total,
+    )]
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": (issue_date + timedelta(days=rng.choice([14,21,30]))).strftime("%d/%m/%Y") if rng.random() < 0.70 else "",
+        "po_reference": f"PO/{rng.randint(1000, 99999)}" if rng.random() < 0.30 else "",
+        "service_description": desc,
+        "line_items": [li.to_dict() for li in line_items],
+        "subtotal": fee,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: utility_bill (A4, multi-period, billing_period + usage_table) ──
+
+
+def build_utility_bill(seed: int) -> dict[str, Any]:
+    """Utility bill — ESB / Bord Gáis / Eir / Virgin Media style. A4 with
+    billing period + usage line items. Multi-VAT (electricity 13.5%,
+    broadband 23%, levies 0%). 2-6 line items per layout_slots.utility_bill."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor_name = rng.choice(UTILITY_PROVIDERS)
+    vendor = _gen_vendor_identity(rng, faker, ("Ireland",), include_eircode=True)
+    vendor["vendor_name"] = vendor_name
+    issue_date = gen_recent_date(rng)
+    invoice_number = f"BIL-{issue_date.strftime('%Y%m%d')}-{rng.randint(10000, 99999)}"
+    period_end = issue_date - timedelta(days=rng.randint(1, 5))
+    period_start = period_end - timedelta(days=rng.choice([30, 60, 62, 90]))
+    billing_period = f"{period_start.strftime('%d/%m/%Y')} - {period_end.strftime('%d/%m/%Y')}"
+
+    n_items = rng.randint(2, 6)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max, vat_pct = rng.choice(UTILITY_LINE_ITEMS)
+        qty = 1.0
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_net = unit_price
+        amount_vat = round(amount_net * (vat_pct / 100.0), 2)
+        amount_gross = round(amount_net + amount_vat, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=vat_pct, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    subtotal = round(sum(li.amount_net for li in line_items), 2)
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)
+    total = round(subtotal + vat_amount, 2)
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": (issue_date + timedelta(days=14)).strftime("%d/%m/%Y"),
+        "po_reference": "",
+        "billing_period": billing_period,
+        "line_items": [li.to_dict() for li in line_items],
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: bank_statement (A4 transaction list, NO VAT) ──────────────────
+
+
+def build_bank_statement(seed: int) -> dict[str, Any]:
+    """Bank statement — financial-services VAT-EXEMPT, NO VAT. List of
+    debit/credit transactions with running balance. 8-40 transactions per
+    layout_slots.bank_statement."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, ("Bank Account Statement",), include_eircode=True)
+    vendor["vendor_name"] = rng.choice(BANK_NAMES)
+    issue_date = gen_recent_date(rng)
+    invoice_number = f"STMT-{issue_date.strftime('%Y%m')}-{rng.randint(100000, 999999)}"
+    period_end = issue_date - timedelta(days=rng.randint(1, 3))
+    period_start = period_end - timedelta(days=30)
+    billing_period = f"{period_start.strftime('%d/%m/%Y')} - {period_end.strftime('%d/%m/%Y')}"
+
+    n_txns = rng.randint(8, 40)
+    opening_balance = round(rng.uniform(500.0, 12000.0), 2)
+    txns: list[dict[str, Any]] = []
+    line_items: list[LineItem] = []
+    running_balance = opening_balance
+    for i in range(n_txns):
+        desc_tmpl, p_min, p_max, is_credit = rng.choice(BANK_TRANSACTIONS)
+        amt = round(rng.uniform(p_min, p_max), 2)
+        signed = amt if is_credit else -amt
+        running_balance = round(running_balance + signed, 2)
+        txn_date = period_start + timedelta(days=int((period_end - period_start).days * (i / n_txns)))
+        txns.append({
+            "date": txn_date.strftime("%d/%m/%Y"),
+            "description": desc_tmpl,
+            "debit": "" if is_credit else f"{amt:.2f}",
+            "credit": f"{amt:.2f}" if is_credit else "",
+            "balance": f"{running_balance:.2f}",
+        })
+        # GT line items track each transaction (no VAT — financial exempt)
+        line_items.append(LineItem(
+            description=desc_tmpl, quantity=1.0, unit_price=amt,
+            vat_rate_pct=0.0, vat_letter_code="EXEMPT",
+            amount_net=amt, amount_vat=0.0, amount_gross=amt,
+        ))
+
+    closing_balance = running_balance
+    # For a bank statement, the "total" = closing balance (not a sum)
+    # Subtotal = closing balance for ground-truth purposes; VAT = 0
+    subtotal = closing_balance if closing_balance >= 0 else 0.0
+    vat_amount = 0.0
+    total = subtotal
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": "",
+        "po_reference": "",
+        "billing_period": billing_period,
+        "transactions": txns,
+        "opening_balance": opening_balance,
+        "closing_balance": closing_balance,
+        "balance_total": closing_balance,
+        "line_items": [li.to_dict() for li in line_items],
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: construction_supplier (A4 materials breakdown + RCT line) ──────
+
+
+def build_construction_supplier(seed: int) -> dict[str, Any]:
+    """Construction supplier — Chadwicks/Heitons/Brooks builders' merchant
+    pattern. A4, materials @ 13.5% + tools @ 23%. Has delivery_note_ref.
+    3-10 line items per layout_slots.construction_supplier."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, ("Limited",), include_eircode=True)
+    vendor["vendor_name"] = rng.choice(CONSTRUCTION_SUPPLIERS) + (
+        " " + rng.choice(["LIMERICK", "CORK", "GALWAY", "DUBLIN", "WATERFORD"])
+        if rng.random() < 0.5 else ""
+    )
+    issue_date = gen_recent_date(rng)
+    invoice_number = gen_invoice_number(rng, issue_date)
+    delivery_note_ref = f"DN-{issue_date.strftime('%Y%m%d')}-{rng.randint(100, 999)}"
+
+    n_items = rng.randint(3, 10)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max, vat_pct = rng.choice(CONSTRUCTION_ITEMS)
+        qty = float(rng.randint(1, 50))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_net = round(qty * unit_price, 2)
+        amount_vat = round(amount_net * (vat_pct / 100.0), 2)
+        amount_gross = round(amount_net + amount_vat, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=vat_pct, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    subtotal = round(sum(li.amount_net for li in line_items), 2)
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)
+    total = round(subtotal + vat_amount, 2)
+
+    # VAT breakdown for the materials_table panel
+    vat_breakdown: dict[float, dict[str, float]] = {}
+    for li in line_items:
+        b = vat_breakdown.setdefault(li.vat_rate_pct, {"net": 0.0, "vat": 0.0})
+        b["net"] = round(b["net"] + li.amount_net, 2)
+        b["vat"] = round(b["vat"] + li.amount_vat, 2)
+    materials_table = [
+        {"rate_pct": rate, "net": data["net"], "vat": data["vat"]}
+        for rate, data in sorted(vat_breakdown.items())
+    ]
+
+    return {
+        **vendor,
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": (issue_date + timedelta(days=30)).strftime("%d/%m/%Y") if rng.random() < 0.65 else "",
+        "po_reference": f"PO/{rng.randint(1000, 99999)}" if rng.random() < 0.50 else "",
+        "delivery_note_ref": delivery_note_ref,
+        "line_items": [li.to_dict() for li in line_items],
+        "materials_table": materials_table,
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: credit_note (A4, NEGATIVE amounts, references original) ─────────
+
+
+def build_credit_note(seed: int) -> dict[str, Any]:
+    """Credit note — NEGATIVE invoice referencing an original invoice.
+    Same VAT structure but amounts negative. 1-4 line items per
+    layout_slots.credit_note."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, ("Ltd", "Limited"), include_eircode=True)
+    issue_date = gen_recent_date(rng)
+    credit_note_number = f"CN-{issue_date.strftime('%Y%m%d')}-{rng.randint(100, 999)}"
+    # Reference an "original" invoice from a few days/weeks ago
+    original_invoice_date = issue_date - timedelta(days=rng.randint(7, 60))
+    references_invoice = f"INV-{original_invoice_date.strftime('%Y%m%d')}-{rng.randint(1, 999):03d}"
+    credit_reason = rng.choice(CREDIT_REASONS)
+
+    n_items = rng.randint(1, 4)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        # Use professional services pool for variety
+        desc, p_min, p_max = rng.choice(TRADESMAN_SERVICES)
+        qty = float(rng.randint(1, 3))
+        unit_price = round(rng.uniform(p_min, p_max), 2)
+        amount_net = round(qty * unit_price, 2)
+        # Credit notes are NEGATIVE
+        amount_net = -amount_net
+        amount_vat = round(amount_net * 0.23, 2)
+        amount_gross = round(amount_net + amount_vat, 2)
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=23.0, vat_letter_code=None,
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    subtotal = round(sum(li.amount_net for li in line_items), 2)  # negative
+    vat_amount = round(sum(li.amount_vat for li in line_items), 2)  # negative
+    total = round(subtotal + vat_amount, 2)  # negative
+
+    return {
+        **vendor,
+        "invoice_number": credit_note_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": "",
+        "po_reference": "",
+        "references_invoice": references_invoice,
+        "credit_reason": credit_reason,
+        "line_items": [li.to_dict() for li in line_items],
+        "subtotal": subtotal,
+        "vat": vat_amount,
+        "total": total,
+    }
+
+
+# ─── Builder: foreign_currency_mixed_vat (EUR + GBP + reverse-charge) ─────────
+
+
+def build_foreign_currency_mixed_vat(seed: int) -> dict[str, Any]:
+    """Foreign-currency invoice — IE vendor billing UK B2B customer in GBP
+    with EUR conversion shown. Reverse-charge clause applies (UK customer
+    accounts for VAT). 2-6 line items per layout_slots.foreign_currency_mixed_vat.
+    GT total = EUR amount (the IE-side reporting currency)."""
+    rng = random.Random(seed)
+    faker = _faker(seed)
+
+    vendor = _gen_vendor_identity(rng, faker, ("Ltd", "Limited"), include_eircode=True)
+    issue_date = gen_recent_date(rng)
+    invoice_number = gen_invoice_number(rng, issue_date)
+    eur_to_gbp = round(rng.uniform(FX_EUR_GBP_MIN, FX_EUR_GBP_MAX), 4)
+
+    n_items = rng.randint(2, 6)
+    line_items: list[LineItem] = []
+    for _ in range(n_items):
+        desc, p_min, p_max = rng.choice(FX_SERVICES)
+        qty = float(rng.randint(1, 2))
+        unit_price = round(rng.uniform(p_min, p_max), 2)  # EUR
+        amount_net = round(qty * unit_price, 2)
+        # Reverse-charge: 0% IE VAT (UK customer accounts via reverse-charge)
+        amount_vat = 0.0
+        amount_gross = amount_net
+        line_items.append(LineItem(
+            description=desc, quantity=qty, unit_price=unit_price,
+            vat_rate_pct=0.0, vat_letter_code="REVERSE-CHARGE",
+            amount_net=amount_net, amount_vat=amount_vat, amount_gross=amount_gross,
+        ))
+
+    subtotal_eur = round(sum(li.amount_net for li in line_items), 2)
+    vat_amount = 0.0
+    total_eur = subtotal_eur
+    total_gbp = round(total_eur * eur_to_gbp, 2)
+
+    currency_breakdown = {
+        "eur_to_gbp_rate": eur_to_gbp,
+        "subtotal_eur": subtotal_eur,
+        "subtotal_gbp": round(subtotal_eur * eur_to_gbp, 2),
+        "total_eur": total_eur,
+        "total_gbp": total_gbp,
+    }
+
+    return {
+        **vendor,
+        "vendor_country": "IE",  # vendor is IE; customer side is UK
+        "invoice_number": invoice_number,
+        "invoice_date": issue_date.strftime("%d/%m/%Y"),
+        "due_date": (issue_date + timedelta(days=30)).strftime("%d/%m/%Y"),
+        "po_reference": f"PO/{rng.randint(1000, 99999)}" if rng.random() < 0.40 else "",
+        "line_items": [li.to_dict() for li in line_items],
+        "currency_breakdown": currency_breakdown,
+        "reverse_charge_clause": (
+            "Reverse-charge applies under the EU intra-community supply rules. "
+            "VAT is not charged on this invoice; the recipient (UK B2B customer) "
+            "accounts for VAT under the UK domestic reverse-charge regime per "
+            "VAT Notice 735."
+        ),
+        "subtotal": subtotal_eur,
+        "vat": vat_amount,
+        "total": total_eur,
+    }
+
+
 # ─── Builder registry ────────────────────────────────────────────────────────
 
 BUILDERS: dict[str, Any] = {
@@ -1011,6 +1487,12 @@ BUILDERS: dict[str, Any] = {
     "photographed_receipt":        build_photographed_receipt,
     "handwritten_override":        build_handwritten_override,
     "mixed_rate_retailer":         build_mixed_rate_retailer,
+    "professional_services":       build_professional_services,
+    "utility_bill":                build_utility_bill,
+    "bank_statement":              build_bank_statement,
+    "construction_supplier":       build_construction_supplier,
+    "credit_note":                 build_credit_note,
+    "foreign_currency_mixed_vat":  build_foreign_currency_mixed_vat,
 }
 
 

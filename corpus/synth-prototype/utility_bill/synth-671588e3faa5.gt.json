@@ -1,0 +1,109 @@
+{
+  "doc_id": "synth-671588e3faa5",
+  "source_path": "corpus/synth-prototype/utility_bill/synth-671588e3faa5.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "utility_bill",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "ESB Electric Ireland",
+    "total": 365.25,
+    "vat": 42.28,
+    "date": "30/04/2026",
+    "subtotal": 322.97,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Electricity usage (kWh) — night rate",
+      "quantity": 1.0,
+      "unit_price": 43.03,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 43.03,
+      "amount_vat": 5.81,
+      "amount_gross": 48.84
+    },
+    {
+      "description": "Network maintenance fee",
+      "quantity": 1.0,
+      "unit_price": 6.98,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 6.98,
+      "amount_vat": 0.94,
+      "amount_gross": 7.92
+    },
+    {
+      "description": "Carbon tax",
+      "quantity": 1.0,
+      "unit_price": 9.72,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": null,
+      "amount_net": 9.72,
+      "amount_vat": 0.0,
+      "amount_gross": 9.72
+    },
+    {
+      "description": "Electricity usage (kWh) — day rate",
+      "quantity": 1.0,
+      "unit_price": 189.29,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 189.29,
+      "amount_vat": 25.55,
+      "amount_gross": 214.84
+    },
+    {
+      "description": "Standing charge — gas (62 days)",
+      "quantity": 1.0,
+      "unit_price": 39.96,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 39.96,
+      "amount_vat": 5.39,
+      "amount_gross": 45.35
+    },
+    {
+      "description": "Standing charge — gas (62 days)",
+      "quantity": 1.0,
+      "unit_price": 33.99,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 33.99,
+      "amount_vat": 4.59,
+      "amount_gross": 38.58
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "ESB Electric Ireland",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "R95 RTN3",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 877 108 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "BIL-20260430-65819",
+    "invoice_date": "30/04/2026",
+    "due_date": "14/05/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "b9513542fededae9248c6fe4cf907061849459d082871b9abec36ca114f1be43",
+    "file_size_bytes": 19072,
+    "ingest_timestamp_utc": "2026-05-04T17:53:01Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

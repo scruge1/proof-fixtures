@@ -1,0 +1,129 @@
+{
+  "doc_id": "synth-6fdc2a078744",
+  "source_path": "corpus/synth-prototype/bank_statement/synth-6fdc2a078744.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "bank_statement",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "AIB",
+    "total": 5003.53,
+    "vat": 0.0,
+    "date": "18/02/2026",
+    "subtotal": 5003.53,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "REFUND — STRIPE.COM",
+      "quantity": 1.0,
+      "unit_price": 240.07,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 240.07,
+      "amount_vat": 0.0,
+      "amount_gross": 240.07
+    },
+    {
+      "description": "D/D VHI HEALTHCARE",
+      "quantity": 1.0,
+      "unit_price": 317.15,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 317.15,
+      "amount_vat": 0.0,
+      "amount_gross": 317.15
+    },
+    {
+      "description": "VISA TESCO IRELAND LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 167.91,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 167.91,
+      "amount_vat": 0.0,
+      "amount_gross": 167.91
+    },
+    {
+      "description": "INTEREST CREDIT",
+      "quantity": 1.0,
+      "unit_price": 15.07,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 15.07,
+      "amount_vat": 0.0,
+      "amount_gross": 15.07
+    },
+    {
+      "description": "VISA APPLE.COM IRELAND",
+      "quantity": 1.0,
+      "unit_price": 25.62,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 25.62,
+      "amount_vat": 0.0,
+      "amount_gross": 25.62
+    },
+    {
+      "description": "VISA AMAZON.IE",
+      "quantity": 1.0,
+      "unit_price": 107.69,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 107.69,
+      "amount_vat": 0.0,
+      "amount_gross": 107.69
+    },
+    {
+      "description": "ATM CASH WITHDRAWAL",
+      "quantity": 1.0,
+      "unit_price": 287.9,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 287.9,
+      "amount_vat": 0.0,
+      "amount_gross": 287.9
+    },
+    {
+      "description": "VISA DUNNES STORES SHANNON",
+      "quantity": 1.0,
+      "unit_price": 139.08,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 139.08,
+      "amount_vat": 0.0,
+      "amount_gross": 139.08
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "AIB",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "F91 35MC",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 817 724 7478",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5315399A",
+    "vendor_iban": "IE34IPBS36614760918773",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "STMT-202602-570292",
+    "invoice_date": "18/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "49bb93081ffea878a18928f634a4a063bf31de6b1a20fd67757cd9444db2b015",
+    "file_size_bytes": 18942,
+    "ingest_timestamp_utc": "2026-05-04T17:53:05Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

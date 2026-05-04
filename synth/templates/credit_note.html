@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Credit Note {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="credit_note.css">
+</head>
+<body>
+<header class="vendor">
+    <div class="vendor-block">
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div data-slot="vendor_address_line1">{{ vendor_address_line1 }}</div>
+        {% if vendor_address_line2 %}<div data-slot="vendor_address_line2">{{ vendor_address_line2 }}</div>{% endif %}
+        <div data-slot="vendor_city">{{ vendor_city }}{% if vendor_eircode %}, <span data-slot="vendor_eircode">{{ vendor_eircode }}</span>{% endif %}</div>
+        <div data-slot="vendor_phone">Tel: {{ vendor_phone }}</div>
+        <div data-slot="vendor_email">{{ vendor_email }}</div>
+        <div class="vat-num">VAT No: <span data-slot="vendor_vat_number">{{ vendor_vat_number }}</span></div>
+    </div>
+    <div class="invoice-meta">
+        <div class="cn-label">CREDIT NOTE</div>
+        <div class="meta-row"><span class="label">CN No</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span class="label">Date</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+    </div>
+</header>
+
+<section class="ref-banner">
+    <div class="ref-row"><strong>References Original Invoice:</strong> <span data-slot="references_invoice">{{ references_invoice }}</span></div>
+    <div class="ref-row"><strong>Reason:</strong> <span data-slot="credit_reason">{{ credit_reason }}</span></div>
+</section>
+
+<table class="line-items">
+    <thead>
+        <tr>
+            <th class="col-desc">Description</th>
+            <th class="col-qty">Qty</th>
+            <th class="col-price">Unit (€)</th>
+            <th class="col-net">Net (€)</th>
+            <th class="col-vat">VAT (€)</th>
+            <th class="col-amt">Total (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in line_items %}
+        <tr class="negative">
+            <td class="col-desc" data-slot="description">{{ item.description }}</td>
+            <td class="col-qty" data-slot="quantity">{{ "%g"|format(item.quantity) }}</td>
+            <td class="col-price" data-slot="unit_price">{{ "%.2f"|format(item.unit_price) }}</td>
+            <td class="col-net" data-slot="amount_net">{{ "%.2f"|format(item.amount_net) }}</td>
+            <td class="col-vat" data-slot="amount_vat">{{ "%.2f"|format(item.amount_vat) }}</td>
+            <td class="col-amt" data-slot="amount_gross">{{ "%.2f"|format(item.amount_gross) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table class="totals">
+    <tr>
+        <td class="lbl">Subtotal (Net)</td>
+        <td class="amt negative" data-slot="subtotal_amount">€{{ "%.2f"|format(subtotal) }}</td>
+    </tr>
+    <tr>
+        <td class="lbl">VAT @ 23%</td>
+        <td class="amt negative" data-slot="vat">€{{ "%.2f"|format(vat) }}</td>
+    </tr>
+    <tr class="grand-total">
+        <td class="lbl"><strong>TOTAL CREDIT</strong></td>
+        <td class="amt negative"><strong data-slot="total">€{{ "%.2f"|format(total) }}</strong></td>
+    </tr>
+</table>
+
+<footer class="payment-details">
+    <div>Credit will be applied against your account or refunded to:</div>
+    <div data-slot="vendor_iban">IBAN: {{ vendor_iban }}{% if vendor_bic %} &nbsp;|&nbsp; BIC: <span data-slot="vendor_bic">{{ vendor_bic }}</span>{% endif %}</div>
+    <div class="footer-note">Goods/services supplied in the State of Ireland ({{ vendor_country }}). Credit note issued under VATCA s.66 (adjustment of VAT). Original-form retention per VATCA s.84(3).</div>
+</footer>
+</body>
+</html>

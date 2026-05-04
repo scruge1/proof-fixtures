@@ -1,0 +1,89 @@
+{
+  "doc_id": "synth-733c6bcb7428",
+  "source_path": "corpus/synth-prototype/construction_supplier/synth-733c6bcb7428.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "construction_supplier",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Murdock Builders Merchants",
+    "total": 3211.29,
+    "vat": 397.6,
+    "date": "24/02/2026",
+    "subtotal": 2813.69,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Plasterboard 12.5mm 2400x1200mm",
+      "quantity": 31.0,
+      "unit_price": 21.97,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 681.07,
+      "amount_vat": 91.94,
+      "amount_gross": 773.01
+    },
+    {
+      "description": "Insulation roll 100mm Knauf",
+      "quantity": 19.0,
+      "unit_price": 49.24,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 935.56,
+      "amount_vat": 126.3,
+      "amount_gross": 1061.86
+    },
+    {
+      "description": "Steel reinforcement bar Y12 6m length",
+      "quantity": 36.0,
+      "unit_price": 28.06,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 1010.16,
+      "amount_vat": 136.37,
+      "amount_gross": 1146.53
+    },
+    {
+      "description": "Gaffer tape 50mm x 50m",
+      "quantity": 14.0,
+      "unit_price": 13.35,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 186.9,
+      "amount_vat": 42.99,
+      "amount_gross": 229.89
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Murdock Builders Merchants",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H91 TN35",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 870 667 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260224-913",
+    "invoice_date": "24/02/2026",
+    "due_date": "26/03/2026",
+    "po_reference": "PO/57079"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "d572d2145ea7fb3a673eeeceb2545f1d3a44302cb065a2b93c530fa24131bc81",
+    "file_size_bytes": 20362,
+    "ingest_timestamp_utc": "2026-05-04T17:53:14Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

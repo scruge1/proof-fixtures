@@ -1,0 +1,89 @@
+{
+  "doc_id": "synth-5822803589e7",
+  "source_path": "corpus/synth-prototype/credit_note/synth-5822803589e7.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "credit_note",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Mulqueen Limited",
+    "total": -1541.3,
+    "vat": -288.21,
+    "date": "12/02/2026",
+    "subtotal": -1253.09,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Plumbing — replace bathroom tap set",
+      "quantity": 2.0,
+      "unit_price": 350.2,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": -700.4,
+      "amount_vat": -161.09,
+      "amount_gross": -861.49
+    },
+    {
+      "description": "Electrical — fault diagnostic + repair",
+      "quantity": 1.0,
+      "unit_price": 133.98,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": -133.98,
+      "amount_vat": -30.82,
+      "amount_gross": -164.8
+    },
+    {
+      "description": "Plumbing — leaking pipe repair",
+      "quantity": 2.0,
+      "unit_price": 196.59,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": -393.18,
+      "amount_vat": -90.43,
+      "amount_gross": -483.61
+    },
+    {
+      "description": "Carpentry — skirting board replacement (per metre)",
+      "quantity": 1.0,
+      "unit_price": 25.53,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": -25.53,
+      "amount_vat": -5.87,
+      "amount_gross": -31.4
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Mulqueen Limited",
+    "vendor_address_line1": "30 O'Murnaghan Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Sligo",
+    "vendor_eircode": "F91 35MC",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 817 724 7478",
+    "vendor_email": "nicholas15@sheane.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5315399A",
+    "vendor_iban": "IE34IPBS36614760918773",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "CN-20260212-222",
+    "invoice_date": "12/02/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "279645d8c95d965a376c1c832ba74154450526cddfc89be022a9e19a4832778c",
+    "file_size_bytes": 20202,
+    "ingest_timestamp_utc": "2026-05-04T17:53:18Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42000,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

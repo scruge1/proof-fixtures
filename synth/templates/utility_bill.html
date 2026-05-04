@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bill {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="utility_bill.css">
+</head>
+<body>
+<header class="provider">
+    <div class="provider-block">
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div data-slot="vendor_address_line1">{{ vendor_address_line1 }}</div>
+        <div data-slot="vendor_city">{{ vendor_city }}{% if vendor_eircode %}, <span data-slot="vendor_eircode">{{ vendor_eircode }}</span>{% endif %}</div>
+        <div data-slot="vendor_phone">{{ vendor_phone }}</div>
+        <div class="vat-num">VAT No: <span data-slot="vendor_vat_number">{{ vendor_vat_number }}</span></div>
+    </div>
+    <div class="bill-meta">
+        <div class="bill-label">YOUR BILL</div>
+        <div class="meta-row"><span class="label">Bill No</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span class="label">Issued</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+        <div class="meta-row"><span class="label">Due</span><span data-slot="due_date">{{ due_date }}</span></div>
+    </div>
+</header>
+
+<section class="period-banner">
+    <strong>Billing Period:</strong> <span data-slot="billing_period">{{ billing_period }}</span>
+</section>
+
+<table class="line-items" data-slot="usage_table">
+    <thead>
+        <tr>
+            <th class="col-desc">Charge / Usage</th>
+            <th class="col-vat">VAT %</th>
+            <th class="col-net">Net (€)</th>
+            <th class="col-amt">Total (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in line_items %}
+        <tr>
+            <td class="col-desc" data-slot="description">{{ item.description }}</td>
+            <td class="col-vat" data-slot="vat_rate_pct">{{ "%g"|format(item.vat_rate_pct) }}%</td>
+            <td class="col-net" data-slot="amount_net">{{ "%.2f"|format(item.amount_net) }}</td>
+            <td class="col-amt" data-slot="amount_gross">{{ "%.2f"|format(item.amount_gross) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table class="totals">
+    <tr>
+        <td class="lbl">Subtotal (Net)</td>
+        <td class="amt" data-slot="subtotal_amount">€{{ "%.2f"|format(subtotal) }}</td>
+    </tr>
+    <tr>
+        <td class="lbl">VAT (mixed rates)</td>
+        <td class="amt" data-slot="vat">€{{ "%.2f"|format(vat) }}</td>
+    </tr>
+    <tr class="grand-total">
+        <td class="lbl"><strong>TOTAL DUE</strong></td>
+        <td class="amt"><strong data-slot="total">€{{ "%.2f"|format(total) }}</strong></td>
+    </tr>
+</table>
+
+<footer class="payment-details">
+    <div>Pay by direct debit, online (web portal), or EFT:</div>
+    <div data-slot="vendor_iban">IBAN: {{ vendor_iban }}{% if vendor_bic %} &nbsp;|&nbsp; BIC: <span data-slot="vendor_bic">{{ vendor_bic }}</span>{% endif %}</div>
+    <div class="footer-note">{{ vendor_country }} &middot; Electricity / gas 13.5% reduced VAT; broadband 23%; PSO levy + carbon tax 0%.</div>
+</footer>
+</body>
+</html>

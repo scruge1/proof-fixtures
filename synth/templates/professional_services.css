@@ -1,0 +1,123 @@
+/* professional_services.css — A4 portrait IE professional-services fee note. */
+
+@page { size: A4 portrait; margin: 18mm 18mm 20mm 18mm; }
+
+body {
+    font-family: "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+header.firm {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2.5px solid #1a3a5c;
+    padding-bottom: 6mm;
+    margin-bottom: 5mm;
+}
+
+.firm-block { flex: 1.4; }
+
+.firm-block h1 {
+    font-size: 17pt;
+    color: #1a3a5c;
+    margin: 0 0 2mm 0;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.firm-block div { margin: 0.5mm 0; }
+
+.vat-num {
+    margin-top: 2mm;
+    font-size: 9pt;
+    color: #555;
+}
+
+.invoice-meta { flex: 0.9; text-align: right; font-size: 9.5pt; }
+
+.invoice-label {
+    font-size: 13pt;
+    color: #1a3a5c;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 3mm;
+}
+
+.invoice-meta .meta-row { margin: 1mm 0; }
+
+.invoice-meta .label {
+    color: #666;
+    margin-right: 4mm;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.5px;
+}
+
+section.service-block { margin-bottom: 6mm; }
+
+section.service-block h2 {
+    font-size: 11pt;
+    color: #1a3a5c;
+    margin: 0 0 3mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: 0.5px solid #d0d0d0;
+    padding-bottom: 1.5mm;
+}
+
+.service-row {
+    margin: 2mm 0 5mm 0;
+    font-size: 11pt;
+    padding: 2.5mm 4mm;
+    background: #f5f8fb;
+    border: 0.5px solid #c5d2dd;
+}
+
+.service-fee {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5mm 4mm;
+    font-size: 10.5pt;
+    border-bottom: 0.5px solid #e0e0e0;
+}
+
+table.totals {
+    width: 75mm;
+    margin-left: auto;
+    border-collapse: collapse;
+    margin-top: 4mm;
+}
+
+table.totals td { padding: 1.5mm 3mm; font-size: 10pt; }
+table.totals .lbl { text-align: right; color: #444; }
+table.totals .amt {
+    text-align: right;
+    width: 30mm;
+    font-variant-numeric: tabular-nums;
+}
+
+table.totals .grand-total td {
+    border-top: 1.5px solid #1a3a5c;
+    padding-top: 2.5mm;
+    font-size: 11.5pt;
+    color: #1a3a5c;
+}
+
+footer.payment {
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 0.5px solid #d0d0d0;
+    font-size: 9pt;
+    color: #444;
+}
+
+footer.payment div { margin: 0.8mm 0; }
+
+.vatca-attest {
+    margin-top: 3mm !important;
+    color: #888;
+    font-size: 8pt;
+    font-style: italic;
+}

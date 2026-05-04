@@ -1,0 +1,69 @@
+{
+  "doc_id": "synth-38079594443b",
+  "source_path": "corpus/synth-prototype/foreign_currency_mixed_vat/synth-38079594443b.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "foreign_currency_mixed_vat",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Beggan Ltd",
+    "total": 6149.2,
+    "vat": 0.0,
+    "date": "01/04/2026",
+    "subtotal": 6149.2,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Strategic consulting — half-day rate",
+      "quantity": 1.0,
+      "unit_price": 2042.24,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 2042.24,
+      "amount_vat": 0.0,
+      "amount_gross": 2042.24
+    },
+    {
+      "description": "Custom integration — fixed-price",
+      "quantity": 1.0,
+      "unit_price": 4106.96,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 4106.96,
+      "amount_vat": 0.0,
+      "amount_gross": 4106.96
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Beggan Ltd",
+    "vendor_address_line1": "25 Mulroy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Ennis",
+    "vendor_eircode": "V95 JVL1",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 807 401 4234",
+    "vendor_email": "mlinehan@mannix-mcentaggart.info",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5557217Q",
+    "vendor_iban": "IE14NTSB39267598240440",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260401-067",
+    "invoice_date": "01/04/2026",
+    "due_date": "01/05/2026",
+    "po_reference": "PO/37096"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "1d6a83cd606f08640acc70b4ae227f54525151c7819b257e786208b20d384828",
+    "file_size_bytes": 21295,
+    "ingest_timestamp_utc": "2026-05-04T17:53:26Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42004,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

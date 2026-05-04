@@ -1,0 +1,69 @@
+{
+  "doc_id": "synth-5e11fee59d05",
+  "source_path": "corpus/synth-prototype/foreign_currency_mixed_vat/synth-5e11fee59d05.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "foreign_currency_mixed_vat",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Grahams Ltd",
+    "total": 8249.31,
+    "vat": 0.0,
+    "date": "06/03/2026",
+    "subtotal": 8249.31,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Custom integration — fixed-price",
+      "quantity": 1.0,
+      "unit_price": 5806.35,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 5806.35,
+      "amount_vat": 0.0,
+      "amount_gross": 5806.35
+    },
+    {
+      "description": "Cloud infrastructure (AWS Ireland passthrough)",
+      "quantity": 2.0,
+      "unit_price": 1221.48,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 2442.96,
+      "amount_vat": 0.0,
+      "amount_gross": 2442.96
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Grahams Ltd",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 T3XA",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 816 167 2140",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5318360KY",
+    "vendor_iban": "IE76AIBK71534183127508",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260306-764",
+    "invoice_date": "06/03/2026",
+    "due_date": "05/04/2026",
+    "po_reference": "PO/33216"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "892de20ddf47bdd88bb3052fe9c3b5c6d5a986cb472696121799f551d89e6051",
+    "file_size_bytes": 21319,
+    "ingest_timestamp_utc": "2026-05-04T17:53:25Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

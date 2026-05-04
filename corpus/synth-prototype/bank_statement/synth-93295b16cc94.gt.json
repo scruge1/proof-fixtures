@@ -1,0 +1,229 @@
+{
+  "doc_id": "synth-93295b16cc94",
+  "source_path": "corpus/synth-prototype/bank_statement/synth-93295b16cc94.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "bank_statement",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "N26 Bank AG (Ireland Branch)",
+    "total": 12602.63,
+    "vat": 0.0,
+    "date": "29/03/2026",
+    "subtotal": 12602.63,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "D/D EIR BROADBAND",
+      "quantity": 1.0,
+      "unit_price": 54.94,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 54.94,
+      "amount_vat": 0.0,
+      "amount_gross": 54.94
+    },
+    {
+      "description": "STRIPE PAYOUT — owl studio",
+      "quantity": 1.0,
+      "unit_price": 1512.69,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 1512.69,
+      "amount_vat": 0.0,
+      "amount_gross": 1512.69
+    },
+    {
+      "description": "D/D BORD GÁIS ENERGY",
+      "quantity": 1.0,
+      "unit_price": 155.43,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 155.43,
+      "amount_vat": 0.0,
+      "amount_gross": 155.43
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 99.06,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 99.06,
+      "amount_vat": 0.0,
+      "amount_gross": 99.06
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 67.09,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 67.09,
+      "amount_vat": 0.0,
+      "amount_gross": 67.09
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 109.51,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 109.51,
+      "amount_vat": 0.0,
+      "amount_gross": 109.51
+    },
+    {
+      "description": "STRIPE PAYOUT — owl studio",
+      "quantity": 1.0,
+      "unit_price": 1001.24,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 1001.24,
+      "amount_vat": 0.0,
+      "amount_gross": 1001.24
+    },
+    {
+      "description": "D/D EIR BROADBAND",
+      "quantity": 1.0,
+      "unit_price": 64.14,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 64.14,
+      "amount_vat": 0.0,
+      "amount_gross": 64.14
+    },
+    {
+      "description": "INTEREST CREDIT",
+      "quantity": 1.0,
+      "unit_price": 8.53,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 8.53,
+      "amount_vat": 0.0,
+      "amount_gross": 8.53
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 61.02,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 61.02,
+      "amount_vat": 0.0,
+      "amount_gross": 61.02
+    },
+    {
+      "description": "INTEREST CREDIT",
+      "quantity": 1.0,
+      "unit_price": 2.67,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 2.67,
+      "amount_vat": 0.0,
+      "amount_gross": 2.67
+    },
+    {
+      "description": "VISA AMAZON.IE",
+      "quantity": 1.0,
+      "unit_price": 21.24,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 21.24,
+      "amount_vat": 0.0,
+      "amount_gross": 21.24
+    },
+    {
+      "description": "VISA APPLE.COM IRELAND",
+      "quantity": 1.0,
+      "unit_price": 13.52,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 13.52,
+      "amount_vat": 0.0,
+      "amount_gross": 13.52
+    },
+    {
+      "description": "D/D BORD GÁIS ENERGY",
+      "quantity": 1.0,
+      "unit_price": 108.93,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 108.93,
+      "amount_vat": 0.0,
+      "amount_gross": 108.93
+    },
+    {
+      "description": "REFUND — STRIPE.COM",
+      "quantity": 1.0,
+      "unit_price": 225.48,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 225.48,
+      "amount_vat": 0.0,
+      "amount_gross": 225.48
+    },
+    {
+      "description": "VISA DUNNES STORES SHANNON",
+      "quantity": 1.0,
+      "unit_price": 88.28,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 88.28,
+      "amount_vat": 0.0,
+      "amount_gross": 88.28
+    },
+    {
+      "description": "INTEREST CREDIT",
+      "quantity": 1.0,
+      "unit_price": 8.24,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 8.24,
+      "amount_vat": 0.0,
+      "amount_gross": 8.24
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 58.61,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 58.61,
+      "amount_vat": 0.0,
+      "amount_gross": 58.61
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "N26 Bank AG (Ireland Branch)",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H91 TN35",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 870 667 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "STMT-202603-816575",
+    "invoice_date": "29/03/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "5751f31ba455568b5e793335c99f7ac373531f0fa902ab7d536b83343235d8b8",
+    "file_size_bytes": 20457,
+    "ingest_timestamp_utc": "2026-05-04T17:53:07Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

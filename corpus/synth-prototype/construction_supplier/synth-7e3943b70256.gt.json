@@ -1,0 +1,109 @@
+{
+  "doc_id": "synth-7e3943b70256",
+  "source_path": "corpus/synth-prototype/construction_supplier/synth-7e3943b70256.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "construction_supplier",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Heitons",
+    "total": 2303.48,
+    "vat": 325.6,
+    "date": "03/02/2026",
+    "subtotal": 1977.88,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Roof slate Welsh 500x250mm (per slate)",
+      "quantity": 18.0,
+      "unit_price": 3.61,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 64.98,
+      "amount_vat": 8.77,
+      "amount_gross": 73.75
+    },
+    {
+      "description": "OSB board 18mm 2440x1220",
+      "quantity": 28.0,
+      "unit_price": 36.72,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 1028.16,
+      "amount_vat": 138.8,
+      "amount_gross": 1166.96
+    },
+    {
+      "description": "Sand 25kg bag",
+      "quantity": 39.0,
+      "unit_price": 5.54,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 216.06,
+      "amount_vat": 29.17,
+      "amount_gross": 245.23
+    },
+    {
+      "description": "Tarpaulin 4m x 3m heavy-duty",
+      "quantity": 9.0,
+      "unit_price": 22.97,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 206.73,
+      "amount_vat": 47.55,
+      "amount_gross": 254.28
+    },
+    {
+      "description": "Roof slate Welsh 500x250mm (per slate)",
+      "quantity": 13.0,
+      "unit_price": 4.0,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 52.0,
+      "amount_vat": 7.02,
+      "amount_gross": 59.02
+    },
+    {
+      "description": "Gaffer tape 50mm x 50m",
+      "quantity": 45.0,
+      "unit_price": 9.11,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 409.95,
+      "amount_vat": 94.29,
+      "amount_gross": 504.24
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Heitons",
+    "vendor_address_line1": "59 O'Kennedy Street",
+    "vendor_address_line2": "Apt 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 T3XA",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 816 167 2140",
+    "vendor_email": "cosgravemaureen@moroney.com",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5318360KY",
+    "vendor_iban": "IE76AIBK71534183127508",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260203-887",
+    "invoice_date": "03/02/2026",
+    "due_date": "05/03/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "ec0df19c3cc09b8686d2633269781383704ab97b4e3c770fc353e095de78a23b",
+    "file_size_bytes": 20435,
+    "ingest_timestamp_utc": "2026-05-04T17:53:13Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42002,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Statement {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="bank_statement.css">
+</head>
+<body>
+<header class="bank">
+    <div class="bank-block">
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div data-slot="vendor_iban">IBAN: {{ vendor_iban }}</div>
+        <div data-slot="vendor_bic">BIC: {{ vendor_bic }}</div>
+        <div class="vat-num">VAT (financial services exempt): <span data-slot="vendor_vat_number">{{ vendor_vat_number }}</span></div>
+    </div>
+    <div class="stmt-meta">
+        <div class="stmt-label">ACCOUNT STATEMENT</div>
+        <div class="meta-row"><span class="label">Statement</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span class="label">Issued</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+    </div>
+</header>
+
+<section class="period-banner">
+    <strong>Statement Period:</strong> <span data-slot="billing_period">{{ billing_period }}</span>
+</section>
+
+<div class="balance-summary">
+    <div class="bal-row"><span>Opening balance</span><span>€{{ "%.2f"|format(opening_balance) }}</span></div>
+    <div class="bal-row total"><span>Closing balance</span><span data-slot="balance_total">€{{ "%.2f"|format(closing_balance) }}</span></div>
+</div>
+
+<table class="transactions" data-slot="transaction_table">
+    <thead>
+        <tr>
+            <th class="col-date">Date</th>
+            <th class="col-desc">Description</th>
+            <th class="col-debit">Debit (€)</th>
+            <th class="col-credit">Credit (€)</th>
+            <th class="col-bal">Balance (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for txn in transactions %}
+        <tr>
+            <td class="col-date">{{ txn.date }}</td>
+            <td class="col-desc">{{ txn.description }}</td>
+            <td class="col-debit">{{ txn.debit }}</td>
+            <td class="col-credit">{{ txn.credit }}</td>
+            <td class="col-bal">{{ txn.balance }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<footer class="legal">
+    <div>VAT not chargeable on financial services per VATCA Sched 1 (financial services exempt).</div>
+    <div class="footer-note">Goods/services supplied in the State of Ireland ({{ vendor_country }}). Original-form retention per VATCA s.84(3). Regulated by the Central Bank of Ireland.</div>
+</footer>
+
+<!-- ground-truth slots for extract.py compatibility -->
+<div style="display:none">
+    <span data-slot="subtotal_amount">{{ subtotal }}</span>
+    <span data-slot="vat">{{ vat }}</span>
+    <span data-slot="total">{{ total }}</span>
+</div>
+</body>
+</html>

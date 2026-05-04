@@ -1,0 +1,79 @@
+{
+  "doc_id": "synth-26ab7d16bf53",
+  "source_path": "corpus/synth-prototype/foreign_currency_mixed_vat/synth-26ab7d16bf53.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "foreign_currency_mixed_vat",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Ltd",
+    "total": 5677.38,
+    "vat": 0.0,
+    "date": "30/04/2026",
+    "subtotal": 5677.38,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Monthly retainer — design + dev",
+      "quantity": 1.0,
+      "unit_price": 3931.75,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 3931.75,
+      "amount_vat": 0.0,
+      "amount_gross": 3931.75
+    },
+    {
+      "description": "Training workshop (per delegate)",
+      "quantity": 2.0,
+      "unit_price": 491.69,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 983.38,
+      "amount_vat": 0.0,
+      "amount_gross": 983.38
+    },
+    {
+      "description": "Training workshop (per delegate)",
+      "quantity": 1.0,
+      "unit_price": 762.25,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "REVERSE-CHARGE",
+      "amount_net": 762.25,
+      "amount_vat": 0.0,
+      "amount_gross": 762.25
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Ltd",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H91 TN35",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 870 667 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260430-437",
+    "invoice_date": "30/04/2026",
+    "due_date": "30/05/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "3e7b789c66b87fd9aff98ac4d4ccdc2a5620b197142e69e44f08d0da5acf0856",
+    "file_size_bytes": 21212,
+    "ingest_timestamp_utc": "2026-05-04T17:53:26Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

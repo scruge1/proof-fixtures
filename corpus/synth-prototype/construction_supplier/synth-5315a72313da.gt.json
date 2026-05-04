@@ -1,0 +1,129 @@
+{
+  "doc_id": "synth-5315a72313da",
+  "source_path": "corpus/synth-prototype/construction_supplier/synth-5315a72313da.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "construction_supplier",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Murdock Builders Merchants CORK",
+    "total": 8116.1,
+    "vat": 1381.46,
+    "date": "20/02/2026",
+    "subtotal": 6734.64,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Aggregate 25kg bag",
+      "quantity": 25.0,
+      "unit_price": 6.06,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 151.5,
+      "amount_vat": 20.45,
+      "amount_gross": 171.95
+    },
+    {
+      "description": "Steel reinforcement bar Y12 6m length",
+      "quantity": 38.0,
+      "unit_price": 21.58,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 820.04,
+      "amount_vat": 110.71,
+      "amount_gross": 930.75
+    },
+    {
+      "description": "Hi-vis safety vest XL",
+      "quantity": 31.0,
+      "unit_price": 16.3,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 505.3,
+      "amount_vat": 116.22,
+      "amount_gross": 621.52
+    },
+    {
+      "description": "Roof slate Welsh 500x250mm (per slate)",
+      "quantity": 5.0,
+      "unit_price": 4.65,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 23.25,
+      "amount_vat": 3.14,
+      "amount_gross": 26.39
+    },
+    {
+      "description": "Steel-toe work boots size 9",
+      "quantity": 44.0,
+      "unit_price": 101.5,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": 4466.0,
+      "amount_vat": 1027.18,
+      "amount_gross": 5493.18
+    },
+    {
+      "description": "Steel reinforcement bar Y12 6m length",
+      "quantity": 2.0,
+      "unit_price": 24.96,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 49.92,
+      "amount_vat": 6.74,
+      "amount_gross": 56.66
+    },
+    {
+      "description": "Steel reinforcement bar Y12 6m length",
+      "quantity": 37.0,
+      "unit_price": 18.29,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 676.73,
+      "amount_vat": 91.36,
+      "amount_gross": 768.09
+    },
+    {
+      "description": "OSB board 18mm 2440x1220",
+      "quantity": 1.0,
+      "unit_price": 41.9,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 41.9,
+      "amount_vat": 5.66,
+      "amount_gross": 47.56
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Murdock Builders Merchants CORK",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Suite 22",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 S27T",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 860 504 1393",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE2991996WM",
+    "vendor_iban": "IE25IPBS23005184511292",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "INV-20260220-690",
+    "invoice_date": "20/02/2026",
+    "due_date": "22/03/2026",
+    "po_reference": "PO/60013"
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "26c2fa678cff925e2ab3881e8a86472e35b58525790a7fc20457cfc078113103",
+    "file_size_bytes": 20895,
+    "ingest_timestamp_utc": "2026-05-04T17:53:12Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

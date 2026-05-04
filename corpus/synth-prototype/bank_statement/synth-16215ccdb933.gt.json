@@ -1,0 +1,209 @@
+{
+  "doc_id": "synth-16215ccdb933",
+  "source_path": "corpus/synth-prototype/bank_statement/synth-16215ccdb933.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "bank_statement",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Revolut Bank UAB",
+    "total": 8557.67,
+    "vat": 0.0,
+    "date": "06/03/2026",
+    "subtotal": 8557.67,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "ATM CASH WITHDRAWAL",
+      "quantity": 1.0,
+      "unit_price": 123.01,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 123.01,
+      "amount_vat": 0.0,
+      "amount_gross": 123.01
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 96.56,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 96.56,
+      "amount_vat": 0.0,
+      "amount_gross": 96.56
+    },
+    {
+      "description": "REFUND — STRIPE.COM",
+      "quantity": 1.0,
+      "unit_price": 127.11,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 127.11,
+      "amount_vat": 0.0,
+      "amount_gross": 127.11
+    },
+    {
+      "description": "REFUND — STRIPE.COM",
+      "quantity": 1.0,
+      "unit_price": 30.78,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 30.78,
+      "amount_vat": 0.0,
+      "amount_gross": 30.78
+    },
+    {
+      "description": "D/D EIR BROADBAND",
+      "quantity": 1.0,
+      "unit_price": 67.92,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 67.92,
+      "amount_vat": 0.0,
+      "amount_gross": 67.92
+    },
+    {
+      "description": "INTEREST CREDIT",
+      "quantity": 1.0,
+      "unit_price": 7.66,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 7.66,
+      "amount_vat": 0.0,
+      "amount_gross": 7.66
+    },
+    {
+      "description": "D/D ESB ELECTRIC IRELAND",
+      "quantity": 1.0,
+      "unit_price": 161.77,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 161.77,
+      "amount_vat": 0.0,
+      "amount_gross": 161.77
+    },
+    {
+      "description": "D/D ESB ELECTRIC IRELAND",
+      "quantity": 1.0,
+      "unit_price": 52.67,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 52.67,
+      "amount_vat": 0.0,
+      "amount_gross": 52.67
+    },
+    {
+      "description": "D/D ESB ELECTRIC IRELAND",
+      "quantity": 1.0,
+      "unit_price": 161.34,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 161.34,
+      "amount_vat": 0.0,
+      "amount_gross": 161.34
+    },
+    {
+      "description": "VISA SHELL FORECOURT LIMERICK",
+      "quantity": 1.0,
+      "unit_price": 64.62,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 64.62,
+      "amount_vat": 0.0,
+      "amount_gross": 64.62
+    },
+    {
+      "description": "CUSTOMER PAYMENT — INV",
+      "quantity": 1.0,
+      "unit_price": 1326.63,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 1326.63,
+      "amount_vat": 0.0,
+      "amount_gross": 1326.63
+    },
+    {
+      "description": "D/D VHI HEALTHCARE",
+      "quantity": 1.0,
+      "unit_price": 126.25,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 126.25,
+      "amount_vat": 0.0,
+      "amount_gross": 126.25
+    },
+    {
+      "description": "ATM CASH WITHDRAWAL",
+      "quantity": 1.0,
+      "unit_price": 65.61,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 65.61,
+      "amount_vat": 0.0,
+      "amount_gross": 65.61
+    },
+    {
+      "description": "VISA APPLE.COM IRELAND",
+      "quantity": 1.0,
+      "unit_price": 16.91,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 16.91,
+      "amount_vat": 0.0,
+      "amount_gross": 16.91
+    },
+    {
+      "description": "ATM CASH WITHDRAWAL",
+      "quantity": 1.0,
+      "unit_price": 177.36,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 177.36,
+      "amount_vat": 0.0,
+      "amount_gross": 177.36
+    },
+    {
+      "description": "D/D EIR BROADBAND",
+      "quantity": 1.0,
+      "unit_price": 59.12,
+      "vat_rate_pct": 0.0,
+      "vat_letter_code": "EXEMPT",
+      "amount_net": 59.12,
+      "amount_vat": 0.0,
+      "amount_gross": 59.12
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Revolut Bank UAB",
+    "vendor_address_line1": "95 Naughton Street",
+    "vendor_address_line2": "Suite 22",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H53 S27T",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 860 504 1393",
+    "vendor_email": "zbonar@brassil.org",
+    "vendor_website": "",
+    "vendor_vat_number": "IE2991996WM",
+    "vendor_iban": "IE25IPBS23005184511292",
+    "vendor_bic": "IPBSIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "STMT-202603-104103",
+    "invoice_date": "06/03/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "3b42b3233cfc6cecbe58a4a15c86d9d591b61c4fa0890c46c6c27447dabd1663",
+    "file_size_bytes": 19874,
+    "ingest_timestamp_utc": "2026-05-04T17:53:06Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42001,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

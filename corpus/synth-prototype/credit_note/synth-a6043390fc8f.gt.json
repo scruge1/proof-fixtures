@@ -1,0 +1,59 @@
+{
+  "doc_id": "synth-a6043390fc8f",
+  "source_path": "corpus/synth-prototype/credit_note/synth-a6043390fc8f.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "credit_note",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "Cogley Ltd",
+    "total": -208.63,
+    "vat": -39.01,
+    "date": "30/04/2026",
+    "subtotal": -169.62,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Roofing — slate replacement (per slate)",
+      "quantity": 2.0,
+      "unit_price": 84.81,
+      "vat_rate_pct": 23.0,
+      "vat_letter_code": null,
+      "amount_net": -169.62,
+      "amount_vat": -39.01,
+      "amount_gross": -208.63
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "Cogley Ltd",
+    "vendor_address_line1": "43 Quin Street",
+    "vendor_address_line2": "Suite 21",
+    "vendor_city": "Galway",
+    "vendor_eircode": "H91 TN35",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 870 667 2383",
+    "vendor_email": "walterdaire@logan.biz",
+    "vendor_website": "",
+    "vendor_vat_number": "IE8470644HF",
+    "vendor_iban": "IE36AIBK67612821308952",
+    "vendor_bic": "AIBKIE2DXXX",
+    "vendor_logo_present": "",
+    "invoice_number": "CN-20260430-536",
+    "invoice_date": "30/04/2026",
+    "due_date": "",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "22a9a301edab6fd4d5c99fdaf6464d503d9e5ad623d8cbea3279e71c1a279d85",
+    "file_size_bytes": 19259,
+    "ingest_timestamp_utc": "2026-05-04T17:53:19Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42003,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

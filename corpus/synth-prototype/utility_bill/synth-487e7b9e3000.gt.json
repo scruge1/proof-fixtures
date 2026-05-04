@@ -1,0 +1,79 @@
+{
+  "doc_id": "synth-487e7b9e3000",
+  "source_path": "corpus/synth-prototype/utility_bill/synth-487e7b9e3000.pdf",
+  "schema_version": "0.4",
+  "contracts_version": "0.4.2-step0.1",
+  "template_family": "utility_bill",
+  "corruption_bucket": "clean",
+  "ground_truth_fields": {
+    "vendor": "ESB Electric Ireland",
+    "total": 103.97,
+    "vat": 12.36,
+    "date": "01/04/2026",
+    "subtotal": 91.61,
+    "vendor_country": "IE"
+  },
+  "ground_truth_line_items": [
+    {
+      "description": "Network maintenance fee",
+      "quantity": 1.0,
+      "unit_price": 10.92,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 10.92,
+      "amount_vat": 1.47,
+      "amount_gross": 12.39
+    },
+    {
+      "description": "Standing charge — electricity (62 days)",
+      "quantity": 1.0,
+      "unit_price": 44.91,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 44.91,
+      "amount_vat": 6.06,
+      "amount_gross": 50.97
+    },
+    {
+      "description": "Standing charge — gas (62 days)",
+      "quantity": 1.0,
+      "unit_price": 35.78,
+      "vat_rate_pct": 13.5,
+      "vat_letter_code": null,
+      "amount_net": 35.78,
+      "amount_vat": 4.83,
+      "amount_gross": 40.61
+    }
+  ],
+  "ground_truth_header": {
+    "vendor_name": "ESB Electric Ireland",
+    "vendor_address_line1": "25 Mulroy Street",
+    "vendor_address_line2": "",
+    "vendor_city": "Kilkenny",
+    "vendor_eircode": "R95 JVL1",
+    "vendor_country": "IE",
+    "vendor_phone": "+353 807 401 4234",
+    "vendor_email": "mlinehan@mannix-mcentaggart.info",
+    "vendor_website": "",
+    "vendor_vat_number": "IE5557217Q",
+    "vendor_iban": "IE14NTSB39267598240440",
+    "vendor_bic": "NTSBIE2D",
+    "vendor_logo_present": "",
+    "invoice_number": "BIL-20260401-18546",
+    "invoice_date": "01/04/2026",
+    "due_date": "15/04/2026",
+    "po_reference": ""
+  },
+  "ground_truth_provenance": {
+    "original_form": "digital_native",
+    "source_engine": "weasyprint-68.1+jinja2",
+    "file_sha256": "582bf9e0d661dc45141b3d0fb7ef9872af0b523c9f2a45278a0b8eee999b51cd",
+    "file_size_bytes": 18868,
+    "ingest_timestamp_utc": "2026-05-04T17:53:01Z",
+    "page_count": 1,
+    "vatca_attestation": "original-form-preserved"
+  },
+  "synthetic_seed": 42004,
+  "synthetic_generator_commit": "f530abec55959e790d43bc715fa59bc08bcb9c70",
+  "license_tag": "Apache-2.0"
+}

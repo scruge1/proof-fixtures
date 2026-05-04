@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Invoice {{ invoice_number }} — {{ vendor_name }}</title>
+    <link rel="stylesheet" href="foreign_currency_mixed_vat.css">
+</head>
+<body>
+<header class="vendor">
+    <div class="vendor-block">
+        <h1 data-slot="vendor_name">{{ vendor_name }}</h1>
+        <div data-slot="vendor_address_line1">{{ vendor_address_line1 }}</div>
+        {% if vendor_address_line2 %}<div data-slot="vendor_address_line2">{{ vendor_address_line2 }}</div>{% endif %}
+        <div data-slot="vendor_city">{{ vendor_city }}{% if vendor_eircode %}, <span data-slot="vendor_eircode">{{ vendor_eircode }}</span>{% endif %}</div>
+        <div data-slot="vendor_phone">Tel: {{ vendor_phone }}</div>
+        <div data-slot="vendor_email">{{ vendor_email }}</div>
+        <div class="vat-num">VAT No: <span data-slot="vendor_vat_number">{{ vendor_vat_number }}</span></div>
+    </div>
+    <div class="invoice-meta">
+        <div class="invoice-label">INTERNATIONAL INVOICE</div>
+        <div class="meta-row"><span class="label">No</span><span data-slot="invoice_number">{{ invoice_number }}</span></div>
+        <div class="meta-row"><span class="label">Date</span><span data-slot="invoice_date">{{ invoice_date }}</span></div>
+        <div class="meta-row"><span class="label">Due</span><span data-slot="due_date">{{ due_date }}</span></div>
+        {% if po_reference %}<div class="meta-row"><span class="label">PO Ref</span><span data-slot="po_reference">{{ po_reference }}</span></div>{% endif %}
+    </div>
+</header>
+
+<section class="rc-banner" data-slot="reverse_charge_clause">
+    <strong>EU Intra-Community Reverse-Charge:</strong> {{ reverse_charge_clause }}
+</section>
+
+<table class="line-items">
+    <thead>
+        <tr>
+            <th class="col-desc">Description</th>
+            <th class="col-qty">Qty</th>
+            <th class="col-price">Unit (€)</th>
+            <th class="col-net">Net (€)</th>
+            <th class="col-vat">VAT %</th>
+            <th class="col-amt">Total (€)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in line_items %}
+        <tr>
+            <td class="col-desc" data-slot="description">{{ item.description }}</td>
+            <td class="col-qty" data-slot="quantity">{{ "%g"|format(item.quantity) }}</td>
+            <td class="col-price" data-slot="unit_price">{{ "%.2f"|format(item.unit_price) }}</td>
+            <td class="col-net" data-slot="amount_net">{{ "%.2f"|format(item.amount_net) }}</td>
+            <td class="col-vat">RC</td>
+            <td class="col-amt" data-slot="amount_gross">{{ "%.2f"|format(item.amount_gross) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<section class="currency-breakdown" data-slot="currency_breakdown">
+    <h3>Currency Conversion (EUR / GBP)</h3>
+    <table>
+        <tr><td>FX rate (EUR &rarr; GBP)</td><td>{{ "%.4f"|format(currency_breakdown.eur_to_gbp_rate) }}</td></tr>
+        <tr><td>Subtotal (EUR)</td><td>€{{ "%.2f"|format(currency_breakdown.subtotal_eur) }}</td></tr>
+        <tr><td>Subtotal (GBP)</td><td>£{{ "%.2f"|format(currency_breakdown.subtotal_gbp) }}</td></tr>
+        <tr class="fx-total"><td><strong>Total (EUR)</strong></td><td><strong>€{{ "%.2f"|format(currency_breakdown.total_eur) }}</strong></td></tr>
+        <tr class="fx-total"><td><strong>Total (GBP)</strong></td><td><strong>£{{ "%.2f"|format(currency_breakdown.total_gbp) }}</strong></td></tr>
+    </table>
+</section>
+
+<table class="totals">
+    <tr>
+        <td class="lbl">Subtotal (Net, EUR)</td>
+        <td class="amt" data-slot="subtotal_amount">€{{ "%.2f"|format(subtotal) }}</td>
+    </tr>
+    <tr>
+        <td class="lbl">VAT (Reverse-Charge)</td>
+        <td class="amt" data-slot="vat">€{{ "%.2f"|format(vat) }}</td>
+    </tr>
+    <tr class="grand-total">
+        <td class="lbl"><strong>TOTAL DUE (EUR)</strong></td>
+        <td class="amt"><strong data-slot="total">€{{ "%.2f"|format(total) }}</strong></td>
+    </tr>
+</table>
+
+<footer class="payment-details">
+    <div>Payment by EFT to:</div>
+    <div data-slot="vendor_iban">IBAN: {{ vendor_iban }}{% if vendor_bic %} &nbsp;|&nbsp; BIC: <span data-slot="vendor_bic">{{ vendor_bic }}</span>{% endif %}</div>
+    <div class="footer-note">Vendor in {{ vendor_country }} (IE). Recipient B2B in UK accounts for VAT under domestic reverse-charge regime. Per VATCA + UK VAT Notice 735.</div>
+</footer>
+</body>
+</html>

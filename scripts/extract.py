@@ -842,7 +842,8 @@ def _extract_candidate(text: str, field_id: str) -> tuple[str, Any]:
         # Strip trailing all-caps doc-type words FIRST so "Dr. Smith Clinic
         # RECEIPT" becomes "Dr. Smith Clinic" before keyword filtering.
         doctype_suffix = re.compile(
-            r"\s+(RECEIPT|INVOICE|STATEMENT|CREDIT\s+NOTE|LETTER\s+OF\s+ENGAGEMENT|"
+            r"\s+(?:(?:INTERNATIONAL|EXPORT|DOMESTIC|COMMERCIAL|PROFORMA|PRO-FORMA)\s+)?"
+            r"(RECEIPT|INVOICE|STATEMENT|CREDIT\s+NOTE|LETTER\s+OF\s+ENGAGEMENT|"
             r"VAT\s+INVOICE|TAX\s+INVOICE|FEE\s+NOTE|UTILITY\s+BILL|DELIVERY\s+NOTE|"
             r"BILL|REPORT)\s*$"
         )

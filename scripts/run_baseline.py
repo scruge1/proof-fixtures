@@ -52,18 +52,40 @@ def discover_sets(prefix: str) -> list[str]:
     )
 
 
-def stage_pilot_subset(set_slug: str, doc_limit: int) -> Path:
+def stage_pilot_subset(set_slug: str, doc_limit: int, bucket_filter: str | None = None) -> Path:
     """Copies first N docs from fixtures/{set}/ into a temp pilot set so
-    extract.py only processes the subset. Returns the pilot set slug."""
+    extract.py only processes the subset. Returns the pilot set slug.
+
+    If bucket_filter is set ("clean" / "light" / "heavy" / "very-heavy"),
+    only PDFs in that file-size bucket are eligible. Bucket size mapping
+    matches the Augraphy 4-bucket pipeline output sizes seen on
+    synth-full-corrupted-v0.4.2-r1:
+      clean       <  60 KB (Augraphy clean = pass-through copy)
+      light        60 KB - 200 KB
+      heavy       200 KB - 500 KB
+      very-heavy  >  500 KB
+    """
     src = FIXTURES_DIR / set_slug
-    pilot_slug = f"{set_slug}__pilot{doc_limit}"
+    suffix = f"__pilot{doc_limit}" + (f"-{bucket_filter}" if bucket_filter else "")
+    pilot_slug = f"{set_slug}{suffix}"
     dst = FIXTURES_DIR / pilot_slug
     if dst.exists():
         shutil.rmtree(dst)
     (dst / "samples").mkdir(parents=True)
     (dst / "ground-truth").mkdir(parents=True)
 
-    pdfs = sorted((src / "samples").glob("*.pdf"))[:doc_limit]
+    bucket_ranges = {
+        "clean":      (0,           60 * 1024),
+        "light":      (60 * 1024,   200 * 1024),
+        "heavy":      (200 * 1024,  500 * 1024),
+        "very-heavy": (500 * 1024,  10**9),
+    }
+    candidates = sorted((src / "samples").glob("*.pdf"))
+    if bucket_filter:
+        lo, hi = bucket_ranges[bucket_filter]
+        candidates = [p for p in candidates if lo <= p.stat().st_size < hi]
+    pdfs = candidates[:doc_limit]
+
     for pdf in pdfs:
         try:
             (dst / "samples" / pdf.name).hardlink_to(pdf)
@@ -107,6 +129,9 @@ def main() -> int:
                     help="Fixture set prefix to baseline (default 'synth-full-')")
     ap.add_argument("--doc-limit", type=int, default=None,
                     help="If set, copy first N docs/family into a pilot subset and run on that")
+    ap.add_argument("--bucket-filter", choices=("clean", "light", "heavy", "very-heavy"),
+                    default=None,
+                    help="With --doc-limit, only sample PDFs in this Augraphy file-size bucket")
     ap.add_argument("--pipeline", default="tesseract-only",
                     choices=("tesseract-only", "rapidocr-only", "docops"),
                     help="Pipeline preset (default tesseract-only — floor measurement)")
@@ -126,7 +151,17 @@ def main() -> int:
 
     # Pilot subset path
     if args.doc_limit:
-        sets = [stage_pilot_subset(s, args.doc_limit) for s in sets]
+        staged = []
+        for s in sets:
+            slug = stage_pilot_subset(s, args.doc_limit, args.bucket_filter)
+            n = len(list((FIXTURES_DIR / slug / "samples").glob("*.pdf")))
+            if n == 0:
+                print(f"  SKIP {s} — no docs match bucket={args.bucket_filter}")
+                continue
+            staged.append(slug)
+        sets = staged
+        if not sets:
+            sys.exit("No pilot sets after bucket filter; widen filter or drop it.")
 
     print(f"# run_baseline.py — {len(sets)} sets · pipeline={args.pipeline} "
           f"verifier={args.with_verifier} llm-extract={args.with_llm_extract} "

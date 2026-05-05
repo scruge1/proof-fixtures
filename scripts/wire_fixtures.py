@@ -1,32 +1,43 @@
 #!/usr/bin/env python3
-"""Wire synth-prototype corpus into fixtures/ for extract.py + score.py scoring.
+"""Wire a synth corpus into fixtures/ for extract.py + score.py scoring.
 
 extract.py expects:  fixtures/{set}/samples/*.pdf
 score.py expects:    fixtures/{set}/ground-truth/*.json
 
 This script bridges by HARDLINKING (no admin needed on Windows for hardlinks
-within the same volume) the synth-prototype outputs into fixtures/ folders
-named `synth-{template_family}`.
+within the same volume) the synth corpus outputs into fixtures/ folders
+named `{prefix}{template_family}`.
 
 Re-runnable. Idempotent — replaces existing links.
 
 Usage:
-    python scripts/wire_fixtures.py                # wire all 16 templates
-    python scripts/wire_fixtures.py tradesman_rct  # wire one template
+    # Default: wire smoke corpus (synth-prototype/) into fixtures/synth-{family}/
+    python scripts/wire_fixtures.py
+    python scripts/wire_fixtures.py tradesman_rct
+
+    # Wire full v0.4.2 r1 corpus into fixtures/synth-full-{family}/
+    python scripts/wire_fixtures.py --source corpus/synth-full-v0.4.2-r1 \\
+        --prefix synth-full-
 
 Per Step 9 (PDR §7) prep: this is what `eval/run_baseline.py` will run before
 calling extract.py on the synth corpus to measure baseline GLM-OCR Q8 field-EM.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import shutil
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-CORPUS_DIR = REPO_ROOT / "corpus" / "synth-prototype"
+DEFAULT_CORPUS_DIR = REPO_ROOT / "corpus" / "synth-prototype"
+DEFAULT_FIXTURE_PREFIX = "synth-"
 FIXTURES_DIR = REPO_ROOT / "fixtures"
+
+# Module-level state set by main() so wire_template() can stay simple
+CORPUS_DIR: Path = DEFAULT_CORPUS_DIR
+FIXTURE_PREFIX: str = DEFAULT_FIXTURE_PREFIX
 
 
 def _make_extract_groundtruth(synth_gt: dict) -> dict:
@@ -64,7 +75,7 @@ def wire_template(template_family: str) -> tuple[int, int]:
     if not src.exists():
         raise FileNotFoundError(f"No synth corpus at {src}; run generate_corpus.py first")
 
-    set_slug = f"synth-{template_family}"
+    set_slug = f"{FIXTURE_PREFIX}{template_family}"
     samples_dir = FIXTURES_DIR / set_slug / "samples"
     gt_dir = FIXTURES_DIR / set_slug / "ground-truth"
     samples_dir.mkdir(parents=True, exist_ok=True)
@@ -96,24 +107,41 @@ def wire_template(template_family: str) -> tuple[int, int]:
 
 
 def main() -> int:
-    if len(sys.argv) > 1:
-        templates = sys.argv[1:]
-    else:
-        templates = sorted([d.name for d in CORPUS_DIR.iterdir() if d.is_dir()])
+    global CORPUS_DIR, FIXTURE_PREFIX
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("templates", nargs="*",
+                    help="Subset of template family names (default: all dirs in --source)")
+    ap.add_argument("--source", type=Path, default=DEFAULT_CORPUS_DIR,
+                    help="Synth corpus dir (relative to repo root unless absolute)")
+    ap.add_argument("--prefix", default=DEFAULT_FIXTURE_PREFIX,
+                    help="Fixture set prefix (e.g. 'synth-' or 'synth-full-')")
+    args = ap.parse_args()
+
+    CORPUS_DIR = args.source if args.source.is_absolute() else REPO_ROOT / args.source
+    FIXTURE_PREFIX = args.prefix
+
+    if not CORPUS_DIR.exists():
+        sys.exit(f"--source dir not found: {CORPUS_DIR}")
+
+    templates = args.templates or sorted(
+        d.name for d in CORPUS_DIR.iterdir() if d.is_dir() and not d.name.startswith("_")
+    )
 
     total_pdfs = 0
     total_gt = 0
     for tpl in templates:
         try:
             n_pdfs, n_gt = wire_template(tpl)
-            print(f"  OK synth-{tpl:32s}  pdfs={n_pdfs}  gt={n_gt}")
+            print(f"  OK {FIXTURE_PREFIX}{tpl:32s}  pdfs={n_pdfs}  gt={n_gt}")
             total_pdfs += n_pdfs
             total_gt += n_gt
         except FileNotFoundError as e:
             print(f"  XX {tpl:32s}  {e}", file=sys.stderr)
 
-    print(f"\nWired {len(templates)} templates: {total_pdfs} PDFs + {total_gt} GT JSONs")
-    print(f"Run scoring: python scripts/score.py --set synth-{templates[0]}")
+    print(f"\nWired {len(templates)} templates: {total_pdfs} PDFs + {total_gt} GT JSONs "
+          f"into fixtures/{FIXTURE_PREFIX}*/")
+    if templates:
+        print(f"Run scoring: python scripts/score.py --set {FIXTURE_PREFIX}{templates[0]}")
     return 0
 
 

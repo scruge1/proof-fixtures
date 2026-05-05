@@ -834,22 +834,49 @@ MONEY_REGEX = re.compile(MONEY_PATTERN, re.IGNORECASE)
 
 def _extract_candidate(text: str, field_id: str) -> tuple[str, Any]:
     if field_id == "vendor":
-        # Prefer first all-caps line of >=4 chars (typical IE invoice header).
-        # Then fall back to mixed-case heading line. v0.4 will use NER.
-        excluded_kws = ("invoice", "total", "vat", "page", "date", "subtotal",
-                        "amount", "balance", "tax", "due", "received")
-        for line in text.splitlines():
-            stripped = line.strip()
-            if (4 <= len(stripped) <= 60
-                    and re.match(r"^[A-Z][A-Z0-9 &.,'-]{3,60}$", stripped)
-                    and not any(kw in stripped.lower() for kw in excluded_kws)):
-                return stripped, stripped
-        for line in text.splitlines():
-            stripped = line.strip()
-            if (4 <= len(stripped) <= 60
-                    and re.match(r"^[A-Z][A-Za-z0-9 &.,'-]{3,60}$", stripped)
-                    and not any(kw in stripped.lower() for kw in excluded_kws)):
-                return stripped, stripped
+        # Vendor name lives in the document header region (first ~8 lines on
+        # IE invoice / receipt / LoE templates). Earlier rev searched the whole
+        # document and picked all-caps body section headers ("SERVICES RENDERED",
+        # "ITEMS", "PAYMENT DETAILS") over the actual vendor when the vendor
+        # name was mixed-case. v0.4 will replace this with NER.
+        # Strip trailing all-caps doc-type words FIRST so "Dr. Smith Clinic
+        # RECEIPT" becomes "Dr. Smith Clinic" before keyword filtering.
+        doctype_suffix = re.compile(
+            r"\s+(RECEIPT|INVOICE|STATEMENT|CREDIT\s+NOTE|LETTER\s+OF\s+ENGAGEMENT|"
+            r"VAT\s+INVOICE|TAX\s+INVOICE|FEE\s+NOTE|UTILITY\s+BILL|DELIVERY\s+NOTE|"
+            r"BILL|REPORT)\s*$"
+        )
+        # Body-section / accounting-noise lines that are NEVER the vendor.
+        excluded_kws = ("invoice no", "invoice number", "total", "vat reg",
+                        "vat exempt", "page", "date", "due date", "subtotal",
+                        "amount due", "balance", "tax point", "received",
+                        "services rendered", "items", "description", "qty",
+                        "unit price", "payment details", "billing period",
+                        "transaction", "delivery note ref", "fees")
+        head = [ln.strip() for ln in text.splitlines()[:8]]
+
+        def _ok(stripped: str) -> Optional[str]:
+            cleaned = doctype_suffix.sub("", stripped).strip()
+            if not (4 <= len(cleaned) <= 80):
+                return None
+            if any(kw in cleaned.lower() for kw in excluded_kws):
+                return None
+            return cleaned
+
+        # Pass 1 — all-caps header (high-signal vendor brand line).
+        for stripped in head:
+            if not re.match(r"^[A-Z][A-Z0-9 &.,'-]{3,60}$", doctype_suffix.sub("", stripped).strip()):
+                continue
+            cleaned = _ok(stripped)
+            if cleaned:
+                return cleaned, cleaned
+        # Pass 2 — mixed-case header.
+        for stripped in head:
+            if not re.match(r"^[A-Z][A-Za-z0-9 &.,'-]{3,80}$", doctype_suffix.sub("", stripped).strip()):
+                continue
+            cleaned = _ok(stripped)
+            if cleaned:
+                return cleaned, cleaned
         return ("", None)
 
     if field_id == "total":

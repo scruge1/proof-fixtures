@@ -65,12 +65,59 @@ def _import_app():
     return locals()
 
 
+_CACHED_ACCESS: dict[str, tuple[str, float]] = {}
+
+
 def _label_studio_token() -> tuple[str, str]:
+    """Return (base_url, access_jwt). Mints a fresh JWT access via the
+    long-lived refresh token in LS_REFRESH_TOKEN. Caches access JWT for
+    50 minutes (well below the 60-min expiry).
+
+    Env vars (in priority order):
+      LABEL_STUDIO_URL         (required)
+      LS_REFRESH_TOKEN         (preferred — long-lived, mints fresh access)
+      LABEL_STUDIO_TOKEN       (fallback — legacy 40-hex; may 401 on newer LS)
+    """
+    import time
     base = os.environ.get("LABEL_STUDIO_URL", "").rstrip("/")
+    if not base:
+        sys.exit("LABEL_STUDIO_URL required")
+
+    refresh = os.environ.get("LS_REFRESH_TOKEN", "")
+    if refresh:
+        cached = _CACHED_ACCESS.get(base)
+        if cached and (time.time() - cached[1]) < 3000:  # 50 min
+            return base, cached[0]
+        try:
+            import requests
+        except ImportError:
+            sys.exit("requests not installed; pip install requests")
+        r = requests.post(
+            f"{base}/api/token/refresh/",
+            json={"refresh": refresh}, timeout=15,
+        )
+        if r.status_code != 200:
+            sys.exit(f"LS_REFRESH_TOKEN refresh failed: {r.status_code} {r.text[:200]}")
+        access = r.json().get("access", "")
+        if not access:
+            sys.exit("refresh returned no access token")
+        _CACHED_ACCESS[base] = (access, time.time())
+        return base, access
+
     token = os.environ.get("LABEL_STUDIO_TOKEN", "")
-    if not (base and token):
-        sys.exit("LABEL_STUDIO_URL + LABEL_STUDIO_TOKEN required (see infra/label-studio/README)")
+    if not token:
+        sys.exit("LS_REFRESH_TOKEN or LABEL_STUDIO_TOKEN required")
     return base, token
+
+
+def _auth_header(token: str) -> str:
+    """JWT access tokens (>=80 chars w/ dots) -> Bearer; legacy 40-hex -> Token."""
+    forced = os.environ.get("LABEL_STUDIO_AUTH_PREFIX")
+    if forced:
+        return f"{forced} {token}"
+    if len(token) >= 80 and "." in token:
+        return f"Bearer {token}"
+    return f"Token {token}"
 
 
 def _project_id_for_tenant(tenant_slug: str, base: str, token: str) -> int | None:
@@ -79,7 +126,7 @@ def _project_id_for_tenant(tenant_slug: str, base: str, token: str) -> int | Non
     name = f"docops-{tenant_slug}"
     r = requests.get(
         f"{base}/api/projects?name={name}",
-        headers={"Authorization": f"Token {token}"}, timeout=15,
+        headers={"Authorization": _auth_header(token)}, timeout=15,
     )
     r.raise_for_status()
     results = r.json().get("results") or []
@@ -105,7 +152,7 @@ def _push_one_extraction(project_id: int, extraction, base: str, token: str) -> 
     }
     r = requests.post(
         f"{base}/api/projects/{project_id}/import",
-        headers={"Authorization": f"Token {token}"},
+        headers={"Authorization": _auth_header(token)},
         json=[payload], timeout=30,
     )
     if r.status_code >= 400:
